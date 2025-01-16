@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Back_end.DTOs;
 
 namespace Back_end.Models
 {
@@ -28,6 +29,20 @@ namespace Back_end.Models
         [JsonIgnore]
         public Supplier Supplier { get; set; }
         [JsonIgnore]
-        public List<Category> Categories { get; set; } = new();
+        public List<Category> Categories { get; set; }
+
+        public Product(ProductDTO productDTO)
+        {
+            UpdateProduct(productDTO);
+        }
+
+        public void UpdateProduct(ProductDTO productDTO)
+        {
+            Name = productDTO.Name;
+            Description = productDTO.Description;
+            Price = productDTO.Price;
+            Quantity = productDTO.Quantity;
+            SupplierId = productDTO.SupplierId;
+        }
     }
 }

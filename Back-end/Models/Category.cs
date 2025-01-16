@@ -13,6 +13,11 @@ namespace Back_end.Models
         public string Name { get; set; }
 
         [JsonIgnore]
-        public List<Product> Products { get; set; } = new();
+        public List<Product> Products { get; set; }
+
+        public Category(string name)
+        {
+            Name = name;
+        }
     }
 }

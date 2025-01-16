@@ -18,5 +18,13 @@ namespace Back_end.Models
         [StringLength(300)]
         public string Address { get; set; }
 
+        public void UpdateSupplier(Supplier supplier)
+        {
+            Name = supplier.Name;
+            PhoneNumber = supplier.PhoneNumber;
+            Email = supplier.Email;
+            Address = supplier.Address;
+        }
+
     }
 }
