@@ -44,10 +44,8 @@ namespace Back_end.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteSupplier(int id)
+        public async Task DeleteSupplier(Supplier supplier)
         {
-            var supplier = await _context.Suppliers.FindAsync(id);
-
             _context.Suppliers.Remove(supplier);
             await _context.SaveChangesAsync();
         }

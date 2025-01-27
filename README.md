@@ -13,9 +13,12 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 
 ### Criar novas entidades e relacionamentos. ✔️
 1. Definir as novas entidades e seus relacionamentos. ✔️
-* **Products**: `Id`, `Name`, `Description`, `Price`, `Quantity`, `CategoryId`, `SupplierId`.
+* **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `CategoryId`, `SupplierId`.
 * **Category**: `CategoryId`, `Name`.
 * **Supplier**: `SupplierId`, `Name`, `PhoneNumber`, `Email`, `Address`.
+
+* **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`
+* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`
 
 3. Realizar as configurações necessárias para a API Funcionar e ser consumida pelo front-end. ✔️
 

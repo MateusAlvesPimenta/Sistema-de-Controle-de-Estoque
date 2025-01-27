@@ -28,9 +28,9 @@ namespace Back_end.Models
         public int SupplierId { get; set; }
         [JsonIgnore]
         public Supplier Supplier { get; set; }
-        [JsonIgnore]
-        public List<Category> Categories { get; set; }
+        public List<Category> Categories { get; set; } = new List<Category>();
 
+        public Product() {}
         public Product(ProductDTO productDTO)
         {
             UpdateProduct(productDTO);

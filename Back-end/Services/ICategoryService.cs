@@ -10,8 +10,8 @@ namespace Back_end.Services
     {
         Task<List<Category>> GetAllCategories();
         Task<Category> GetCategoryById(int id);
-        Task AddCategory(string name);
-        Task UpdateCategory(int id, string newName);
-        Task DeleteCategory(int id);
+        Task<Category> AddCategory(string name);
+        Task UpdateCategory(Category category);
+        Task DeleteCategory(Category category);
     }
 }

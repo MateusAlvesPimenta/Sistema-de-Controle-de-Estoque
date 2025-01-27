@@ -25,27 +25,24 @@ namespace Back_end.Services
             return category;
         }
 
-        public async Task AddCategory(string name)
+        public async Task<Category> AddCategory(string name)
         {
             var newCategory = new Category(name);
             
             _context.Categories.Add(newCategory);
             await _context.SaveChangesAsync();
+
+            return newCategory;
         }
 
-        public async Task UpdateCategory(int id, string newName)
+        public async Task UpdateCategory(Category category)
         {
-            var category = await _context.Categories.FindAsync(id);
-            category.Name = newName;
-            
             _context.Categories.Entry(category).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteCategory(int id)
+        public async Task DeleteCategory(Category category)
         {
-            var category = await _context.Categories.FindAsync(id);
-
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
         }

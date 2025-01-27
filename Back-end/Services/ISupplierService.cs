@@ -8,6 +8,6 @@ namespace Back_end.Services
         Task<Supplier> GetSupplierById(int id);
         Task AddSupplier(Supplier supplier);
         Task UpdateSupplier(int id, Supplier supplier);
-        Task DeleteSupplier(int id);
+        Task DeleteSupplier(Supplier supplier);
     }
 }
