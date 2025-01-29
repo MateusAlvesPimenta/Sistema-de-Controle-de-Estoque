@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("/api/Controller")]
+    [Route("Controller")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;

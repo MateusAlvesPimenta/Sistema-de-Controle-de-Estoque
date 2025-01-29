@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("api/Controller")]
+    [Route("Controller")]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
