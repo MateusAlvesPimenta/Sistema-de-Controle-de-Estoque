@@ -12,14 +12,14 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * ✔️ - Feito.
 
 ### Criar novas entidades e relacionamentos. ✔️
-1. Definir as novas entidades e seus relacionamentos. 
-* ✔️
+1. Definir as entidades iniciais e seus relacionamentos. ✔️
 * **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `CategoryId`, `SupplierId`.
 * **Category**: `CategoryId`, `Name`.
 * **Supplier**: `SupplierId`, `Name`, `PhoneNumber`, `Email`, `Address`.
-* ⚙️
-* **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`
-* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`
+
+2. Definir as entidades de vendas e seus relacionamentos. ⚙️
+* **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`.
+* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`.
 
 3. Realizar as configurações necessárias para a API Funcionar e ser consumida pelo front-end. ✔️
 
@@ -28,15 +28,18 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 1. **Cadastro de entidades**: ✔️
 * Adicionar, editar e excluir entidades.
 
-2. **Gerenciamento de estoque**: 🛠️
-* Atualizar a quantidade de produtos.
-* Alerta para produtos com estoque abaixo do limite mínimo.
-
-3. **Listagem e busca de produtos**: ✔️
+2. **Listagem e busca de produtos**: ✔️
 * Exibir os produtos por nome, categoria ou fornecedor.
 
-### Criar o Front-end. ⚙️
+3. **Gerenciamento de estoque**: 🛠️
+* Atualizar a quantidade de produtos.
+* Alerta para produtos com estoque abaixo do limite mínimo.
+* Criar sistema de reabastecimento de estoque.
+
+### Criação do Front-end. ⚙️
 1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores, categorias e produtos ⚙️
-2. Implementar o sistema de filtros para listagem de produtos de acordo com seu fornecedor ou categorias. 🛠️
-3. Criar intefaces para visualização e simulação de vendas. 🛠️
-4. Melhorias visuais e de código. 🛠️
+2. Criar Uma Home page básica e temporária ⚙️
+3. Implementar um sistema de filtros para listagem de produtos de acordo com seu fornecedor ou categorias. 🛠️
+4. Criar intefaces para visualização e simulação de vendas. 🛠️
+5. Melhorias na Home page. 🛠️
+6. Melhorias visuais e de código. 🛠️
