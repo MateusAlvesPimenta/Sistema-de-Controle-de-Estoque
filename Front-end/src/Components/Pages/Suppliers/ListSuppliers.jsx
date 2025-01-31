@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import { Context } from "../../Context/Index";
 import { Table } from "reactstrap";
-import { DeleteSupplier, EditSupplier } from "../../ActionButtons/SuppliersButtons/Index";
+
+import { Context } from "../../Context/Index";
+import { EditSupplier } from "../../ActionButtons/SuppliersButtons/Index";
+import { DeleteEntity } from "../../ActionButtons/GeneralButtons";
 
 export const ListSuppliers = () => {
 
@@ -34,7 +36,10 @@ export const ListSuppliers = () => {
                         <td>{supplier.address}</td>
                         <td>
                             <EditSupplier entity={supplier} />
-                            <DeleteSupplier />
+                            <DeleteEntity
+                                entityId={supplier.supplierId}
+                                entityName={supplier.name}
+                                entityType="supplier" />
                         </td>
                     </tr>
                 ))}

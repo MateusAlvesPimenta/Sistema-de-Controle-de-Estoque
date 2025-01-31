@@ -1,5 +1,5 @@
 import React, { useState, createContext, useMemo } from "react";
-import { getAllSuppliers, updateSupplier } from "../Services/SupplierService";
+import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
 
 export const Context = createContext({});
 
@@ -16,9 +16,23 @@ export const ContextProvider = (props) => {
         }
     }
 
+    const post = async (entity, entityType) => {
+        if (entityType === "supplier") { 
+            await addSupplier(entity);
+            setUpdateData(true);
+        }
+    }
+
     const put = async (entity, entityType) => {
         if (entityType === "supplier") {
             await updateSupplier(entity);
+            setUpdateData(true);
+        }
+    }
+
+    const deleteEntity = async (entityId, entityType) => {
+        if (entityType === "supplier") {
+            await deleteSupplier(entityId);
             setUpdateData(true);
         }
     }
@@ -32,7 +46,9 @@ export const ContextProvider = (props) => {
         <Context.Provider
             value={{
                 suppliers,
-                put
+                post,
+                put,
+                deleteEntity
             }}>
             {props.children}
         </Context.Provider>

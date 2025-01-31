@@ -1,12 +1,98 @@
 import { useContext, useState } from "react";
-import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {
+    Button, Form, FormGroup, Input, Label,
+    Modal, ModalBody, ModalFooter, ModalHeader
+} from "reactstrap";
+
 import { Context } from "../../Context/Index";
 
 export const AddSupplier = () => {
 
+    const { post } = useContext(Context);
+    const [modal, setModal] = useState(false);
+    const [supplier, setSupplier] = useState({
+        name: "",
+        phoneNumber: "",
+        email: "",
+        address: ""
+    });
+
+    const openCloseModal = () => {
+        setModal(!modal);
+    }
+
+    const submit = () => {
+        post(supplier, "supplier");
+        openCloseModal();
+        event.preventDefault();
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setSupplier({ ...supplier, [name]: value });
+    }
+
     return (
         <>
-            <Button outline size="lg" color="primary">Add supplier</Button>
+            <Button onClick={openCloseModal} outline size="lg" color="primary">Add supplier</Button>
+
+            <Modal isOpen={modal}>
+                <ModalHeader>Add supplier</ModalHeader>
+                <Form
+                    onSubmit={submit}
+                    onReset={openCloseModal}>
+
+                    <ModalBody>
+                        <FormGroup floating>
+                            <Input
+                                type="text"
+                                id="name"
+                                name="name"
+                                maxLength="100"
+                                placeholder="Name"
+                                onChange={handleChange}
+                                required />
+                            <Label for="name">Name</Label>
+                        </FormGroup>
+                        <FormGroup floating>
+                            <Input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                                onChange={handleChange}
+                                required />
+                            <Label for="email">Email</Label>
+                        </FormGroup>
+                        <FormGroup floating>
+                            <Input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="Phone number"
+                                pattern="^[0-9]{2} [0-9]{1,2} [0-9]{4}-[0-9]{4}$"
+                                onChange={handleChange}
+                                required />
+                            <Label for="phoneNumber">Phone number</Label>
+                        </FormGroup>
+                        <FormGroup floating>
+                            <Input
+                                type="text"
+                                id="address"
+                                name="address"
+                                placeholder="Address"
+                                onChange={handleChange}
+                                required />
+                            <Label for="address">Address</Label>
+                        </FormGroup>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button type="submit" color="primary">Add</Button>
+                        <Button type="reset">Reset</Button>
+                    </ModalFooter>
+                </Form>
+            </Modal>
         </>
     )
 }
@@ -25,7 +111,6 @@ export const EditSupplier = (props) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setSupplier({ ...supplier, [name]: value });
-        console.log(supplier);
     }
 
     const submit = () => {
@@ -69,7 +154,8 @@ export const EditSupplier = (props) => {
                             <Label for="email" >Email</Label>
                         </FormGroup>
                         <FormGroup floating>
-                            <Input type="tel"
+                            <Input
+                                type="tel"
                                 id="phoneNumber"
                                 name="phoneNumber"
                                 placeholder="00 0 0000-0000"
@@ -80,7 +166,7 @@ export const EditSupplier = (props) => {
                             <Label for="phoneNumber">Phone number</Label>
                         </FormGroup>
                         <FormGroup floating>
-                            <input className="form-control"
+                            <Input
                                 type="text"
                                 id="address"
                                 name="address"
@@ -93,17 +179,11 @@ export const EditSupplier = (props) => {
                         </FormGroup>
                     </ModalBody>
                     <ModalFooter>
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" color="primary">Submit</Button>
                         <Button type="reset">Reset</Button>
                     </ModalFooter>
                 </Form>
             </Modal>
         </>
-    )
-}
-export const DeleteSupplier = (props) => {
-
-    return (
-        <Button outline className="ms-3" color="danger">Delete</Button>
     )
 }
