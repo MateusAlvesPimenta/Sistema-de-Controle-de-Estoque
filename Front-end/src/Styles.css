@@ -1,0 +1,14 @@
+.bg-light{
+    min-height: fit-content;
+    min-width: fit-content;
+    height: 100vh;
+    width: 100vw;
+}
+/* .nav-link{
+    color: hsl(240, 20%, 99%);
+    border: 1px solid purple;
+}
+.nav-link:hover{
+    background-color: antiquewhite;
+    color: hsl(240, 20%, 79%);
+} */

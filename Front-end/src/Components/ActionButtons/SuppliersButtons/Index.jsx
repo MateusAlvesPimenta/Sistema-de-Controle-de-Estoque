@@ -17,13 +17,11 @@ export const AddSupplier = () => {
         address: ""
     });
 
-    const openCloseModal = () => {
-        setModal(!modal);
-    }
+    const toggleModal = () => setModal(!modal);
 
     const submit = () => {
         post(supplier, "supplier");
-        openCloseModal();
+        toggleModal();
         event.preventDefault();
     }
 
@@ -35,13 +33,13 @@ export const AddSupplier = () => {
 
     return (
         <>
-            <Button onClick={openCloseModal} outline size="lg" color="primary">Add supplier</Button>
+            <Button onClick={toggleModal} outline size="lg" color="primary">Add supplier</Button>
 
             <Modal isOpen={modal}>
                 <ModalHeader>Add supplier</ModalHeader>
                 <Form
                     onSubmit={submit}
-                    onReset={openCloseModal}>
+                    onReset={toggleModal}>
 
                     <ModalBody>
                         <FormGroup floating>
@@ -104,9 +102,7 @@ export const EditSupplier = (props) => {
     const [modal, setModal] = useState(false);
     const [supplier, setSupplier] = useState({ ...entity });
 
-    const openCloseModal = () => {
-        setModal(!modal);
-    }
+    const toggleModal = () => setModal(!modal);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -115,19 +111,19 @@ export const EditSupplier = (props) => {
 
     const submit = () => {
         put(supplier, "supplier");
-        openCloseModal();
+        toggleModal();
         event.preventDefault();
     }
 
     return (
         <>
-            <Button onClick={openCloseModal} outline color="dark">Edit</Button>
+            <Button onClick={toggleModal} outline color="dark">Edit</Button>
 
             <Modal isOpen={modal} >
                 <ModalHeader>Edit supplier</ModalHeader>
                 <Form
                     onSubmit={submit}
-                    onReset={openCloseModal}>
+                    onReset={toggleModal}>
 
                     <ModalBody>
                         <FormGroup floating>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Table } from "reactstrap";
 
 import { Context } from "../../Context/Index";
@@ -24,6 +24,7 @@ export const ListSuppliers = () => {
                     <th>Email</th>
                     <th>Address</th>
                     <th>Actions</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,8 @@ export const ListSuppliers = () => {
                         <td>{supplier.address}</td>
                         <td>
                             <EditSupplier entity={supplier} />
+                        </td>
+                        <td>
                             <DeleteEntity
                                 entityId={supplier.supplierId}
                                 entityName={supplier.name}
