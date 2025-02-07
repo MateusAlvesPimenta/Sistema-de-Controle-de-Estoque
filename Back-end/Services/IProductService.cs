@@ -7,12 +7,10 @@ namespace Back_end.Services
     {
         Task<List<Product>> GetAllProducts();
         Task<Product> GetProductById(int id);
-        Task<List<Product>> GetProductsByCategory(int id);
         Task<List<Product>> GetProductsBySupplier(int id);
         Task<Product> AddProduct(ProductDTO productDTO);
         Task<List<Product>> AddProductList(List<ProductDTO> productDTO);
-        Task AddCategoryToProduct(Product product, int id);
-        Task UpdateProduct(Product product, int categoryId);
+        Task UpdateProduct(Product product);
         Task DeleteProduct(Product product);
     }
 }

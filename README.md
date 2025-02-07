@@ -29,7 +29,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * Adicionar, editar e excluir entidades.
 
 2. **Listagem e busca de produtos**: ✔️
-* Exibir os produtos por nome, categoria ou fornecedor.
+* Exibir os produtos por nome ou fornecedor.
 
 3. **Gerenciamento de estoque**: 🛠️
 * Atualizar a quantidade de produtos.

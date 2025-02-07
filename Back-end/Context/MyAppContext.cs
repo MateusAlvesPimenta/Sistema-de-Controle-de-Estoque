@@ -16,22 +16,9 @@ namespace Back_end.Context
             .HasOne(product => product.Supplier)
             .WithMany();
 
-            modelBuilder.Entity<ProductCategory>()
-            .HasKey(productCategory => new
-            {
-                productCategory.CategoryId,
-                productCategory.ProductId
-            });
-
-            modelBuilder.Entity<Product>()
-            .HasMany(product => product.Categories)
-            .WithMany(category => category.Products)
-            .UsingEntity<ProductCategory>();
-
             base.OnModelCreating(modelBuilder);
         }
-
-        public DbSet<Category> Categories { get; set; }
+        
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
     }

@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Back_end.DTOs;
 
 namespace Back_end.Models
@@ -28,7 +24,6 @@ namespace Back_end.Models
         public int SupplierId { get; set; }
         [JsonIgnore]
         public Supplier Supplier { get; set; }
-        public List<Category> Categories { get; set; } = new List<Category>();
 
         public Product() {}
         public Product(ProductDTO productDTO)

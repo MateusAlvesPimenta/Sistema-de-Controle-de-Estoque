@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Back_end.Context;
 using Back_end.DTOs;
 using Back_end.Models;
@@ -29,23 +25,9 @@ namespace Back_end.Services
         {
             var product = await _context.Products
                                         .Where(p => p.ProductId == id)
-                                        .Include(p => p.Categories)
                                         .FirstOrDefaultAsync();
 
             return product;
-        }
-
-        public async Task<List<Product>> GetProductsByCategory(int id)
-        {
-            var category = await _context.Categories.FindAsync(id);
-
-            if (category == null)
-            {
-                return null;
-            }
-            var products = await _context.Products.Where(p => p.Categories.Contains(category)).ToListAsync();
-
-            return products;
         }
 
         public async Task<List<Product>> GetProductsBySupplier(int id)
@@ -65,13 +47,11 @@ namespace Back_end.Services
         {
             var product = new Product(productDTO);
             var supplierExists = await _context.Suppliers.AnyAsync(s => s.SupplierId == productDTO.SupplierId);
-            var categoryExists = await _context.Categories.AnyAsync(c => c.CategoryId == productDTO.CategoryId);
 
-            if (!supplierExists || !categoryExists)
+            if (!supplierExists)
             {
                 return null;
             }
-            await AddCategoryToProduct(product, productDTO.CategoryId);
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -93,20 +73,9 @@ namespace Back_end.Services
             }
             return productsAdded;
         }
-        public async Task AddCategoryToProduct(Product product, int id)
+
+        public async Task UpdateProduct(Product product)
         {
-            var category = await _context.Categories.FindAsync(id);
-
-            if (category != null && !product.Categories.Contains(category))
-            {
-                product.Categories.Add(category);
-            }
-        }
-
-        public async Task UpdateProduct(Product product, int categoryId)
-        {
-            await AddCategoryToProduct(product, categoryId);
-
             _context.Products.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }

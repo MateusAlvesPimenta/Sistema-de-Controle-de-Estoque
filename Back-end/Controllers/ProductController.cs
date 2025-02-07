@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Back_end.DTOs;
-using Back_end.Models;
 using Back_end.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,18 +37,6 @@ namespace Back_end.Controllers
                 return NotFound($"Not product found with the id: {id}");
             }
             return Ok(product);
-        }
-
-        [HttpGet("/GetProducts/Category/{id}")]
-        public async Task<IActionResult> GetProductsByCategory(int id)
-        {
-            var products = await _productService.GetProductsByCategory(id);
-
-            if (products == null || products.Count == 0)
-            {
-                return NotFound($"No products found with this category");
-            }
-            return Ok(products);
         }
 
         [HttpGet("/GetProducts/Supplier/{id}")]
@@ -104,7 +87,7 @@ namespace Back_end.Controllers
             }
             product.UpdateProduct(productDTO);
 
-            await _productService.UpdateProduct(product, productDTO.CategoryId);
+            await _productService.UpdateProduct(product);
 
             return Ok("Product updated");
         }
