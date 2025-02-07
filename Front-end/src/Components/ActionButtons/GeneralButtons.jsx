@@ -20,7 +20,9 @@ export const DeleteEntity = (props) => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline color="danger">Delete</Button>
+            <Button onClick={toggleModal} outline color="danger">
+                <i class="bi bi-trash-fill"></i>
+            </Button>
             <Modal isOpen={modal}>
                 <ModalHeader>
                     Are you sure you want to delete the {entityType}: {entityName}?

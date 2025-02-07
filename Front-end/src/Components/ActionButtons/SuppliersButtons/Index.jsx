@@ -33,7 +33,9 @@ export const AddSupplier = () => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline size="lg" color="primary">Add supplier</Button>
+            <Button onClick={toggleModal} outline size="lg" color="primary">
+                    Add supplier
+            </Button>
 
             <Modal isOpen={modal}>
                 <ModalHeader>Add supplier</ModalHeader>
@@ -117,7 +119,9 @@ export const EditSupplier = (props) => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline color="dark">Edit</Button>
+            <Button onClick={toggleModal} outline color="success">
+                <i class="bi bi-pen-fill"></i>
+            </Button>
 
             <Modal isOpen={modal} >
                 <ModalHeader>Edit supplier</ModalHeader>

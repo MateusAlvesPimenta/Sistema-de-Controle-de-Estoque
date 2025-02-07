@@ -1,21 +1,20 @@
-import { ContextProvider } from './Components/Context/Index';
+import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles.css';
+
+import { ContextProvider } from './Components/Context/Index';
 import { MainRoutes } from './Routes';
-import { BrowserRouter } from 'react-router-dom';
 import { MyNavBar } from './Components/Pages/Navbar';
 
 function App() {
 
   return (
-    <div className="bg-light">
-      <ContextProvider >
-        <BrowserRouter>
-          <MyNavBar />
-          <MainRoutes />
-        </BrowserRouter>
-      </ContextProvider>
-    </div>
+    <ContextProvider >
+      <BrowserRouter>
+        <MyNavBar />
+        <MainRoutes />
+      </BrowserRouter>
+    </ContextProvider>
   )
 }
 
