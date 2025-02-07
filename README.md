@@ -13,8 +13,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 
 ### Criar novas entidades e relacionamentos. ✔️
 1. Definir as entidades iniciais e seus relacionamentos. ✔️
-* **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `CategoryId`, `SupplierId`.
-* **Category**: `CategoryId`, `Name`.
+* **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `SupplierId`.
 * **Supplier**: `SupplierId`, `Name`, `PhoneNumber`, `Email`, `Address`.
 
 2. Definir as entidades de vendas e seus relacionamentos. ⚙️
@@ -37,9 +36,8 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * Criar sistema de reabastecimento de estoque.
 
 ### Criação do Front-end. ⚙️
-1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores, categorias e produtos ⚙️
+1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ⚙️
 2. Criar Uma Home page básica e temporária ⚙️
-3. Implementar um sistema de filtros para listagem de produtos de acordo com seu fornecedor ou categorias. 🛠️
+3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. 🛠️
 4. Criar intefaces para visualização e simulação de vendas. 🛠️
-5. Melhorias na Home page. 🛠️
-6. Melhorias visuais e de código. 🛠️
+5. Melhorias visuais e de código. 🛠️
