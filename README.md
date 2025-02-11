@@ -30,14 +30,14 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 2. **Listagem e busca de produtos**: ✔️
 * Exibir os produtos por nome ou fornecedor.
 
-3. **Gerenciamento de estoque**: 🛠️
+3. **Gerenciamento de estoque**: ⚙️
 * Atualizar a quantidade de produtos.
 * Alerta para produtos com estoque abaixo do limite mínimo.
 * Criar sistema de reabastecimento de estoque.
 
 ### Criação do Front-end. ⚙️
-1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ⚙️
-2. Criar Uma Home page básica e temporária ⚙️
+1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ✔️
+2. Criar Uma Home page básica e temporária ✔️
 3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. 🛠️
 4. Criar intefaces para visualização e simulação de vendas. 🛠️
 5. Melhorias visuais e de código. 🛠️

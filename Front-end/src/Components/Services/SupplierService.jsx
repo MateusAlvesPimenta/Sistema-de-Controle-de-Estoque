@@ -1,7 +1,6 @@
 import { api } from "./api";
 
 export const getAllSuppliers = async () => {
-
     return await api.get("/GetAllSuppliers")
         .catch(e => console.log(e));
 }

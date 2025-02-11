@@ -6,7 +6,7 @@ import {
 
 import { Context } from "../../Context/Index";
 
-export const AddSupplier = () => {
+export const AddSupplierButton = () => {
 
     const { post } = useContext(Context);
     const [modal, setModal] = useState(false);
@@ -81,6 +81,7 @@ export const AddSupplier = () => {
                                 type="text"
                                 id="address"
                                 name="address"
+                                maxLength="300"
                                 placeholder="Address"
                                 onChange={handleChange}
                                 required />
@@ -89,7 +90,7 @@ export const AddSupplier = () => {
                     </ModalBody>
                     <ModalFooter>
                         <Button type="submit" color="primary">Add</Button>
-                        <Button type="reset">Reset</Button>
+                        <Button type="reset">Cancel</Button>
                     </ModalFooter>
                 </Form>
             </Modal>
@@ -97,7 +98,7 @@ export const AddSupplier = () => {
     )
 }
 
-export const EditSupplier = (props) => {
+export const EditSupplierButton = (props) => {
 
     const { entity } = props;
     const { put } = useContext(Context);
@@ -120,7 +121,7 @@ export const EditSupplier = (props) => {
     return (
         <>
             <Button onClick={toggleModal} outline color="success">
-                <i class="bi bi-pen-fill"></i>
+                <i className="bi bi-pen-fill"></i>
             </Button>
 
             <Modal isOpen={modal} >
@@ -170,7 +171,7 @@ export const EditSupplier = (props) => {
                                 type="text"
                                 id="address"
                                 name="address"
-                                maxLength="200"
+                                maxLength="300"
                                 placeholder="Address"
                                 onChange={handleChange}
                                 value={supplier && supplier.address}
@@ -180,7 +181,7 @@ export const EditSupplier = (props) => {
                     </ModalBody>
                     <ModalFooter>
                         <Button type="submit" color="primary">Submit</Button>
-                        <Button type="reset">Reset</Button>
+                        <Button type="reset">Cancel</Button>
                     </ModalFooter>
                 </Form>
             </Modal>

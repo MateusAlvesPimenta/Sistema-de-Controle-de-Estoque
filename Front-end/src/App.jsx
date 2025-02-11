@@ -4,7 +4,7 @@ import './Styles.css';
 
 import { ContextProvider } from './Components/Context/Index';
 import { MainRoutes } from './Routes';
-import { MyNavBar } from './Components/Pages/Navbar';
+import { MyNavBar } from './Components/Pages/MyNavbar';
 
 function App() {
 
