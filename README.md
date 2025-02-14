@@ -38,6 +38,6 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 ### Criação do Front-end. ⚙️
 1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ✔️
 2. Criar Uma Home page básica e temporária ✔️
-3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. ⚙️
+3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. ✔️
 4. Criar intefaces para visualização e simulação de vendas. 🛠️
 5. Melhorias visuais e de código. 🛠️
