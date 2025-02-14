@@ -30,15 +30,41 @@ namespace Back_end.Services
             return product;
         }
 
-        public async Task<List<Product>> GetProductsBySupplier(int id)
+        public async Task<List<Product>> GetProductsByNameOrSupplier(string name)
         {
-            var supplier = await _context.Suppliers.FindAsync(id);
+            var products = await _context.Products
+                                                .Where(p => p.Name.Contains(name))
+                                                .ToListAsync();
 
-            if (supplier == null)
+            return products;
+        }
+
+        public async Task<List<Product>> GetProductsByNameOrSupplier(List<int> supplierIds)
+        {
+            var exists = await _context.Suppliers.AnyAsync(s => supplierIds.Contains(s.SupplierId));
+
+            if (!exists)
             {
                 return null;
             }
-            var products = await _context.Products.Where(p => p.Supplier == supplier).ToListAsync();
+            var products = await _context.Products
+                                            .Where(p => supplierIds.Contains(p.SupplierId))
+                                            .ToListAsync();
+
+            return products;
+        }
+
+        public async Task<List<Product>> GetProductsByNameOrSupplier(string name, List<int> supplierIds)
+        {
+            var exists = await _context.Suppliers.AnyAsync(s => supplierIds.Contains(s.SupplierId));
+
+            if (!exists)
+            {
+                return null;
+            }
+            var products = await _context.Products
+                                            .Where(p => supplierIds.Contains(p.SupplierId) && p.Name.Contains(name))
+                                            .ToListAsync();
 
             return products;
         }
@@ -58,7 +84,7 @@ namespace Back_end.Services
 
             return product;
         }
-        
+
         public async Task<List<Product>> AddProductList(List<ProductDTO> productDTO)
         {
             var productsAdded = new List<Product>();
@@ -66,7 +92,7 @@ namespace Back_end.Services
             foreach (var product in productDTO)
             {
                 var success = await AddProduct(product);
-                if(success != null)
+                if (success != null)
                 {
                     productsAdded.Add(success);
                 }

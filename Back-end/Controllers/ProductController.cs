@@ -1,6 +1,8 @@
 using Back_end.DTOs;
+using Back_end.Models;
 using Back_end.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Back_end.Controllers
 {
@@ -39,14 +41,37 @@ namespace Back_end.Controllers
             return Ok(product);
         }
 
-        [HttpGet("/GetProducts/Supplier/{id}")]
-        public async Task<IActionResult> GetProductsBySupplier(int id)
+        [HttpGet("/GetProducts/Name-or-Supplier")]
+        public async Task<IActionResult> GetProductsByNameOrSupplier(
+            [FromQuery] string name,
+            [FromQuery] List<int> supplierIds)
         {
-            var products = await _productService.GetProductsBySupplier(id);
+            var products = new List<Product>();
+
+            if (string.IsNullOrWhiteSpace(name) && supplierIds.Count == 0)
+            {
+                Console.WriteLine("Zerados");
+                products = await _productService.GetAllProducts();
+            }
+            else if (!string.IsNullOrWhiteSpace(name) && supplierIds.Count == 0)
+            {
+                Console.WriteLine("nome");
+                products = await _productService.GetProductsByNameOrSupplier(name);
+            }
+            else if (string.IsNullOrWhiteSpace(name) && supplierIds.Count > 0)
+            {
+                Console.WriteLine("ids");
+                products = await _productService.GetProductsByNameOrSupplier(supplierIds);
+            }
+            else
+            {
+                Console.WriteLine("Nome e ids");
+                products = await _productService.GetProductsByNameOrSupplier(name, supplierIds);
+            }
 
             if (products == null || products.Count == 0)
             {
-                return NotFound($"No products found with this supplier");
+                return NotFound($"No products found with this filter");
             }
             return Ok(products);
         }
@@ -67,7 +92,7 @@ namespace Back_end.Controllers
         [HttpPost("/AddProductList")]
         public async Task<IActionResult> AddProductList(List<ProductDTO> productDTO)
         {
-            if(productDTO == null || productDTO.Count == 0)
+            if (productDTO == null || productDTO.Count == 0)
             {
                 return BadRequest("Insert a list of products");
             }
