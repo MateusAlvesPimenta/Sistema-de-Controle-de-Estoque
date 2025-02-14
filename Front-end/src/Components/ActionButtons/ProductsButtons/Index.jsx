@@ -32,26 +32,24 @@ export const AddProductButton = () => {
         toggleModal();
         event.preventDefault();
     }
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProduct({ ...product, [name]: value });
-        
-        console.log(product);
     }
-    
+
     const selectSupplier = (supplier) => {
         setSelectedSupplier(supplier);
         setProduct({ ...product, supplierId: supplier.supplierId });
     }
-    
+
     return (
         <>
             <Button
                 onClick={toggleModal}
                 size="lg"
-                outline
                 color="primary">
+                <i className="bi bi-plus-circle"> </i>
                 Add product
             </Button>
 
@@ -108,8 +106,8 @@ export const AddProductButton = () => {
                                 {
                                     suppliers && suppliers.map(supplier => (
                                         <DropdownItem
-                                        onClick={() => selectSupplier(supplier)}
-                                        key={supplier.supplierId}>
+                                            onClick={() => selectSupplier(supplier)}
+                                            key={supplier.supplierId}>
                                             {supplier.name}
                                         </DropdownItem>
                                     ))
@@ -128,7 +126,7 @@ export const AddProductButton = () => {
 }
 
 export const EditProductButton = (props) => {
-    
+
     const { entity } = props;
     const { put, suppliers } = useContext(Context);
     const [modal, setModal] = useState(false);
@@ -137,32 +135,31 @@ export const EditProductButton = (props) => {
     const [selectedSupplier, setSelectedSupplier] = useState(
         suppliers.filter(supplier => entity.supplierId == supplier.supplierId)[0]
     );
-    
+
     const toggleModal = () => {
         setModal(!modal);
     }
-    
+
     const toggleDropdown = () => {
         setDropdown(!dropdown);
     }
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProduct({ ...product, [name]: value })
-        console.log(selectedSupplier);
     }
-    
+
     const selectSupplier = (supplier) => {
         setSelectedSupplier(supplier);
         setProduct({ ...product, supplierId: supplier.supplierId });
     }
-    
+
     const submit = () => {
         put(product, "product");
         toggleModal();
         event.preventDefault();
     }
-    
+
     return (
         <>
             <Button onClick={toggleModal} outline color="success">

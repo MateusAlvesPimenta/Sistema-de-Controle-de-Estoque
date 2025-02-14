@@ -1,6 +1,6 @@
 import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
-import { addProduct, deleteProduct, getAllProducts, updateProduct } from "../Services/ProductServices";
+import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
 
 export const Context = createContext({});
 
@@ -21,8 +21,18 @@ export const ContextProvider = (props) => {
         setProducts(tempProducts.data);
     }
 
+    const getByNameOrSupplier = async (data) => {
+        let tempProducts = await getProductsByNameOrSupplier(data);
+        
+        if (tempProducts.status === 200) {
+            setProducts(tempProducts.data);
+            return;
+        }
+        setProducts([]);
+    }
+
     const post = async (entity, entityType) => {
-        if (entityType === "supplier") { 
+        if (entityType === "supplier") {
             await addSupplier(entity);
             setUpdateData(true);
             return;
@@ -64,7 +74,8 @@ export const ContextProvider = (props) => {
                 products,
                 post,
                 put,
-                deleteEntity
+                deleteEntity,
+                getByNameOrSupplier
             }}>
             {props.children}
         </Context.Provider>

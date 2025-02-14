@@ -5,6 +5,20 @@ export const getAllProducts = async () => {
         .catch(e => console.log(e));
 }
 
+export const getProductsByNameOrSupplier = async (data) => {
+    return await api.get("/GetProducts/NameOrSupplier", {
+        params: {
+            name: data.name,
+            supplierIds: data.supplierIds
+    } })
+        .catch(e => {
+            console.log(e)
+            if (e.response.data === "No products found with this filter") {
+                return e.status;
+            }
+        });
+}
+
 export const addProduct = async (entity) => {
     await api.post("/AddProduct", entity)
         .catch(e => console.log(e));

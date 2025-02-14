@@ -2,6 +2,7 @@ body {
     background-color: #f8f9fa;
 }
 
+/* Used at Pages/MyNavbar.jsx */
 .nav {
     display: flex;
     flex-direction: column;
@@ -16,6 +17,7 @@ body {
     background: linear-gradient(to right, hsl(226, 100%, 40%), hsl(226, 100%, 60%));
     overflow: hidden;
     transition: .3s;
+    z-index: +1;
 }
 
 .nav-link {
@@ -24,7 +26,6 @@ body {
     color: #f8f9fa;
     font-size: 30px;
     gap: 20px;
-    margin: 0px;
     padding: 10px 20px;
     cursor: pointer;
 }
@@ -44,4 +45,28 @@ h2.nav-link {
 .nav-link:hover {
     background-color: hsl(226, 100%, 30%);
     color: hsl(210, 17%, 85%);
+}
+
+/* Used at Pages/ProductsFilter.jsx */
+.badge {
+    font-size: medium;
+    margin-right: 5px;
+}
+
+.badge .btn-x {
+    margin-left: 5px;
+    border: 0;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+form button {
+    white-space: nowrap;
+}
+
+.badge .btn-x:hover {
+    color: white;
 }

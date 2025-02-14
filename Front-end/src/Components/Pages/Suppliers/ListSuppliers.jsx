@@ -9,11 +9,6 @@ export const ListSuppliers = () => {
 
     const { suppliers } = useContext(Context);
 
-    if (suppliers.length == 0) {
-        return (
-            <h1>There is no supplier</h1>
-        )
-    }
     return (
         <Table hover>
             <thead>
@@ -28,24 +23,25 @@ export const ListSuppliers = () => {
                 </tr>
             </thead>
             <tbody>
-                {suppliers.map(supplier => (
-                    <tr key={supplier.supplierId}>
-                        <td>{supplier.supplierId}</td>
-                        <td>{supplier.name}</td>
-                        <td>{supplier.phoneNumber}</td>
-                        <td>{supplier.email}</td>
-                        <td>{supplier.address}</td>
-                        <td>
-                            <EditSupplierButton entity={supplier} />
-                        </td>
-                        <td>
-                            <DeleteEntity
-                                entityId={supplier.supplierId}
-                                entityName={supplier.name}
-                                entityType="supplier" />
-                        </td>
-                    </tr>
-                ))}
+                {
+                    suppliers && suppliers.map(supplier => (
+                        <tr key={supplier.supplierId}>
+                            <td>{supplier.supplierId}</td>
+                            <td>{supplier.name}</td>
+                            <td>{supplier.phoneNumber}</td>
+                            <td>{supplier.email}</td>
+                            <td>{supplier.address}</td>
+                            <td>
+                                <EditSupplierButton entity={supplier} />
+                            </td>
+                            <td>
+                                <DeleteEntity
+                                    entityId={supplier.supplierId}
+                                    entityName={supplier.name}
+                                    entityType="supplier" />
+                            </td>
+                        </tr>
+                    ))}
             </tbody>
         </Table>
     )

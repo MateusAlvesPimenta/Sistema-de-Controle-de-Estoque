@@ -8,11 +8,6 @@ export const ListProducts = () => {
 
     const { products } = useContext(Context);
 
-    if (products.length == 0) {
-        return (
-            <h1>There is no product</h1>
-        )
-    }
     return (
         <Table>
             <thead>
@@ -27,7 +22,7 @@ export const ListProducts = () => {
             </thead>
             <tbody>
                 {
-                    products.map(product => (
+                    products && products.map(product => (
                         <tr key={product.productId}>
                             <td>{product.productId}</td>
                             <td>{product.name}</td>
