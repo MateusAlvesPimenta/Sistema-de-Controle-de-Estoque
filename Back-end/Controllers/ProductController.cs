@@ -41,32 +41,35 @@ namespace Back_end.Controllers
             return Ok(product);
         }
 
-        [HttpGet("/GetProducts/Name-or-Supplier")]
+        [HttpGet("/GetProducts/NameOrSupplier")]
         public async Task<IActionResult> GetProductsByNameOrSupplier(
             [FromQuery] string name,
-            [FromQuery] List<int> supplierIds)
+            string supplierIds)
         {
+            
             var products = new List<Product>();
 
-            if (string.IsNullOrWhiteSpace(name) && supplierIds.Count == 0)
+            if (string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(supplierIds))
             {
                 Console.WriteLine("Zerados");
                 products = await _productService.GetAllProducts();
             }
-            else if (!string.IsNullOrWhiteSpace(name) && supplierIds.Count == 0)
+            else if (!string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(supplierIds))
             {
                 Console.WriteLine("nome");
                 products = await _productService.GetProductsByNameOrSupplier(name);
             }
-            else if (string.IsNullOrWhiteSpace(name) && supplierIds.Count > 0)
+            else if (string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(supplierIds))
             {
+                var ids = supplierIds.Split(',').Select(int.Parse).ToList();
                 Console.WriteLine("ids");
-                products = await _productService.GetProductsByNameOrSupplier(supplierIds);
+                products = await _productService.GetProductsByNameOrSupplier(ids);
             }
             else
             {
+                var ids = supplierIds.Split(',').Select(int.Parse).ToList();
                 Console.WriteLine("Nome e ids");
-                products = await _productService.GetProductsByNameOrSupplier(name, supplierIds);
+                products = await _productService.GetProductsByNameOrSupplier(name, ids);
             }
 
             if (products == null || products.Count == 0)
