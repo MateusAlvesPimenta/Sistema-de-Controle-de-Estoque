@@ -18,7 +18,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 
 2. Definir as entidades de vendas e seus relacionamentos. ⚙️
 * **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`.
-* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `UnitPrice`.
+* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`.
 
 3. Realizar as configurações necessárias para a API Funcionar e ser consumida pelo front-end. ✔️
 
