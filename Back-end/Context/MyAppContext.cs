@@ -16,6 +16,10 @@ namespace Back_end.Context
             .HasOne(product => product.Supplier)
             .WithMany();
 
+            modelBuilder.Entity<SaleItem>()
+            .HasOne(saleItem => saleItem.Sale)
+            .WithMany(sale => sale.SaleItems);
+
             base.OnModelCreating(modelBuilder);
         }
         
