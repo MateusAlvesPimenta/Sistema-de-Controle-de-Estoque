@@ -1,16 +1,14 @@
-
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Back_end.Models
 {
-    // `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`.
     public class Sale
     {
         [Key]
         public int SaleId { get; set; }
         [Required]
-        public DateTime SaleDate { get; set; }
+        public DateTime SaleDate { get; set; } = DateTime.UtcNow;
         [Required]
         public string CustomerName { get; set; }
         [Required]

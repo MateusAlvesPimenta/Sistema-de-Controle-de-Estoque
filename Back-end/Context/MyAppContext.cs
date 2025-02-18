@@ -18,7 +18,13 @@ namespace Back_end.Context
 
             modelBuilder.Entity<SaleItem>()
             .HasOne(saleItem => saleItem.Sale)
-            .WithMany(sale => sale.SaleItems);
+            .WithMany(sale => sale.SaleItems)
+            .HasForeignKey(saleItem => saleItem.SaleId);
+
+            modelBuilder.Entity<SaleItem>()
+            .HasOne(saleItem => saleItem.Product)
+            .WithMany()
+            .HasForeignKey(saleItem => saleItem.ProductId);
 
             base.OnModelCreating(modelBuilder);
         }
