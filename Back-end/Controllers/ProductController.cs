@@ -35,7 +35,7 @@ namespace Back_end.Controllers
 
             if (product == null)
             {
-                return NotFound($"Not product found with the id: {id}");
+                return NotFound($"No product found with the id: {id}");
             }
             return Ok(product);
         }

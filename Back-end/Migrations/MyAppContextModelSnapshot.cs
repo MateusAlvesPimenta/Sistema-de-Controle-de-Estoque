@@ -76,7 +76,7 @@ namespace Backend.Migrations
 
                     b.HasKey("SaleId");
 
-                    b.ToTable("Sale");
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Back_end.Models.SaleItem", b =>
@@ -105,7 +105,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleItem");
+                    b.ToTable("SaleItems");
                 });
 
             modelBuilder.Entity("Back_end.Models.Supplier", b =>

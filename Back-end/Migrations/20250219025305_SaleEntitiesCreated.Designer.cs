@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20250218233000_SaleEntitiesCreated")]
+    [Migration("20250219025305_SaleEntitiesCreated")]
     partial class SaleEntitiesCreated
     {
         /// <inheritdoc />
@@ -79,7 +79,7 @@ namespace Backend.Migrations
 
                     b.HasKey("SaleId");
 
-                    b.ToTable("Sale");
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Back_end.Models.SaleItem", b =>
@@ -108,7 +108,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleItem");
+                    b.ToTable("SaleItems");
                 });
 
             modelBuilder.Entity("Back_end.Models.Supplier", b =>
