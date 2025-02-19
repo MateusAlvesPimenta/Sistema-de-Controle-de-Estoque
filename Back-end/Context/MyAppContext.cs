@@ -28,8 +28,10 @@ namespace Back_end.Context
 
             base.OnModelCreating(modelBuilder);
         }
-        
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SaleItem> SaleItems { get; set; }
     }
 }
