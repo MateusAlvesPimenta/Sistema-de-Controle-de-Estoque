@@ -16,6 +16,7 @@ namespace Back_end.Controllers
             _saleService = saleService;
         }
 
+        // Sale endpoints
         [HttpGet("/GetAllSales")]
         public async Task<IActionResult> GetAllSales()
         {
@@ -25,7 +26,6 @@ namespace Back_end.Controllers
             {
                 return NotFound("No sale found");
             }
-
             return Ok(sales);
         }
 
@@ -36,35 +36,50 @@ namespace Back_end.Controllers
 
             if (sale == null)
             {
-                return NotFound($"No sale found with the id: {id}");
+                return NotFound($"No sale with the id: {id} found");
             }
             return Ok(sale);
         }
 
-        [HttpPost("/AddSale")]
-        public async Task<IActionResult> AddSale(SaleDTO saleDTO)
+        // SaleItem endpoints
+        [HttpGet("/GetAllSaleItems")]
+        public async Task<IActionResult> GetAllSaleItems()
         {
-            var sale = await _saleService.AddSale(saleDTO);
+            var saleItems = await _saleService.GetAllSaleItems();
 
-            return CreatedAtAction(nameof(GetSaleById), new { id = sale.SaleId }, sale);
+            if (saleItems.Count == 0)
+            {
+                return NotFound("No sale item found");
+            }
+            return Ok(saleItems);
         }
 
-        [HttpPut("/UpdateSale/{id}")]
-        public async Task<IActionResult> UpdateSale(int id, string customerName)
+        [HttpGet("/GetSaleItem/{id}")]
+        public async Task<IActionResult> GetSaleItemById(int id)
         {
-            var sale = await _saleService.GetSaleById(id);
+            var saleItem = await _saleService.GetSaleItemById(id);
+
+            if (saleItem == null)
+            {
+                return NotFound($"No sale item with id: {id} found");
+            }
+            return Ok(saleItem);
+        }
+
+        // Shared endpoints
+        [HttpPost("/AddSale")]
+        public async Task<IActionResult> AddSale(string customerName, List<SaleItemDTO> saleItemDTOs)
+        {
+            var sale = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
 
             if (sale == null)
             {
-                return NotFound($"No sale found with the id: {id}");
+                return NotFound("None of the sale items corresponds to an existing product");
             }
-            sale.UpdateSale(customerName);
-
-            await _saleService.UpdateSale(sale);
-
-            return Ok("Customer name updated");
+            return CreatedAtAction(nameof(GetSaleById), new { id = sale.SaleId }, sale);
         }
 
+        // For development purposes
         [HttpDelete("/DeleteSale/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
@@ -72,7 +87,7 @@ namespace Back_end.Controllers
 
             if (sale == null)
             {
-                return NotFound($"No sale found with id: {id}");
+                return NotFound($"No sale with id: {id} found");
             }
             return NoContent();
         }

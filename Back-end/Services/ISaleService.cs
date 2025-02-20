@@ -5,10 +5,19 @@ namespace Back_end.Services
 {
     public interface ISaleService
     {
+        // Sale Services
         Task<List<Sale>> GetAllSales();
         Task<Sale> GetSaleById(int id);
-        Task<Sale> AddSale(SaleDTO saleDTO);
-        Task UpdateSale(Sale sale);
+
+        // SaleItem Services
+        Task<List<SaleItem>> GetAllSaleItems();
+        Task<SaleItem> GetSaleItemById(int id);
+
+        // Shared services
+        Task<Sale> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItems);
+
+        // For development purposes
         Task DeleteSale(Sale sale);
+        Task DeleteSaleItem(SaleItem saleItem);
     }
 }

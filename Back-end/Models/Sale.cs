@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using Back_end.DTOs;
 
 namespace Back_end.Models
 {
@@ -13,21 +12,24 @@ namespace Back_end.Models
         [Required]
         public string CustomerName { get; set; }
         [Required]
-        public int Total { get; set; }
+        [Range(0, double.MaxValue)]
+        public decimal Total { get; set; } = 0;
         [JsonIgnore]
         public List<SaleItem> SaleItems { get; set; }
 
         public Sale() { }
 
-        public Sale(SaleDTO saleDTO)
-        {
-            CustomerName = saleDTO.CustomerName;
-            Total = saleDTO.Total;
-        }
-
-        public void UpdateSale(string customerName)
+        public Sale(string customerName)
         {
             CustomerName = customerName;
+        }
+
+        public void CalculateTotal(List<SaleItem> saleItems)
+        {
+            foreach (SaleItem item in saleItems)
+            {
+                Total += item.Price;
+            }
         }
     }
 }

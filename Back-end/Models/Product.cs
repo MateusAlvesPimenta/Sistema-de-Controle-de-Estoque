@@ -28,10 +28,10 @@ namespace Back_end.Models
         public Product() {}
         public Product(ProductDTO productDTO)
         {
-            UpdateProduct(productDTO);
+            Update(productDTO);
         }
 
-        public void UpdateProduct(ProductDTO productDTO)
+        public void Update(ProductDTO productDTO)
         {
             Name = productDTO.Name;
             Description = productDTO.Description;

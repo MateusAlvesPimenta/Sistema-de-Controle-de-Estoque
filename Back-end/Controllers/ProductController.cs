@@ -35,7 +35,7 @@ namespace Back_end.Controllers
 
             if (product == null)
             {
-                return NotFound($"No product found with the id: {id}");
+                return NotFound($"No product with the id: {id} found");
             }
             return Ok(product);
         }
@@ -45,7 +45,7 @@ namespace Back_end.Controllers
             [FromQuery] string name,
             string supplierIds)
         {
-            
+
             var products = new List<Product>();
 
             if (string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(supplierIds))
@@ -85,7 +85,7 @@ namespace Back_end.Controllers
 
             if (product == null)
             {
-                return NotFound($"No supplier found with the id: {productDTO.SupplierId}");
+                return NotFound($"No supplier with the id: {productDTO.SupplierId} found");
             }
 
             return CreatedAtAction(nameof(GetProductsById), new { id = product.ProductId }, product);
@@ -110,9 +110,9 @@ namespace Back_end.Controllers
 
             if (product == null)
             {
-                return NotFound($"No product found with the id: {id}");
+                return NotFound($"No product with the id: {id} found");
             }
-            product.UpdateProduct(productDTO);
+            product.Update(productDTO);
 
             await _productService.UpdateProduct(product);
 
@@ -126,7 +126,7 @@ namespace Back_end.Controllers
 
             if (product == null)
             {
-                return NotFound($"No products found with the id: {id}");
+                return NotFound($"No products with the id: {id} found");
             }
             await _productService.DeleteProduct(product);
 

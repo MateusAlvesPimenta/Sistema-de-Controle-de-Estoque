@@ -34,7 +34,7 @@ namespace Back_end.Controllers
 
             if (supplier == null)
             {
-                return NotFound($"No supplier found with the id: {id}");
+                return NotFound($"No supplier with the id: {id} found");
             }
             return Ok(supplier);
         }
@@ -62,7 +62,7 @@ namespace Back_end.Controllers
 
             if(supplier == null)
             {
-                return NotFound($"No supplier found with the id: {id}");
+                return NotFound($"No supplier with the id: {id} found");
             }
             await _supplierService.DeleteSupplier(supplier);
 

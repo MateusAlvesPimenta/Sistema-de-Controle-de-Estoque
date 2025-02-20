@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Back_end.DTOs;
 
 namespace Back_end.Models
 {
@@ -11,7 +12,7 @@ namespace Back_end.Models
         public int Quantity { get; set; }
         [Required]
         [Range(0, double.MaxValue)]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         [JsonIgnore]
         public Sale Sale { get; set; }
         [Required]
@@ -20,5 +21,19 @@ namespace Back_end.Models
         public Product Product { get; set; }
         [Required]
         public int ProductId { get; set; }
+
+        public SaleItem() { }
+
+        public SaleItem(SaleItemDTO saleItemDTO)
+        {
+            Quantity = saleItemDTO.Quantity;
+            SaleId = saleItemDTO.SaleId;
+            ProductId = saleItemDTO.ProductId;
+        }
+
+        public void CalculatePrice()
+        {
+            Price = Quantity * Product.Price;
+        }
     }
 }
