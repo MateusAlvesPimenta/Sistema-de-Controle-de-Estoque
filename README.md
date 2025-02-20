@@ -16,7 +16,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `SupplierId`.
 * **Supplier**: `SupplierId`, `Name`, `PhoneNumber`, `Email`, `Address`.
 
-2. Definir as entidades de vendas e seus relacionamentos. ⚙️
+2. Definir as entidades de vendas e seus relacionamentos. ✔️
 * **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`.
 * **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`.
 
