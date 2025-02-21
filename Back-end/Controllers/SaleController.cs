@@ -70,13 +70,9 @@ namespace Back_end.Controllers
         [HttpPost("/AddSale")]
         public async Task<IActionResult> AddSale(string customerName, List<SaleItemDTO> saleItemDTOs)
         {
-            var sale = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
+            var saleReport = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
 
-            if (sale == null)
-            {
-                return NotFound("None of the sale items corresponds to an existing product");
-            }
-            return CreatedAtAction(nameof(GetSaleById), new { id = sale.SaleId }, sale);
+            return CreatedAtAction("", saleReport);
         }
 
         // For development purposes

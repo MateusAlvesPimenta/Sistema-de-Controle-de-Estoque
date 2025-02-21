@@ -45,23 +45,40 @@ namespace Back_end.Services
         }
 
         // Shared services
-        public async Task<Sale> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItemsDTOs)
+        public async Task<SaleReport> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItemsDTOs)
         {
-            // Verify if the product exists, if not it removes the SaleItem from the list
-            for(int i = 0; i < saleItemsDTOs.Count; i++)
+            var saleReport = new SaleReport();
+
+            // Checks if the product exists and if there are enough products in stock
+            // if not it removes the SaleItem from the list
+            for (int i = 0; i < saleItemsDTOs.Count; i++)
             {
-                var productExists = await _context.Products.AnyAsync(product => product.ProductId == saleItemsDTOs[i].ProductId);
-                if (!productExists)
+                var item = saleItemsDTOs[i];
+                var product = await _context.Products.FindAsync(item.ProductId);
+                if (product == null)
                 {
+                    saleReport.ProductsNotFound.Add(item);
+                    saleItemsDTOs.RemoveAt(i);
+                    i--;
+                }
+                if (product.Quantity < item.Quantity)
+                {
+                    saleReport.ProductsWithInsufficientStock.Add(item);
                     saleItemsDTOs.RemoveAt(i);
                     i--;
                 }
             }
 
+            saleReport.NotFoundMessage = $"{saleReport.ProductsNotFound.Count} Products not found";
+            saleReport.InsufficientStockMessage = $"{saleReport.ProductsWithInsufficientStock.Count} Products with insufficient stock";
+
             if (saleItemsDTOs.Count <= 0)
             {
-                return null;
+                saleReport.SoldMessage = "No products were sold";
+                return saleReport;
             }
+
+
 
             // Posts the Sale to obtain the id
             var sale = new Sale(customerName);
@@ -84,18 +101,21 @@ namespace Back_end.Services
                                             .Include(saleItem => saleItem.Product)
                                             .ToListAsync();
 
-            // Calculates money related information and saves
+            // Calculates money related information, subtract the product from stock and saves
             foreach (SaleItem item in saleItems)
             {
                 item.CalculatePrice();
                 _context.Entry(item).State = EntityState.Modified;
+
+                item.Product.Quantity -= item.Quantity;
+                _context.Entry(item.Product).State = EntityState.Modified;
             }
             sale.CalculateTotal(saleItems);
 
             _context.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return sale;
+            return saleReport;
         }
 
         // For development purposes

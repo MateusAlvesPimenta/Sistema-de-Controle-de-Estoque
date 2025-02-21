@@ -14,7 +14,7 @@ namespace Back_end.Services
         Task<SaleItem> GetSaleItemById(int id);
 
         // Shared services
-        Task<Sale> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItems);
+        Task<SaleReport> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItems);
 
         // For development purposes
         Task DeleteSale(Sale sale);
