@@ -49,36 +49,64 @@ namespace Back_end.Services
         {
             var saleReport = new SaleReport();
 
-            // Checks if the product exists and if there are enough products in stock
-            // if not it removes the SaleItem from the list
+            // Checks if the product exists, if not it removes the saleItem from the list
             for (int i = 0; i < saleItemsDTOs.Count; i++)
             {
                 var item = saleItemsDTOs[i];
-                var product = await _context.Products.FindAsync(item.ProductId);
-                if (product == null)
+                var productExists = await _context.Products.AnyAsync(product => product.ProductId == item.ProductId);
+                if (!productExists)
                 {
                     saleReport.ProductsNotFound.Add(item);
-                    saleItemsDTOs.RemoveAt(i);
+                    saleItemsDTOs.Remove(item);
                     i--;
                 }
-                if (product.Quantity < item.Quantity)
+                else if (item.Quantity < 1)
                 {
-                    saleReport.ProductsWithInsufficientStock.Add(item);
-                    saleItemsDTOs.RemoveAt(i);
+                    saleItemsDTOs.Remove(item);
                     i--;
                 }
             }
 
-            saleReport.NotFoundMessage = $"{saleReport.ProductsNotFound.Count} Products not found";
-            saleReport.InsufficientStockMessage = $"{saleReport.ProductsWithInsufficientStock.Count} Products with insufficient stock";
-
+            // Checks if there's any saleItem left
             if (saleItemsDTOs.Count <= 0)
             {
                 saleReport.SoldMessage = "No products were sold";
                 return saleReport;
             }
 
+            // Aggregate saleItems with the same ProductId
+            for (int i = 0; i < saleItemsDTOs.Count; i++)
+            {
+                var saleItem = saleItemsDTOs[i];
+                if (saleItemsDTOs.Count(item => item.ProductId == saleItem.ProductId) > 1)
+                {
+                    var duplicatedItems = saleItemsDTOs.Where(item => item.ProductId == saleItem.ProductId).ToList();
+                    saleItem = duplicatedItems.Aggregate((total, next) =>
+                    {
+                        total.Quantity += next.Quantity;
+                        saleItemsDTOs.Remove(next);
+                        return total;
+                    });
+                }
+            }
 
+            // Checks if there's enough products in stock to sell
+            // if it doesn't, removes the saleItem from the list
+            // if it does, subtract the quantity sold
+            for (int i = 0; i < saleItemsDTOs.Count; i++)
+            {
+                var item = saleItemsDTOs[i];
+                var product = await _context.Products.FindAsync(item.ProductId);
+                if (product.Quantity < item.Quantity)
+                {
+                    saleReport.ProductsWithInsufficientStock.Add(item);
+                    saleItemsDTOs.Remove(item);
+                    i--;
+                }
+            }
+
+            saleReport.NotFoundMessage = $"{saleReport.ProductsNotFound.Count} Products not found";
+            saleReport.InsufficientStockMessage = $"{saleReport.ProductsWithInsufficientStock.Count} Products with insufficient stock";
 
             // Posts the Sale to obtain the id
             var sale = new Sale(customerName);
@@ -96,6 +124,7 @@ namespace Back_end.Services
                 _context.SaleItems.Add(saleItem);
                 await _context.SaveChangesAsync();
             }
+
             var saleItems = await _context.SaleItems
                                             .Where(saleItem => saleItem.SaleId == sale.SaleId)
                                             .Include(saleItem => saleItem.Product)
@@ -109,9 +138,14 @@ namespace Back_end.Services
 
                 item.Product.Quantity -= item.Quantity;
                 _context.Entry(item.Product).State = EntityState.Modified;
+
+                saleReport.ProductsSold.Add(item);
             }
             sale.CalculateTotal(saleItems);
 
+            saleReport.Sale = sale;
+            saleReport.SoldMessage = $"{saleReport.ProductsSold.Count} Products successfully sold";
+            
             _context.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 

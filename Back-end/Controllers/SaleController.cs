@@ -1,4 +1,5 @@
 using Back_end.DTOs;
+using Back_end.Models;
 using Back_end.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,7 +73,7 @@ namespace Back_end.Controllers
         {
             var saleReport = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
 
-            return CreatedAtAction("", saleReport);
+            return CreatedAtAction(nameof(GetSaleById), new { id = saleReport.Sale.SaleId }, saleReport);
         }
 
         // For development purposes
