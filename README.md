@@ -31,9 +31,9 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * Exibir os produtos por nome ou fornecedor.
 
 3. **Gerenciamento de estoque**: ⚙️
-* Atualizar a quantidade de produtos.
-* Alerta para produtos com estoque abaixo do limite mínimo.
-* Criar sistema de reabastecimento de estoque.
+* Atualizar a quantidade de produtos. ✔️
+* Alerta para produtos com estoque abaixo do limite mínimo. ⚙️
+* Criar sistema de reabastecimento de estoque. ⚙️
 
 ### Criação do Front-end. ⚙️
 1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ✔️
