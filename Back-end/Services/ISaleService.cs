@@ -8,7 +8,6 @@ namespace Back_end.Services
         // Sale Services
         Task<List<Sale>> GetAllSales();
         Task<Sale> GetSaleById(int id);
-        Task<List<Sale>> RemoveEmptySales();
 
         // SaleItem Services
         Task<List<SaleItem>> GetAllSaleItems();
@@ -17,10 +16,10 @@ namespace Back_end.Services
 
         // Shared services
         Task<SaleReport> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItems);
-        Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale);
 
         // For development purposes
-        Task DeleteSale(Sale sale);
-        Task DeleteSaleItem(SaleItem saleItem);
+        Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale);
+        Task DeleteSale(Sale sale, List<SaleItem> saleItems);
+        Task<List<Sale>> RemoveEmptySales();
     }
 }

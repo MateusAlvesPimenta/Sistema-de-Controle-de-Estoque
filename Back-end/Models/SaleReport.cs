@@ -4,7 +4,7 @@ namespace Back_end.Models
 {
     public struct SaleReport
     {
-        public Sale Sale { get; set; }
+        public Sale Sale { get; set; } = new();
         public string NotFoundMessage { get; set; }
         public List<SaleItemDTO> ProductsNotFound { get; set; } = new();
         public string InsufficientStockMessage { get; set; }

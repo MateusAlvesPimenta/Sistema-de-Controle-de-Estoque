@@ -83,6 +83,10 @@ namespace Back_end.Controllers
         {
             var saleItems = await _saleService.GetSaleItemsBySaleId(saleId);
 
+            if (saleItems == null)
+            {
+                return NotFound($"No sale with id: {saleId} found");
+            }
             if (saleItems.Count <= 0)
             {
                 return NotFound($"No sale item with saleId: {saleId} found");
@@ -116,12 +120,15 @@ namespace Back_end.Controllers
         public async Task<IActionResult> DeleteSale(int id)
         {
             var sale = await _saleService.GetSaleById(id);
+            var saleItems = await _saleService.GetSaleItemsBySaleId(id);
 
             if (sale == null)
             {
                 return NotFound($"No sale with id: {id} found");
             }
-            return NoContent();
+            await _saleService.DeleteSale(sale, saleItems);
+
+            return Ok(new { sale, saleItems });
         }
     }
 }

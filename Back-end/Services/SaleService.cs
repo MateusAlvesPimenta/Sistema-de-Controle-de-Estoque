@@ -21,24 +21,11 @@ namespace Back_end.Services
 
             return sales;
         }
-
         public async Task<Sale> GetSaleById(int id)
         {
             var sale = await _context.Sales.FindAsync(id);
 
             return sale;
-        }
-
-        public async Task<List<Sale>> RemoveEmptySales()
-        {
-            var sales = await _context.Sales.Where(sale => sale.SaleItems.Count <= 0).ToListAsync();
-
-            if (sales.Count > 0)
-            {
-                _context.Sales.RemoveRange(sales);
-                await _context.SaveChangesAsync();
-            }
-            return sales;
         }
 
         // SaleItem services
@@ -48,7 +35,6 @@ namespace Back_end.Services
 
             return salesItems;
         }
-
         public async Task<SaleItem> GetSaleItemById(int id)
         {
             var saleItem = await _context.SaleItems.FindAsync(id);
@@ -57,6 +43,12 @@ namespace Back_end.Services
         }
         public async Task<List<SaleItem>> GetSaleItemsBySaleId(int saleId)
         {
+            var saleExists = await _context.Sales.AnyAsync(sale => sale.SaleId == saleId);
+
+            if (!saleExists)
+            {
+                return null;
+            }
             var saleItem = await _context.SaleItems.Where(item => item.SaleId == saleId).ToListAsync();
 
             return saleItem;
@@ -66,6 +58,9 @@ namespace Back_end.Services
         public async Task<SaleReport> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItemsDTOs)
         {
             var saleReport = new SaleReport();
+            var sale = new Sale(customerName);
+            
+            saleReport.Sale = sale;
 
             // Checks if the product exists, if not it removes the saleItem from the list
             for (int i = 0; i < saleItemsDTOs.Count; i++)
@@ -126,9 +121,14 @@ namespace Back_end.Services
             saleReport.NotFoundMessage = $"{saleReport.ProductsNotFound.Count} Products not found";
             saleReport.InsufficientStockMessage = $"{saleReport.ProductsWithInsufficientStock.Count} Products with insufficient stock";
 
-            // Posts the Sale to obtain the id
-            var sale = new Sale(customerName);
+            // Checks if there's any saleItem left
+            if (saleItemsDTOs.Count <= 0)
+            {
+                saleReport.SoldMessage = "No products were sold";
+                return saleReport;
+            }
 
+            // Posts the Sale to obtain the id
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
 
@@ -161,7 +161,6 @@ namespace Back_end.Services
             }
             sale.CalculateTotal(saleItems);
 
-            saleReport.Sale = sale;
             saleReport.SoldMessage = $"{saleReport.ProductsSold.Count} Products successfully sold";
 
             _context.Entry(sale).State = EntityState.Modified;
@@ -171,6 +170,17 @@ namespace Back_end.Services
         }
 
         // For development purposes
+        public async Task<List<Sale>> RemoveEmptySales()
+        {
+            var sales = await _context.Sales.Where(sale => sale.SaleItems.Count <= 0).ToListAsync();
+
+            if (sales.Count > 0)
+            {
+                _context.Sales.RemoveRange(sales);
+                await _context.SaveChangesAsync();
+            }
+            return sales;
+        }
         public async Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale)
         {
             var saleItems = await _context.SaleItems.Where(item => item.SaleId == sale.SaleId)
@@ -214,14 +224,16 @@ namespace Back_end.Services
 
             return (sale, saleItems);
         }
-        public async Task DeleteSale(Sale sale)
+        public async Task DeleteSale(Sale sale, List<SaleItem> saleItems)
         {
+            if (saleItems.Count > 0)
+            {
+                foreach (SaleItem item in saleItems)
+                {
+                    _context.SaleItems.Remove(item);
+                }
+            }
             _context.Sales.Remove(sale);
-            await _context.SaveChangesAsync();
-        }
-        public async Task DeleteSaleItem(SaleItem saleItem)
-        {
-            _context.SaleItems.Remove(saleItem);
             await _context.SaveChangesAsync();
         }
     }
