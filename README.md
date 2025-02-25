@@ -4,7 +4,22 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 ## Tecnologias utilizadas 💻
 * Asp.Net Core / Csharp
 * React.js / Javascript
-* Bootstrap
+* HTML, CSS e Bootstrap
+* BatchFile
+
+## Requisitos para rodar esta aplicação:
+
+* Back-end: 
+1. Necessário .Net 7 instalado e funcionando.
+2. Alterar a "ConnectionString" conforme necessário para que utilize seu banco de dados.
+3. execute o comando `dotnet ef database update` para criar as entidades no seu banco de dados .
+
+* Front-end: 
+1. Necessário npm e o node instalados e funcionando.
+2. Abrir um CMD na pasta "Front-end" e digitar o seguinte comando `npm install` para instalar todas as dependências do projeto.
+
+* Tendo tudo configurado, basta abrir o arquivo `Starter.cmd` que ele iniciará toda a aplicação e abrira os 2 CMDs necessários para a aplicação rodar **não feche nenhum dos 2 a menos que você queira encerrar a aplicação**, nesse caso feche os 2.
+
 
 ## Planos futuros
 * 🛠️ - Por fazer.
