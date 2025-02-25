@@ -10,6 +10,7 @@ namespace Back_end.Services
         Task<List<Product>> GetProductsByNameOrSupplier(string name);
         Task<List<Product>> GetProductsByNameOrSupplier(List<int> supplierIds);
         Task<List<Product>> GetProductsByNameOrSupplier(string name, List<int> supplierId);
+        Task<List<Product>> GetProductsWithLowStock();
         Task<Product> AddProduct(ProductDTO productDTO);
         Task<List<Product>> AddProductList(List<ProductDTO> productDTO);
         Task UpdateProduct(Product product);

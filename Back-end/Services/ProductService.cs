@@ -69,6 +69,12 @@ namespace Back_end.Services
             return products;
         }
 
+        public async Task<List<Product>> GetProductsWithLowStock()
+        {
+            var products = await _context.Products.Where(product => product.Quantity <= 100).ToListAsync();
+
+            return products;
+        }
         public async Task<Product> AddProduct(ProductDTO productDTO)
         {
             var product = new Product(productDTO);

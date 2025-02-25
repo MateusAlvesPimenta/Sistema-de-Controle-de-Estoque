@@ -25,7 +25,7 @@ namespace Back_end.Models
         [JsonIgnore]
         public Supplier Supplier { get; set; }
 
-        public Product() {}
+        public Product() { }
         public Product(ProductDTO productDTO)
         {
             Update(productDTO);
@@ -38,6 +38,11 @@ namespace Back_end.Models
             Price = productDTO.Price;
             Quantity = productDTO.Quantity;
             SupplierId = productDTO.SupplierId;
+        }
+
+        public void ReStock(int quantity)
+        {
+            Quantity += quantity;
         }
     }
 }

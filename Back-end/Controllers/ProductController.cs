@@ -78,6 +78,18 @@ namespace Back_end.Controllers
             return Ok(products);
         }
 
+        [HttpGet("/GetProductsWithLowStock")]
+        public async Task<IActionResult> GetProductsWithLowStock()
+        {
+            var products = await _productService.GetProductsWithLowStock();
+
+            if (products.Count <= 0)
+            {
+                return NotFound("There's no product with low stock");
+            }
+            return Ok(products);
+        }
+
         [HttpPost("/AddProduct")]
         public async Task<IActionResult> AddProduct(ProductDTO productDTO)
         {
@@ -119,6 +131,21 @@ namespace Back_end.Controllers
             return Ok("Product updated");
         }
 
+        [HttpPut("/ReStockProduct/{id}")]
+        public async Task<IActionResult> ReStockProduct(int id, int quantity)
+        {
+            var product = await _productService.GetProductById(id);
+
+            if (product == null)
+            {
+                return NotFound($"No product with id: {id} found");
+            }
+            product.ReStock(quantity);
+
+            await _productService.UpdateProduct(product);
+
+            return Ok(product);
+        }
         [HttpDelete("/DeleteProduct/{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
