@@ -37,7 +37,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 
 3. Realizar as configurações necessárias para a API Funcionar e ser consumida pelo front-end. ✔️
 
-### Implementar as funcionalidades básicas ⚙️
+### Implementar as funcionalidades básicas ✔️
 
 1. **Cadastro de entidades**: ✔️
 * Adicionar, editar e excluir entidades.
@@ -45,10 +45,10 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 2. **Listagem e busca de produtos**: ✔️
 * Exibir os produtos por nome ou fornecedor.
 
-3. **Gerenciamento de estoque**: ⚙️
-* Atualizar a quantidade de produtos. ✔️
-* Alerta para produtos com estoque abaixo do limite mínimo. ⚙️
-* Criar sistema de reabastecimento de estoque. ⚙️
+3. **Gerenciamento de estoque**: ✔️
+* Atualizar a quantidade de produtos.
+* Alerta para produtos com estoque abaixo do limite mínimo.
+* Criar sistema de reabastecimento de estoque.
 
 ### Criação do Front-end. ⚙️
 1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ✔️
