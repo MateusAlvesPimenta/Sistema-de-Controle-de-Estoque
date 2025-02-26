@@ -20,7 +20,7 @@ namespace Back_end.Controllers
         {
             var suppliers = await _supplierService.GetAllSuppliers();
 
-            if (suppliers.Count == 0)
+            if (suppliers.Count <= 0)
             {
                 return NotFound("No supplier found");
             }

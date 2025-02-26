@@ -21,7 +21,7 @@ namespace Back_end.Controllers
         {
             var products = await _productService.GetAllProducts();
 
-            if (products.Count == 0)
+            if (products.Count <= 0)
             {
                 return NotFound("No Product found");
             }
@@ -71,7 +71,7 @@ namespace Back_end.Controllers
                 products = await _productService.GetProductsByNameOrSupplier(name, ids);
             }
 
-            if (products == null || products.Count == 0)
+            if (products == null || products.Count <= 0)
             {
                 return NotFound($"No products found with this filter");
             }
@@ -94,7 +94,7 @@ namespace Back_end.Controllers
         [HttpPost("/AddProductList")]
         public async Task<IActionResult> AddProductList(List<ProductDTO> productDTO)
         {
-            if (productDTO == null || productDTO.Count == 0)
+            if (productDTO == null || productDTO.Count <= 0)
             {
                 return BadRequest("Insert a list of products");
             }

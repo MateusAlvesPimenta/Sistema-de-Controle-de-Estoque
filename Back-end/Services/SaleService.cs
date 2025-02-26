@@ -29,6 +29,18 @@ namespace Back_end.Services
             return sale;
         }
 
+        public async Task<List<Sale>> RemoveEmptySales()
+        {
+            var sales = await _context.Sales.Where(sale => sale.SaleItems.Count <= 0).ToListAsync();
+
+            if (sales.Count > 0)
+            {
+                _context.Sales.RemoveRange(sales);
+                await _context.SaveChangesAsync();
+            }
+            return sales;
+        }
+
         // SaleItem services
         public async Task<List<SaleItem>> GetAllSaleItems()
         {
@@ -40,6 +52,12 @@ namespace Back_end.Services
         public async Task<SaleItem> GetSaleItemById(int id)
         {
             var saleItem = await _context.SaleItems.FindAsync(id);
+
+            return saleItem;
+        }
+        public async Task<List<SaleItem>> GetSaleItemsBySaleId(int saleId)
+        {
+            var saleItem = await _context.SaleItems.Where(item => item.SaleId == saleId).ToListAsync();
 
             return saleItem;
         }
@@ -145,7 +163,7 @@ namespace Back_end.Services
 
             saleReport.Sale = sale;
             saleReport.SoldMessage = $"{saleReport.ProductsSold.Count} Products successfully sold";
-            
+
             _context.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
@@ -153,12 +171,54 @@ namespace Back_end.Services
         }
 
         // For development purposes
+        public async Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale)
+        {
+            var saleItems = await _context.SaleItems.Where(item => item.SaleId == sale.SaleId)
+                                                    .Include(item => item.Product)
+                                                    .ToListAsync();
+
+            if (saleItems.Count <= 0)
+            {
+                return (sale, null);
+            }
+
+            // Aggregate saleItems with the same ProductId
+            for (int i = 0; i < saleItems.Count; i++)
+            {
+                var saleItem = saleItems[i];
+
+                if (saleItems.Count(item => item.ProductId == saleItem.ProductId) > 1)
+                {
+                    var duplicatedItems = saleItems.Where(item => item.ProductId == saleItem.ProductId).ToList();
+
+                    saleItem = duplicatedItems.Aggregate((total, next) =>
+                    {
+                        total.Quantity += next.Quantity;
+                        saleItems.Remove(next);
+
+                        return total;
+                    });
+                }
+            }
+
+            // Calculates money related information and saves
+            foreach (SaleItem item in saleItems)
+            {
+                item.CalculatePrice();
+                _context.Entry(item).State = EntityState.Modified;
+            }
+            sale.CalculateTotal(saleItems);
+
+            _context.Entry(sale).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return (sale, saleItems);
+        }
         public async Task DeleteSale(Sale sale)
         {
             _context.Sales.Remove(sale);
             await _context.SaveChangesAsync();
         }
-
         public async Task DeleteSaleItem(SaleItem saleItem)
         {
             _context.SaleItems.Remove(saleItem);

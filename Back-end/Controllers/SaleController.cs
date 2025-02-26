@@ -23,7 +23,7 @@ namespace Back_end.Controllers
         {
             var sales = await _saleService.GetAllSales();
 
-            if (sales.Count == 0)
+            if (sales.Count <= 0)
             {
                 return NotFound("No sale found");
             }
@@ -42,13 +42,24 @@ namespace Back_end.Controllers
             return Ok(sale);
         }
 
+        [HttpDelete("/RemoveEmptySales")]
+        public async Task<IActionResult> RemoveEmptySales()
+        {
+            var emptySales = await _saleService.RemoveEmptySales();
+
+            if (emptySales.Count <= 0)
+            {
+                return NotFound("No empty sale found");
+            }
+            return Ok(emptySales);
+        }
         // SaleItem endpoints
         [HttpGet("/GetAllSaleItems")]
         public async Task<IActionResult> GetAllSaleItems()
         {
             var saleItems = await _saleService.GetAllSaleItems();
 
-            if (saleItems.Count == 0)
+            if (saleItems.Count <= 0)
             {
                 return NotFound("No sale item found");
             }
@@ -67,6 +78,17 @@ namespace Back_end.Controllers
             return Ok(saleItem);
         }
 
+        [HttpGet("/GetSaleItems/{saleId}")]
+        public async Task<IActionResult> GetSaleItemBySaleId(int saleId)
+        {
+            var saleItems = await _saleService.GetSaleItemsBySaleId(saleId);
+
+            if (saleItems.Count <= 0)
+            {
+                return NotFound($"No sale item with saleId: {saleId} found");
+            }
+            return Ok(saleItems);
+        }
         // Shared endpoints
         [HttpPost("/AddSale")]
         public async Task<IActionResult> AddSale(string customerName, List<SaleItemDTO> saleItemDTOs)
@@ -74,6 +96,19 @@ namespace Back_end.Controllers
             var saleReport = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
 
             return CreatedAtAction(nameof(GetSaleById), new { id = saleReport.Sale.SaleId }, saleReport);
+        }
+
+        [HttpPut("/SaleSaleItemPriceAndQuantityFix")]
+        public async Task<IActionResult> SaleSaleItemPriceAndQuantityFix(int saleId)
+        {
+            var sale = await _saleService.GetSaleById(saleId);
+            if (sale == null)
+            {
+                return NotFound($"No sale with id: {saleId} found");
+            }
+            var updatedSale = await _saleService.SaleSaleItemPriceAndQuantityFix(sale);
+
+            return Ok(new { updatedSale.Sale, updatedSale.SaleItems });
         }
 
         // For development purposes

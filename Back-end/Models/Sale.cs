@@ -26,10 +26,8 @@ namespace Back_end.Models
 
         public void CalculateTotal(List<SaleItem> saleItems)
         {
-            foreach (SaleItem item in saleItems)
-            {
-                Total += item.Price;
-            }
+            decimal accumulator = 0;
+            Total = saleItems.Aggregate(accumulator, (total, next) => total += next.Price);
         }
     }
 }
