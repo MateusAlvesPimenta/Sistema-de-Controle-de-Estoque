@@ -42,17 +42,18 @@ namespace Back_end.Controllers
             return Ok(sale);
         }
 
-        [HttpDelete("/RemoveEmptySales")]
-        public async Task<IActionResult> RemoveEmptySales()
+        [HttpGet("/GetSalesByDate")]
+        public async Task<IActionResult> GetSalesByDate(DateTime initialDate, DateTime lastDate)
         {
-            var emptySales = await _saleService.RemoveEmptySales();
+            var sales = await _saleService.GetSalesByDate(initialDate, lastDate);
 
-            if (emptySales.Count <= 0)
+            if (sales.Count <= 0)
             {
-                return NotFound("No empty sale found");
+                return NotFound($"No sales were made during this period:{initialDate} - {lastDate}");
             }
-            return Ok(emptySales);
+            return Ok(sales);
         }
+
         // SaleItem endpoints
         [HttpGet("/GetAllSaleItems")]
         public async Task<IActionResult> GetAllSaleItems()
@@ -93,6 +94,7 @@ namespace Back_end.Controllers
             }
             return Ok(saleItems);
         }
+ 
         // Shared endpoints
         [HttpPost("/AddSale")]
         public async Task<IActionResult> AddSale(string customerName, List<SaleItemDTO> saleItemDTOs)
@@ -100,6 +102,19 @@ namespace Back_end.Controllers
             var saleReport = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
 
             return CreatedAtAction(nameof(GetSaleById), new { id = saleReport.Sale.SaleId }, saleReport);
+        }
+
+        // For development purposes
+        [HttpDelete("/RemoveEmptySales")]
+        public async Task<IActionResult> RemoveEmptySales()
+        {
+            var emptySales = await _saleService.RemoveEmptySales();
+
+            if (emptySales.Count <= 0)
+            {
+                return NotFound("No empty sale found");
+            }
+            return Ok(emptySales);
         }
 
         [HttpPut("/SaleSaleItemPriceAndQuantityFix")]
@@ -115,7 +130,6 @@ namespace Back_end.Controllers
             return Ok(new { updatedSale.Sale, updatedSale.SaleItems });
         }
 
-        // For development purposes
         [HttpDelete("/DeleteSale/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {

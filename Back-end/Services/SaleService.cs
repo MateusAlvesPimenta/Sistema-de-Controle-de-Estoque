@@ -27,7 +27,14 @@ namespace Back_end.Services
 
             return sale;
         }
+        public async Task<List<Sale>> GetSalesByDate(DateTime initialDate, DateTime lastDate)
+        {
+            var sales = await _context.Sales.Where(sale => sale.SaleDate >= initialDate &&
+                                                            sale.SaleDate <= lastDate)
+                                            .ToListAsync();
 
+            return sales;
+        }
         // SaleItem services
         public async Task<List<SaleItem>> GetAllSaleItems()
         {

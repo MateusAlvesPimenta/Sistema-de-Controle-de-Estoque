@@ -8,6 +8,7 @@ namespace Back_end.Services
         // Sale Services
         Task<List<Sale>> GetAllSales();
         Task<Sale> GetSaleById(int id);
+        Task<List<Sale>> GetSalesByDate(DateTime initialDate, DateTime LastDate);
 
         // SaleItem Services
         Task<List<SaleItem>> GetAllSaleItems();
