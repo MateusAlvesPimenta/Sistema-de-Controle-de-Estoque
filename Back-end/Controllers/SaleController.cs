@@ -94,12 +94,12 @@ namespace Back_end.Controllers
             }
             return Ok(saleItems);
         }
- 
+
         // Shared endpoints
         [HttpPost("/AddSale")]
-        public async Task<IActionResult> AddSale(string customerName, List<SaleItemDTO> saleItemDTOs)
+        public async Task<IActionResult> AddSale(SaleDTO saleDTO)
         {
-            var saleReport = await _saleService.AddSaleAndSaleItem(customerName, saleItemDTOs);
+            var saleReport = await _saleService.AddSaleAndSaleItem(saleDTO.CustomerName, saleDTO.SaleItemDTOs);
 
             return CreatedAtAction(nameof(GetSaleById), new { id = saleReport.Sale.SaleId }, saleReport);
         }
