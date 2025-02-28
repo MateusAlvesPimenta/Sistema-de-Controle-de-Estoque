@@ -1,6 +1,6 @@
 import { AddSupplierButton } from "../../ActionButtons/SuppliersButtons/Index";
 
-export const SupplierHeader = () => {
+export const SuppliersHeader = () => {
 
     return (
         <header className="py-3">

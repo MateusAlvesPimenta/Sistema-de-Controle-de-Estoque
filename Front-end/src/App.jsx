@@ -10,10 +10,11 @@ function App() {
 
   return (
     <ContextProvider >
-      <BrowserRouter>
-        <MyNavBar />
-        <MainRoutes />
-      </BrowserRouter>
+
+        <BrowserRouter>
+          <MyNavBar />
+          <MainRoutes />
+        </BrowserRouter>
     </ContextProvider>
   )
 }

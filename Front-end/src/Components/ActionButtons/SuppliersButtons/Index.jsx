@@ -33,7 +33,11 @@ export const AddSupplierButton = () => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline size="lg" color="primary">
+            <Button
+                onClick={toggleModal}
+                size="lg"
+                color="primary">
+                <i className="bi bi-plus-circle"> </i>
                     Add supplier
             </Button>
 

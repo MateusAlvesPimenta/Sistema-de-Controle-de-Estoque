@@ -1,5 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #f8f9fa;
+}
+
+/* Used at every page */
+.margin-left {
+    margin-left: 100px;
+}
+
+/* Used at every table */
+td .btn {
+    border: 0;
+    background-color: transparent;
 }
 
 /* Used at Pages/MyNavbar.jsx */
@@ -11,7 +27,8 @@ body {
     left: 0;
     right: auto;
     padding-top: 3vh;
-    height: 100%;
+    min-height: 100vh;
+    height: 80vh;
     width: 80px;
     background-color: hsl(226, 100%, 50%);
     background: linear-gradient(to right, hsl(226, 100%, 40%), hsl(226, 100%, 60%));
@@ -24,7 +41,7 @@ body {
     display: flex;
     align-items: flex-start;
     color: #f8f9fa;
-    font-size: 30px;
+    font-size: larger;
     gap: 20px;
     padding: 10px 20px;
     cursor: pointer;
@@ -47,7 +64,7 @@ h2.nav-link {
     color: hsl(210, 17%, 85%);
 }
 
-/* Used at Pages/ProductsFilter.jsx */
+/* Used at Pages/Products/ProductsFilter.jsx */
 .badge {
     font-size: medium;
     margin-right: 5px;
@@ -61,6 +78,7 @@ h2.nav-link {
     background-color: transparent;
     color: #dc3545;
     font-weight: bold;
+    transition: .15s all ease-in-out;
 }
 
 form button {
@@ -69,4 +87,10 @@ form button {
 
 .badge .btn-x:hover {
     color: white;
+}
+
+/* Used at ActionButtons/SalesButtons */
+
+.sale-modal .modal-content {
+    width: max-content;
 }

@@ -1,12 +1,12 @@
 import { Container } from "reactstrap"
-import { SupplierHeader } from "./SupplierHeader"
+import { SuppliersHeader } from "./SuppliersHeader"
 import { ListSuppliers } from "./ListSuppliers"
 
 export const Suppliers = () => {
 
     return (
-        <Container>
-            <SupplierHeader />
+        <Container className="margin-left">
+            <SuppliersHeader />
             <ListSuppliers />
         </Container>
     )

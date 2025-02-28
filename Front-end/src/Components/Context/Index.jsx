@@ -1,6 +1,7 @@
 import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
 import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
+import { addSale, getAllSales, getSalesByDate } from "../Services/SalesService";
 
 export const Context = createContext({});
 
@@ -9,6 +10,7 @@ export const ContextProvider = (props) => {
     const [updateData, setUpdateData] = useState(true);
     const [suppliers, setSuppliers] = useState([]);
     const [products, setProducts] = useState([]);
+    const [sales, setSales] = useState([]);
 
 
     const getAll = async (entityType) => {
@@ -17,18 +19,33 @@ export const ContextProvider = (props) => {
             setSuppliers(tempSuppliers.data);
             return;
         }
-        let tempProducts = await getAllProducts();
-        setProducts(tempProducts.data);
+        else if (entityType === "product") {
+            let tempProducts = await getAllProducts();
+            setProducts(tempProducts.data);
+            return;
+        }
+        let tempSales = await getAllSales();
+        setSales(tempSales.data);
     }
 
     const getByNameOrSupplier = async (data) => {
         let tempProducts = await getProductsByNameOrSupplier(data);
-        
+
         if (tempProducts.status === 200) {
             setProducts(tempProducts.data);
             return;
         }
         setProducts([]);
+    }
+
+    const getByDate = async (date1, date2) => {
+        let tempSales = await getSalesByDate(date1, date2);
+
+        if (tempSales.status == 200) {
+            setSales(tempSales.data);
+            return;
+        }
+        setSales([]);
     }
 
     const post = async (entity, entityType) => {
@@ -38,6 +55,11 @@ export const ContextProvider = (props) => {
             return;
         }
         await addProduct(entity);
+        setUpdateData(true);
+    }
+
+    const postSale = async (name, saleItems) => {
+        await addSale(name, saleItems);
         setUpdateData(true);
     }
 
@@ -64,6 +86,7 @@ export const ContextProvider = (props) => {
     useMemo(() => {
         getAll("supplier");
         getAll("product");
+        getAll("sale");
         setUpdateData(false);
     }, [updateData])
 
@@ -72,7 +95,9 @@ export const ContextProvider = (props) => {
             value={{
                 suppliers,
                 products,
+                sales,
                 post,
+                postSale,
                 put,
                 deleteEntity,
                 getByNameOrSupplier
