@@ -100,7 +100,8 @@ export const ContextProvider = (props) => {
                 postSale,
                 put,
                 deleteEntity,
-                getByNameOrSupplier
+                getByNameOrSupplier,
+                getByDate
             }}>
             {props.children}
         </Context.Provider>

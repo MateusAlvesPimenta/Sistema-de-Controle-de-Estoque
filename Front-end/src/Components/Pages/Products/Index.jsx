@@ -6,7 +6,7 @@ import { ProductsFilter } from "./ProductsFilter"
 export const Products = () => {
 
     return (
-        <Container className="margin-left">
+        <Container>
             <ProductsHeader />
             <ProductsFilter />
             <ListProducts />

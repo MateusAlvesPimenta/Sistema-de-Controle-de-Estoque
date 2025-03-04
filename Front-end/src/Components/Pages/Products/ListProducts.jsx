@@ -9,7 +9,7 @@ export const ListProducts = () => {
     const { products } = useContext(Context);
 
     return (
-        <Table>
+        <Table hover>
             <thead>
                 <tr>
                     <th>#</th>

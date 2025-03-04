@@ -7,11 +7,6 @@ body {
     background-color: #f8f9fa;
 }
 
-/* Used at every page */
-.margin-left {
-    margin-left: 100px;
-}
-
 /* Used at every table */
 td .btn {
     border: 0;
@@ -19,22 +14,17 @@ td .btn {
 }
 
 /* Used at Pages/MyNavbar.jsx */
-.nav {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
+.side-bar {
+    position: relative;
     right: auto;
     padding-top: 3vh;
     min-height: 100vh;
-    height: 80vh;
     width: 80px;
     background-color: hsl(226, 100%, 50%);
     background: linear-gradient(to right, hsl(226, 100%, 40%), hsl(226, 100%, 60%));
     overflow: hidden;
     transition: .3s;
-    z-index: +1;
+    z-index: 1000;
 }
 
 .nav-link {
@@ -47,11 +37,11 @@ td .btn {
     cursor: pointer;
 }
 
-.nav:hover {
+.side-bar:hover {
     width: 250px;
 }
 
-.nav:not(:hover) .nav-link span {
+.side-bar:not(:hover) .nav-link span {
     display: none;
 }
 

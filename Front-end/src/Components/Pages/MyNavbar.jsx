@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const MyNavBar = () => {
 
     return (
-        <nav className="nav mt-0">
+        <nav className="side-bar">
             <Link to="/"
                 className="nav-link link-light py-3">
                 <i className="bi bi-list"></i>

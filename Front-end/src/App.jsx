@@ -10,11 +10,12 @@ function App() {
 
   return (
     <ContextProvider >
-
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className="d-flex">
           <MyNavBar />
           <MainRoutes />
-        </BrowserRouter>
+        </div>
+      </BrowserRouter>
     </ContextProvider>
   )
 }

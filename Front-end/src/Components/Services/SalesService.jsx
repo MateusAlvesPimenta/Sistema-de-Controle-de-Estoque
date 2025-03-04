@@ -6,12 +6,8 @@ export const getAllSales = async () => {
 }
 
 export const getSalesByDate = async (date1, date2) => {
-    return await api.get("/GetSalesByDate", {
-        params: {
-            initialDate: date1,
-            lastDate: date2
-        }
-    }).catch(e => console.log(e));
+    return await api.get(`/GetSalesByDate?initialDate=${date1}&lastDate=${date2}`)
+        .catch(e => console.log(e));
 }
 
 export const addSale = async (name, saleItems) => {

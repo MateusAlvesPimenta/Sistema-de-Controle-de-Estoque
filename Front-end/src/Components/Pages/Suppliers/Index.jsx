@@ -5,7 +5,7 @@ import { ListSuppliers } from "./ListSuppliers"
 export const Suppliers = () => {
 
     return (
-        <Container className="margin-left">
+        <Container>
             <SuppliersHeader />
             <ListSuppliers />
         </Container>
