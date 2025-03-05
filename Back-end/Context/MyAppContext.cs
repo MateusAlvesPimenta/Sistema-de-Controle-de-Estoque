@@ -33,5 +33,6 @@ namespace Back_end.Context
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SaleItem> SaleItems { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
     }
 }
