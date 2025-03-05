@@ -31,9 +31,10 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 * **Products**: `ProductId`, `Name`, `Description`, `Price`, `Quantity`, `SupplierId`.
 * **Supplier**: `SupplierId`, `Name`, `PhoneNumber`, `Email`, `Address`.
 
-2. Definir as entidades de vendas e seus relacionamentos. ✔️
-* **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`.
-* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`.
+2. Definir as entidades de vendas, despesas e seus relacionamentos. ✔️
+* **Sale**: `SaleId`, `SaleDate`, `CustomerName`, `SaleItems`, `Total`. 
+* **SaleItems**: `SaleItemId`, `SaleId`, `ProductId`, `Quantity`, `Price`. 
+* **Expense**: `ExpenseId`, `Name`, `Price`, `ExpenseDate` 
 
 3. Realizar as configurações necessárias para a API Funcionar e ser consumida pelo front-end. ✔️
 
@@ -54,7 +55,10 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 1. Criar interfaces para listagem, criação, edição e exclusão de fornecedores e produtos ✔️
 2. Criar Uma Home page básica e temporária ✔️
 3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. ✔️
-4. Criar intefaces para visualização e simulação de vendas. ✔️
-5. Criar listagem das vendas em ordem crescente ou decrescente de acorto com o total da venda. ⚙️
-6. Criar filtro para vendas de acordo com a data da venda. ✔️
-7. Melhorias visuais e de código. 🛠️
+4. Criar uma inteface para visualização e cadastro de vendas. ✔️
+5. Criar filtro para vendas de acordo com a data da venda. ✔️
+6. Criar uma interface para visualização e cadastro de despesas. 🛠️
+7. Criar uma interface de dashboard simples que apresente o valor de vendas, despesas e lucro dos ultimos 30 dias. 🛠️
+8. Adicionar uma ligação entre vendas e despesas com o dashboard para que ambos sejam acessados através ele. 🛠️
+9. Adicionar uma aba no dashboard de produtos mais vendidos. 🛠️
+* Final: Melhorias visuais e de código. 🛠️
