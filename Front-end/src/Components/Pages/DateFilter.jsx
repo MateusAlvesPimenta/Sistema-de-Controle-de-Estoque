@@ -1,10 +1,12 @@
 import { useContext, useState } from "react"
 import { Button, Form, FormGroup, Input, Label } from "reactstrap"
-import { Context } from "../../Context/Index";
+import { Context } from "../Context/Index";
+import { format } from "date-fns";
 
-export const SalesFilter = () => {
+export const DateFilter = (props) => {
 
-    const { getByDate } = useContext(Context);
+    const { entityType } = props;
+    const { getByDate, getAll } = useContext(Context);
     const [initialDate, setInitialDate] = useState();
     const [lastDate, setLastDate] = useState();
 
@@ -13,15 +15,18 @@ export const SalesFilter = () => {
 
         if (name === "initialDate") {
             setInitialDate(value);
-            console.log(value);
             return;
         }
-        console.log(value);
-        setLastDate(value);
+        let date = new Date(value + "T23:59:59");
+        setLastDate(format(date, "yyyy-MM-dd HH:mm:ss"));
+    }
+
+    const reset = () => {
+        getAll(entityType);
     }
 
     const submit = () => {
-        getByDate(initialDate, lastDate);
+        getByDate(initialDate, lastDate, entityType);
         event.preventDefault();
     }
 
@@ -29,6 +34,7 @@ export const SalesFilter = () => {
         <>
             <Form
                 className="float-start mt-3"
+                onReset={reset}
                 onSubmit={submit}>
                 <div className="d-flex mt-3">
                     <FormGroup floating >

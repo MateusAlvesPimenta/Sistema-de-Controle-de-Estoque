@@ -1,7 +1,8 @@
 import { useContext, useState } from "react"
 import {
-    Badge, Button, Dropdown, DropdownItem, DropdownMenu,
-    DropdownToggle, Form, FormGroup, Input
+    Badge, Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu,
+    DropdownToggle, Form, FormGroup, Input,
+    UncontrolledButtonDropdown
 } from "reactstrap"
 
 import { Context } from "../../Context/Index"
@@ -10,16 +11,11 @@ export const ProductsFilter = () => {
 
     const { suppliers, getByNameOrSupplier } = useContext(Context);
     const [name, setName] = useState("");
-    const [dropdown, setDropdown] = useState(false);
     const [selectedSuppliers, setSelectedSuppliers] = useState([]);
 
     const handleChange = (e) => {
         const { value } = e.target;
         setName(value);
-    }
-
-    const toggle = () => {
-        setDropdown(!dropdown);
     }
 
     const selectSupplier = (supplier) => {
@@ -56,25 +52,26 @@ export const ProductsFilter = () => {
                         placeholder="Filter by name"
                         maxLength="100"
                         onChange={handleChange} />
-
-                    <Dropdown className="mx-3" isOpen={dropdown} toggle={toggle} >
-                        <DropdownToggle caret >Suppliers</DropdownToggle>
-                        <DropdownMenu>
-                            {
-                                suppliers && suppliers.map(supplier => (
-                                    <DropdownItem
-                                        onClick={() => selectSupplier(supplier)}
-                                        key={supplier.supplierId}>
-                                        {supplier.name}
-                                    </DropdownItem>
-                                ))
-                            }
-                        </DropdownMenu>
-                    </Dropdown>
-                    <Button className="px-3" color="success" type="submit">
-                        <i className="bi bi-filter"> </i>
-                        Apply
-                    </Button>
+                    <ButtonGroup className="ms-3">
+                        <UncontrolledButtonDropdown>
+                            <DropdownToggle caret >Suppliers</DropdownToggle>
+                            <DropdownMenu>
+                                {
+                                    suppliers && suppliers.map(supplier => (
+                                        <DropdownItem
+                                            onClick={() => selectSupplier(supplier)}
+                                            key={supplier.supplierId}>
+                                            {supplier.name}
+                                        </DropdownItem>
+                                    ))
+                                }
+                            </DropdownMenu>
+                        </UncontrolledButtonDropdown>
+                        <Button className="px-3" color="success" type="submit">
+                            <i className="bi bi-filter"> </i>
+                            Apply
+                        </Button>
+                    </ButtonGroup>
                 </FormGroup>
                 {
                     selectedSuppliers.map(supplier => (

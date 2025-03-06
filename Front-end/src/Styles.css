@@ -84,3 +84,28 @@ form button {
 .sale-modal .modal-content {
     width: max-content;
 }
+
+/* Used at Pages/Dashboard/DashboardContent */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 18vw);
+    justify-content: space-between;
+}
+
+.grid-container .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.grid-item.sales {
+    background: linear-gradient(to right, #198754, hsl(152, 69%, 41%), hsl(152, 69%, 41%), #198754);
+}
+
+.grid-item.expenses{
+    background: linear-gradient(to right, hsl(354, 70%, 44%), #dc3545, #dc3545, hsl(354, 70%, 44%));
+}

@@ -1,15 +1,15 @@
 import { Container } from "reactstrap"
 import { ListSales } from "./ListSales"
 import { SalesHeader } from "./SalesHeader"
-import { SalesFilter } from "./SalesFilter"
+import { DateFilter } from "../DateFilter"
 
 export const Sales = () => {
 
     return (
-        <Container className="mt-3">
+        <Container>
             <div className="d-flex  justify-content-between">
                 <SalesHeader />
-                <SalesFilter />
+                <DateFilter entityType="sale"/>
             </div>
             <ListSales />
         </Container>

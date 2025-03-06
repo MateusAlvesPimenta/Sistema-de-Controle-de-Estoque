@@ -7,6 +7,16 @@ export const getAllExpenses = async () => {
     return expenses;
 }
 
+export const getExpensesByDate = async (date1, date2) => {
+    return await api.get(`/GetExpensesByDate?initialDate=${date1}&lastDate=${date2}`)
+        .catch(e => {
+            console.log(e);
+            if (e.status === 404) {
+                return { status: 404 };
+            }
+        })
+}
+
 export const addExpense = async (entity) => {
     await api.post("/AddExpense", entity)
         .catch(e => console.log(e));

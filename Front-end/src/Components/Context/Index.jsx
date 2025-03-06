@@ -2,7 +2,7 @@ import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
 import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
 import { addSale, getAllSales, getSalesByDate } from "../Services/SalesService";
-import { addExpense, deleteExpense, getAllExpenses, updateExpense } from "../Services/ExpenseService";
+import { addExpense, deleteExpense, getAllExpenses, getExpensesByDate, updateExpense } from "../Services/ExpenseService";
 
 export const Context = createContext({});
 
@@ -15,7 +15,6 @@ export const ContextProvider = (props) => {
     const [expenses, setExpenses] = useState([]);
     const [totalSales, setTotalSales] = useState(0);
     const [totalExpenses, setTotalExpenses] = useState(0);
-
 
     const getAll = async (entityType) => {
         if (entityType === "supplier") {
@@ -49,14 +48,29 @@ export const ContextProvider = (props) => {
         setProducts([]);
     }
 
-    const getByDate = async (date1, date2) => {
-        let tempSales = await getSalesByDate(date1, date2);
+    const getByDate = async (date1, date2, entityType) => {
 
-        if (tempSales.status == 200) {
-            setSales(tempSales.data);
+        if (entityType === "sale") {
+            let tempSales = await getSalesByDate(date1, date2);
+
+            if (tempSales.status === 200) {
+                setSales(tempSales.data);
+                setTotalSales(tempSales.data.reduce((accumulator, next) => accumulator + next.total, 0));
+                return;
+            }
+            setTotalSales(0);
+            setSales([]);
             return;
         }
-        setSales([]);
+        let tempExpenses = await getExpensesByDate(date1, date2);
+
+        if (tempExpenses.status === 200) {
+            setExpenses(tempExpenses.data);
+            setTotalExpenses(tempExpenses.data.reduce((accumulator, next) => accumulator + next.price, 0));
+            return;
+        }
+        setTotalExpenses(0);
+        setExpenses([]);
     }
 
     const post = async (entity, entityType) => {
@@ -130,6 +144,7 @@ export const ContextProvider = (props) => {
                 postSale,
                 put,
                 deleteEntity,
+                getAll,
                 getByNameOrSupplier,
                 getByDate
             }}>
