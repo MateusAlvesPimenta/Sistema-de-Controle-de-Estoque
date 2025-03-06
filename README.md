@@ -57,7 +57,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 3. Implementar um sistema de filtros para listagem de produtos de acordo com seu nome ou fornecedor. ✔️
 4. Criar uma inteface para visualização e cadastro de vendas. ✔️
 5. Criar filtro para vendas de acordo com a data da venda. ✔️
-6. Criar uma interface para visualização e cadastro de despesas. 🛠️
+6. Criar uma interface para visualização e cadastro de despesas. ✔️
 7. Criar uma interface de dashboard simples que apresente o valor de vendas, despesas e lucro dos ultimos 30 dias. 🛠️
 8. Adicionar uma ligação entre vendas e despesas com o dashboard para que ambos sejam acessados através ele. 🛠️
 9. Adicionar uma aba no dashboard de produtos mais vendidos. 🛠️
