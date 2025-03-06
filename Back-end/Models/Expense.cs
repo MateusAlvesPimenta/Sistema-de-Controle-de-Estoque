@@ -14,5 +14,11 @@ namespace Back_end.Models
         public decimal Price { get; set; }
         [Required]
         public DateTime ExpenseDate { get; set; } = DateTime.UtcNow;
+
+        public void UpdateExpense(Expense expense)
+        {
+            Name = expense.Name;
+            Price = expense.Price;
+        }
     }
 }

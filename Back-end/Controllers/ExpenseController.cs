@@ -48,7 +48,7 @@ namespace Back_end.Controllers
         }
 
         [HttpPut("/UpdateExpense/{id}")]
-        public async Task<IActionResult> UpdateExpense(int id)
+        public async Task<IActionResult> UpdateExpense(int id, Expense newExpense)
         {
             var expense = await _expenseService.GetExpenseById(id);
 
@@ -56,11 +56,13 @@ namespace Back_end.Controllers
             {
                 return NotFound($"No expense with id: {id} found");
             }
+            expense.UpdateExpense(newExpense);
             await _expenseService.UpdateExpense(expense);
 
             return Ok("Expense updated");
         }
 
+        // For development purposes
         [HttpDelete("/DeleteExpense/{id}")]
         public async Task<IActionResult> DeleteExpense(int id)
         {

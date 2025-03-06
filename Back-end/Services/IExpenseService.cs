@@ -8,6 +8,7 @@ namespace Back_end.Services
         Task<Expense> GetExpenseById(int id);
         Task AddExpense(Expense expense);
         Task UpdateExpense(Expense expense);
+        // For development purposes
         Task DeleteExpense(Expense expense);
     }
 }

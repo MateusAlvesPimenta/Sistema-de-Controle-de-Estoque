@@ -37,6 +37,7 @@ namespace Back_end.Services
             await _context.SaveChangesAsync();
         }
 
+        // For development purposes
         public async Task DeleteExpense(Expense expense)
         {
             _context.Expenses.Remove(expense);
