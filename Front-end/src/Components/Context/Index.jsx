@@ -2,6 +2,7 @@ import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
 import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
 import { addSale, getAllSales, getSalesByDate } from "../Services/SalesService";
+import { addExpense, deleteExpense, getAllExpenses, updateExpense } from "../Services/ExpenseService";
 
 export const Context = createContext({});
 
@@ -11,6 +12,9 @@ export const ContextProvider = (props) => {
     const [suppliers, setSuppliers] = useState([]);
     const [products, setProducts] = useState([]);
     const [sales, setSales] = useState([]);
+    const [expenses, setExpenses] = useState([]);
+    const [totalSales, setTotalSales] = useState(0);
+    const [totalExpenses, setTotalExpenses] = useState(0);
 
 
     const getAll = async (entityType) => {
@@ -24,8 +28,15 @@ export const ContextProvider = (props) => {
             setProducts(tempProducts.data);
             return;
         }
+        else if (entityType === "expense") {
+            let tempExpenses = await getAllExpenses();
+            setExpenses(tempExpenses.data);
+            setTotalExpenses(tempExpenses.data.reduce((accumulator, next) => accumulator + next.price, 0));
+            return;
+        }
         let tempSales = await getAllSales();
         setSales(tempSales.data);
+        setTotalSales(tempSales.data.reduce((accumulator, next) => accumulator + next.total, 0));
     }
 
     const getByNameOrSupplier = async (data) => {
@@ -54,6 +65,11 @@ export const ContextProvider = (props) => {
             setUpdateData(true);
             return;
         }
+        else if (entityType === "expense") {
+            await addExpense(entity);
+            setUpdateData(true);
+            return;
+        }
         await addProduct(entity);
         setUpdateData(true);
     }
@@ -69,6 +85,11 @@ export const ContextProvider = (props) => {
             setUpdateData(true);
             return;
         }
+        else if (entityType === "expense") {
+            await updateExpense(entity);
+            setUpdateData(true);
+            return;
+        }
         await updateProduct(entity);
         setUpdateData(true);
     }
@@ -76,6 +97,11 @@ export const ContextProvider = (props) => {
     const deleteEntity = async (entityId, entityType) => {
         if (entityType === "supplier") {
             await deleteSupplier(entityId);
+            setUpdateData(true);
+            return;
+        }
+        else if (entityType === "expense") {
+            await deleteExpense(entityId);
             setUpdateData(true);
             return;
         }
@@ -87,6 +113,7 @@ export const ContextProvider = (props) => {
         getAll("supplier");
         getAll("product");
         getAll("sale");
+        getAll("expense");
         setUpdateData(false);
     }, [updateData])
 
@@ -96,6 +123,9 @@ export const ContextProvider = (props) => {
                 suppliers,
                 products,
                 sales,
+                expenses,
+                totalExpenses,
+                totalSales,
                 post,
                 postSale,
                 put,

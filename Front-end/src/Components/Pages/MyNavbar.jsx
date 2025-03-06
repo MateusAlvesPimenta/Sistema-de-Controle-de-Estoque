@@ -29,9 +29,23 @@ export const MyNavBar = () => {
                 className="nav-link link-light">
                 <i className="bi bi-graph-up-arrow"></i>
                 <span>
-                    Income and expenses
+                    Sales
                 </span>
             </Link>
+            <Link to="/expenses"
+                className="nav-link link-light">
+                <i className="bi bi-graph-down-arrow"></i>
+                <span>
+                    Expenses
+                </span>
+            </Link>
+            {/* <Link to="/sales"
+                className="nav-link link-light">
+                <i className="bi bi-graph-up-arrow"></i>
+                <span>
+                    Income and expenses
+                </span>
+            </Link> */}
         </nav>
     )
 }

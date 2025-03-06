@@ -83,10 +83,10 @@ export const AddSaleButton = () => {
                 size="lg"
                 color="primary">
                 <i className="bi bi-plus-circle"> </i>
-                Add sale
+                Register sale
             </Button>
             <Modal isOpen={modal} className="sale-modal">
-                <ModalHeader>New sale</ModalHeader>
+                <ModalHeader>Register sale</ModalHeader>
                 <Form
                     onSubmit={submit}
                     onReset={toggleModal}>
