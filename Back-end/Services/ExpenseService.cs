@@ -25,6 +25,14 @@ namespace Back_end.Services
             return expense;
         }
 
+        public async Task<List<Expense>> GetExpensesByDate(DateTime initialDate, DateTime LastDate)
+        {
+            var expenses = await _context.Expenses.Where(expense => expense.ExpenseDate >= initialDate &&
+                                                                    expense.ExpenseDate <= LastDate)
+                                                    .ToListAsync();
+            return expenses;
+        }
+
         public async Task AddExpense(Expense expense)
         {
             _context.Expenses.Add(expense);
@@ -37,12 +45,10 @@ namespace Back_end.Services
             await _context.SaveChangesAsync();
         }
 
-        // For development purposes
         public async Task DeleteExpense(Expense expense)
         {
             _context.Expenses.Remove(expense);
             await _context.SaveChangesAsync();
         }
-
     }
 }

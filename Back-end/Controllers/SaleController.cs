@@ -43,13 +43,13 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("/GetSalesByDate")]
-        public async Task<IActionResult> GetSalesByDate([FromQuery]SaleDateDTO saleDateDTO)
+        public async Task<IActionResult> GetSalesByDate([FromQuery]SaleExpenseDateDTO dateDTO)
         {
-            var sales = await _saleService.GetSalesByDate(saleDateDTO.InitialDate, saleDateDTO.LastDate);
+            var sales = await _saleService.GetSalesByDate(dateDTO.InitialDate, dateDTO.LastDate);
 
             if (sales.Count <= 0)
             {
-                return NotFound($"No sales were made during this period:{saleDateDTO.InitialDate} - {saleDateDTO.LastDate}");
+                return NotFound($"No sales were made during this period:{dateDTO.InitialDate} - {dateDTO.LastDate}");
             }
             return Ok(sales);
         }

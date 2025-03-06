@@ -1,3 +1,4 @@
+using Back_end.DTOs;
 using Back_end.Models;
 using Back_end.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,18 @@ namespace Back_end.Controllers
             return Ok(expense);
         }
 
+        [HttpGet("/GetExpensesByDate")]
+        public async Task<IActionResult> GetExpensesByDate([FromQuery] SaleExpenseDateDTO dateDTO)
+        {
+            var expenses = await _expenseService.GetExpensesByDate(dateDTO.InitialDate, dateDTO.LastDate);
+
+            if (expenses.Count <= 0)
+            {
+                return NotFound($"No expenses were made during this period:{dateDTO.InitialDate} - {dateDTO.LastDate}");
+            }
+            return Ok(expenses);
+        }
+
         [HttpPost("/AddExpense")]
         public async Task<IActionResult> AddExpense(Expense expense)
         {
@@ -62,7 +75,6 @@ namespace Back_end.Controllers
             return Ok("Expense updated");
         }
 
-        // For development purposes
         [HttpDelete("/DeleteExpense/{id}")]
         public async Task<IActionResult> DeleteExpense(int id)
         {

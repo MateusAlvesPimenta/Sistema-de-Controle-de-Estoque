@@ -6,9 +6,9 @@ namespace Back_end.Services
     {
         Task<List<Expense>> GetAllExpenses();
         Task<Expense> GetExpenseById(int id);
+        Task<List<Expense>> GetExpensesByDate(DateTime initialDate, DateTime LastDate);
         Task AddExpense(Expense expense);
         Task UpdateExpense(Expense expense);
-        // For development purposes
         Task DeleteExpense(Expense expense);
     }
 }

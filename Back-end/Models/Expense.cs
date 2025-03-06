@@ -19,6 +19,7 @@ namespace Back_end.Models
         {
             Name = expense.Name;
             Price = expense.Price;
+            ExpenseDate = expense.ExpenseDate;
         }
     }
 }
