@@ -9,7 +9,7 @@ export const ListSales = () => {
 
     return (
         <>
-            <h3>Total sales: R${totalSales.toFixed(2)}</h3>
+            <h3>Total sales: R${totalSales.toLocaleString()}</h3>
             <Table hover>
                 <thead>
                     <tr>
@@ -25,7 +25,7 @@ export const ListSales = () => {
                             <tr key={sale.saleId}>
                                 <td>{sale.saleId}</td>
                                 <td>{sale.customerName}</td>
-                                <td>R${sale.total}</td>
+                                <td>R${sale.total.toLocaleString()}</td>
                                 <td>{format(sale.saleDate, "dd/MM/yyyy - hh:mm")}</td>
                             </tr>
                         ))

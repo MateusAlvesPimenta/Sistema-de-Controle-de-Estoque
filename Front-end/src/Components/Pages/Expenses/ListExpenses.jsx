@@ -11,7 +11,7 @@ export const ListExpenses = () => {
 
     return (
         <>
-            <h3>Total expenses: R${totalExpenses}</h3>
+            <h3>Total expenses: R${totalExpenses.toLocaleString()}</h3>
             <Table hover>
                 <thead>
                     <tr>
@@ -29,7 +29,7 @@ export const ListExpenses = () => {
                             <tr key={expense.expenseId}>
                                 <td>{expense.expenseId}</td>
                                 <td>{expense.name}</td>
-                                <td>R${expense.price}</td>
+                                <td>R${expense.price.toLocaleString()}</td>
                                 <td>{format(expense.expenseDate, "dd/MM/yyyy hh:mm")}</td>
                                 <td className="col-1">
                                     <EditExpenseButton entity={expense} />
