@@ -156,9 +156,11 @@ namespace Back_end.Services
                                             .ToListAsync();
 
             // Calculates money related information, subtract the product from stock and saves
+            // Get the product name
             foreach (SaleItem item in saleItems)
             {
                 item.CalculatePrice();
+                item.Name = item.Product.Name;
                 _context.Entry(item).State = EntityState.Modified;
 
                 item.Product.Quantity -= item.Quantity;
@@ -222,6 +224,7 @@ namespace Back_end.Services
             foreach (SaleItem item in saleItems)
             {
                 item.CalculatePrice();
+                item.Name = item.Product.Name;
                 _context.Entry(item).State = EntityState.Modified;
             }
             sale.CalculateTotal(saleItems);

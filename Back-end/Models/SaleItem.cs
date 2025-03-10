@@ -9,6 +9,9 @@ namespace Back_end.Models
         [Key]
         public int SaleItemId { get; set; }
         [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+        [Required]
         public int Quantity { get; set; }
         [Required]
         [Range(0, double.MaxValue)]
