@@ -25,7 +25,7 @@ export const AddSaleButton = () => {
             setFilteredProducts([]);
             return;
         }
-        setFilteredProducts(products.filter(product => product.name.includes(value)));
+        setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(value.toLowerCase())));
     }
 
     const removeItem = (item) => {
@@ -110,7 +110,7 @@ export const AddSaleButton = () => {
                                 onChange={handleProductNameChange} />
                             <Label for="productName">Product name</Label>
                         </FormGroup>
-                        <Table hover>
+                        <Table hover size="sm">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -138,7 +138,7 @@ export const AddSaleButton = () => {
                         <h5>
                             SaleItems
                         </h5>
-                        <Table hover>
+                        <Table hover size="sm">
                             <thead>
                                 <tr>
                                     <th>Name</th>

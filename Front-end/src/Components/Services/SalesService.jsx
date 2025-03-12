@@ -5,6 +5,11 @@ export const getAllSales = async () => {
         .catch(e => console.log(e));
 }
 
+export const getAllSaleItems = async () => {
+    return await api.get("/GetAllSaleItems")
+        .catch(e => console.log(e));
+}
+
 export const getSalesByDate = async (date1, date2) => {
     return await api.get(`/GetSalesByDate?initialDate=${date1}&lastDate=${date2}`)
         .catch(e => {
@@ -20,5 +25,6 @@ export const addSale = async (name, saleItems) => {
         customerName: name,
         saleItemDTOs: saleItems
     }
-    await api.post("/AddSale", saleDTO).catch(e => console.log(e));
+    await api.post("/AddSale", saleDTO)
+        .catch(e => console.log(e));
 }

@@ -25,6 +25,27 @@ export const MyNavBar = () => {
                     Suppliers
                 </span>
             </Link>
+            <Link to="/sales"
+                className="nav-link link-light">
+                <i className="bi bi-graph-up-arrow"></i>
+                <span>
+                    Sales
+                </span>
+            </Link>
+            <Link to="/expenses"
+                className="nav-link link-light">
+                <i className="bi bi-graph-down-arrow"></i>
+                <span>
+                    Expenses
+                </span>
+            </Link>
+            <Link to="/top-selling-products"
+                className="nav-link link-light">
+                <i className="bi bi-trophy"></i>
+                <span>
+                    Top selling
+                </span>
+            </Link>
         </nav>
     )
 }

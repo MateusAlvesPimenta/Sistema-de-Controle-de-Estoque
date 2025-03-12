@@ -54,7 +54,7 @@ export const ProductsFilter = () => {
                         onChange={handleChange} />
                     <ButtonGroup className="ms-3">
                         <UncontrolledButtonDropdown>
-                            <DropdownToggle caret >Suppliers</DropdownToggle>
+                            <DropdownToggle caret >Suppliers </DropdownToggle>
                             <DropdownMenu>
                                 {
                                     suppliers && suppliers.map(supplier => (

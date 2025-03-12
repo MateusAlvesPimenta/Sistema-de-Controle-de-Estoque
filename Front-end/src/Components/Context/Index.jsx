@@ -1,7 +1,7 @@
 import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
 import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
-import { addSale, getAllSales, getSalesByDate } from "../Services/SalesService";
+import { addSale, getAllSaleItems, getAllSales, getSalesByDate } from "../Services/SalesService";
 import { addExpense, deleteExpense, getAllExpenses, getExpensesByDate, updateExpense } from "../Services/ExpenseService";
 
 export const Context = createContext({});
@@ -12,6 +12,7 @@ export const ContextProvider = (props) => {
     const [suppliers, setSuppliers] = useState([]);
     const [products, setProducts] = useState([]);
     const [sales, setSales] = useState([]);
+    const [saleItems, setSaleItems] = useState([]);
     const [expenses, setExpenses] = useState([]);
     const [totalSales, setTotalSales] = useState(0);
     const [totalExpenses, setTotalExpenses] = useState(0);
@@ -31,6 +32,11 @@ export const ContextProvider = (props) => {
             let tempExpenses = await getAllExpenses();
             setExpenses(tempExpenses.data);
             setTotalExpenses(tempExpenses.data.reduce((accumulator, next) => accumulator + next.price, 0));
+            return;
+        }
+        else if (entityType === "saleItem") {
+            let tempSaleItems = await getAllSaleItems();
+            setSaleItems(tempSaleItems.data);
             return;
         }
         let tempSales = await getAllSales();
@@ -128,6 +134,7 @@ export const ContextProvider = (props) => {
         getAll("product");
         getAll("sale");
         getAll("expense");
+        getAll("saleItem");
         setUpdateData(false);
     }, [updateData])
 
@@ -137,6 +144,7 @@ export const ContextProvider = (props) => {
                 suppliers,
                 products,
                 sales,
+                saleItems,
                 expenses,
                 totalExpenses,
                 totalSales,
