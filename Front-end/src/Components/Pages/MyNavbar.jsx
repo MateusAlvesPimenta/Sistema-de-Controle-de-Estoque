@@ -1,49 +1,58 @@
 import { Link } from "react-router-dom";
+import { AccordionBody, AccordionHeader, UncontrolledAccordion } from "reactstrap";
 
 export const MyNavBar = () => {
 
     return (
         <nav className="side-bar">
             <Link to="/"
-                className="nav-link link-light py-3">
+                className="nav-link py-3">
                 <i className="bi bi-list"></i>
                 <span>
                     Dashboard
                 </span>
             </Link>
-            <Link to="/products"
-                className="nav-link link-light">
-                <i className="bi bi-bag"></i>
-                <span>
-                    Products
-                </span>
-            </Link>
+            <UncontrolledAccordion>
+                <AccordionHeader targetId="1" className="nav-link">
+                    <i className="bi bi-bag"> </i>
+                    <span>
+                        Products
+                    </span>
+                </AccordionHeader>
+                <AccordionBody accordionId="1">
+                    <Link to="/products"
+                        className="nav-link">
+                        <span>
+                            All Products
+                        </span>
+                    </Link>
+                    <Link to="/top-selling-products"
+                        className="nav-link">
+                        <span>
+                            Top selling
+                        </span>
+                    </Link>
+                </AccordionBody>
+            </UncontrolledAccordion>
             <Link to="/suppliers"
-                className="nav-link link-light">
+                className="nav-link">
                 <i className="bi bi-box"></i>
                 <span>
                     Suppliers
                 </span>
             </Link>
             <Link to="/sales"
-                className="nav-link link-light">
+                className="nav-link">
                 <i className="bi bi-graph-up-arrow"></i>
                 <span>
                     Sales
                 </span>
             </Link>
             <Link to="/expenses"
-                className="nav-link link-light">
+                className="nav-link">
                 <i className="bi bi-graph-down-arrow"></i>
                 <span>
                     Expenses
-                </span>
-            </Link>
-            <Link to="/top-selling-products"
-                className="nav-link link-light">
-                <i className="bi bi-trophy"></i>
-                <span>
-                    Top selling
                 </span>
             </Link>
         </nav>

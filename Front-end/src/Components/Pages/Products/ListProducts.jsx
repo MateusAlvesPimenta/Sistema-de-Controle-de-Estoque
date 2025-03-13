@@ -16,6 +16,7 @@ export const ListProducts = () => {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quatity</th>
+                    <th>Supplier id</th>
                     <th>Actions</th>
                     <th></th>
                 </tr>
@@ -28,6 +29,7 @@ export const ListProducts = () => {
                             <td>{product.name}</td>
                             <td>R${product.price.toLocaleString()}</td>
                             <td>{product.quantity}</td>
+                            <td>{product.supplierId}</td>
                             <td className="col-1">
                                 <EditProductButton entity={product} />
                             </td>

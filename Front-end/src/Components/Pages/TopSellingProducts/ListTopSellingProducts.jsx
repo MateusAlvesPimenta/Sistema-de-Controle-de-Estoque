@@ -2,8 +2,9 @@ import { useContext, useMemo, useState } from "react"
 import { Table } from "reactstrap"
 import { Context } from "../../Context/Index"
 
-export const ListTopSellingProducts = () => {
+export const ListTopSellingProducts = (props) => {
 
+    const { info } = props;
     const { saleItems } = useContext(Context);
     const [reducedItems, setReducedItems] = useState([]);
 
@@ -24,12 +25,12 @@ export const ListTopSellingProducts = () => {
         setReducedItems(tempReducedItems);
     }, [saleItems]);
 
-    return (
-        <>
+    if (info.toLowerCase() === "full") {
+        return (
             <Table hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Product id</th>
                         <th>Name</th>
                         <th>Amount sold</th>
                         <th>Value sold</th>
@@ -48,6 +49,26 @@ export const ListTopSellingProducts = () => {
                     }
                 </tbody>
             </Table>
-        </>
+        )
+    }
+    return (
+        <Table hover size="sm">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value sold</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    reducedItems.slice(0, 3).map(item => (
+                        <tr key={item.productId}>
+                            <td>{item.name}</td>
+                            <td>R${item.price.toLocaleString()}</td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </Table>
     )
 }

@@ -7,7 +7,7 @@ export const TopSellingProducts = () => {
     return (
         <Container>
             <TopSellingProductsHeader />
-            <ListTopSellingProducts />
+            <ListTopSellingProducts info="full" />
         </Container>
     )
 }

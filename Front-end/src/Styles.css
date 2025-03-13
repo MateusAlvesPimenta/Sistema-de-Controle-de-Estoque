@@ -1,3 +1,7 @@
+:root {
+    --custom-accordion-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +9,10 @@
 
 body {
     background-color: #f8f9fa;
+}
+
+a {
+    text-decoration: none;
 }
 
 /* Used at every table */
@@ -27,31 +35,69 @@ td .btn {
     z-index: 1000;
 }
 
-.nav-link {
+.nav-link,
+.nav-link:focus,
+.accordion-button {
     display: flex;
     align-items: flex-start;
     color: #f8f9fa;
-    font-size: larger;
+    font-size: 20px;
     gap: 20px;
     padding: 10px 20px;
     cursor: pointer;
-}
-
-.side-bar:hover {
-    width: 250px;
-}
-
-.side-bar:not(:hover) .nav-link span {
-    display: none;
 }
 
 h2.nav-link {
     padding: auto;
 }
 
+.accordion-header {
+    padding: 3px 3px 3px 3px black;
+}
+
+.accordion-body,
+.accordion-header {
+    padding: 0;
+}
+
+.accordion-body {
+    background: linear-gradient(to right, hsl(226, 100%, 33%), hsl(226, 100%, 40%));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion-button,
+.accordion-button:not(.collapsed),
+.accordion-button:focus {
+    color: #f8f9fa;
+    background: transparent;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    background-image: var(--custom-accordion-icon);
+    transition: all .2s ease-in-out;
+}
+
+.accordion-button:not(.collapsed)::after{
+    background-image: var(--custom-accordion-icon);
+    transform: rotate(-180deg);
+}
+
+.side-bar:hover {
+    width: 250px;
+}
+
 .nav-link:hover {
     background-color: hsl(226, 100%, 30%);
-    color: hsl(210, 17%, 85%);
+    color: hsl(210, 17%, 98%);
+}
+
+.side-bar:not(:hover) .nav-link span,
+.side-bar:not(:hover) .accordion-body,
+.side-bar:not(:hover) .accordion-button::after {
+    display: none;
 }
 
 /* Used at Pages/Products/ProductsFilter.jsx */
@@ -90,6 +136,8 @@ form button {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 18vw);
+    row-gap: 30px;
+    grid-template-rows: auto;
     justify-content: space-between;
 }
 
@@ -97,15 +145,21 @@ form button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
     color: white;
     border-radius: 10px;
+    transition: .5s ease-in-out;
 }
 
-.grid-item.sales {
-    background: linear-gradient(to right, #198754, hsl(152, 69%, 41%), hsl(152, 69%, 41%), #198754);
+.grid-item.positive {
+    background: linear-gradient(to right, hsl(152, 69%, 30%), hsl(152, 69%, 40%), hsl(152, 69%, 40%), hsl(152, 69%, 30%));
+    transition: all .15s ease-in-out;
 }
 
-.grid-item.expenses{
+.grid-item.negative {
     background: linear-gradient(to right, hsl(354, 70%, 44%), #dc3545, #dc3545, hsl(354, 70%, 44%));
+}
+
+.card {
+    min-width: 20rem;
+    width: fit-content;
 }

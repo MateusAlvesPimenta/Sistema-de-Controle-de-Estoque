@@ -1,8 +1,9 @@
 import { useContext, useMemo, useState } from "react"
 import { Context } from "../../Context/Index"
 import { Link } from "react-router-dom";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import { Card, CardBody, CardHeader, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { format } from "date-fns";
+import { ListTopSellingProducts } from "../TopSellingProducts/ListTopSellingProducts";
 
 export const DashboardContent = () => {
 
@@ -76,27 +77,40 @@ export const DashboardContent = () => {
                 </UncontrolledDropdown>
             </header>
             <div className="grid-container">
-                <div className={`grid-item ${profit > 0 ? "sales" : "expenses"}`}>
+                <div className={`grid-item ${profit > 0 ? "positive" : "negative"}`}>
                     <h5>Profit</h5>
                     <h1>R${profit.toLocaleString()}</h1>
                 </div>
                 <Link
                     to="/expenses"
-                    className="grid-item expenses">
+                    className="grid-item negative">
                     <h5>Total expenses</h5>
                     <h1>R${totalExpenses.toLocaleString()}</h1>
                 </Link>
                 <Link
                     to="/sales"
-                    className="grid-item sales">
+                    className="grid-item positive">
                     <h5>Total sales</h5>
                     <h1>R${totalSales.toLocaleString()}</h1>
                 </Link>
-                <div className={`grid-item ${salesCount > 0 ? "sales" : "expenses"}`}>
+                <div className={`grid-item ${salesCount > 0 ? "positive" : "negative"}`}>
                     <h5>Sales count</h5>
                     <h1>{salesCount}</h1>
                 </div>
             </div>
+            <Card className="my-5">
+                <CardHeader className="d-flex my-auto">
+                    <h4>Top selling products</h4>
+                    <Link
+                        to="/top-selling-products"
+                        className="ms-auto">
+                        <i className="bi bi-box-arrow-up-right"></i>
+                    </Link>
+                </CardHeader>
+                <CardBody>
+                    <ListTopSellingProducts info="minimum" />
+                </CardBody>
+            </Card>
         </>
     )
 }
