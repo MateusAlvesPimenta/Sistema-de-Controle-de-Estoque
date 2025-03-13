@@ -60,5 +60,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 6. Criar uma interface para visualização e cadastro de despesas. ✔️
 7. Criar uma interface de dashboard simples que apresente o valor de vendas, despesas e lucro dos ultimos 30 dias. ✔️
 8. Adicionar uma ligação entre vendas e despesas com o dashboard para que ambos sejam acessados através ele. ✔️
-9. Adicionar uma aba no dashboard de produtos mais vendidos. 🛠️
+9. Adicionar uma aba no dashboard de produtos mais vendidos. ✔️
+10. Adicionar gráficos no dashboard. 🛠️
+11. Adicionar algumas funcionalidades e paginas diversas como por exemplo: pagina de produtos com baixo estoque, função de reabastecimento de estoque com cadastro automático da despesa gerada pelo reabastecimento, reorganização da sidebar, etc. ⚙️
 * Final: Melhorias visuais e de código. 🛠️
