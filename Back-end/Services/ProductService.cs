@@ -112,6 +112,19 @@ namespace Back_end.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Product> Restock(Product product, int quantity)
+        {
+            var expense = new Expense($"{product.Name} Restock", product.Price / 2 * quantity);
+            product.ReStock(quantity);
+
+            _context.Expenses.Add(expense);
+            _context.Products.Entry(product).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return product;
+        }
+
         public async Task DeleteProduct(Product product)
         {
             _context.Products.Remove(product);

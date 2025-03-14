@@ -41,7 +41,7 @@ namespace Back_end.Services
 
         public async Task UpdateExpense(Expense expense)
         {
-            _context.Entry(expense).State = EntityState.Modified;
+            _context.Expenses.Entry(expense).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 

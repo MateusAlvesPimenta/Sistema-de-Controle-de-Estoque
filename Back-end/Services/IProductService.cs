@@ -14,6 +14,7 @@ namespace Back_end.Services
         Task<Product> AddProduct(ProductDTO productDTO);
         Task<List<Product>> AddProductList(List<ProductDTO> productDTO);
         Task UpdateProduct(Product product);
+        Task<Product> Restock(Product product, int quantity);
         Task DeleteProduct(Product product);
     }
 }

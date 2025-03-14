@@ -140,9 +140,11 @@ namespace Back_end.Controllers
             {
                 return NotFound($"No product with id: {id} found");
             }
-            product.ReStock(quantity);
-
-            await _productService.UpdateProduct(product);
+            if (quantity <= 0)
+            {
+                return BadRequest("Insufficient quantity");
+            }
+            await _productService.Restock(product, quantity);
 
             return Ok(product);
         }

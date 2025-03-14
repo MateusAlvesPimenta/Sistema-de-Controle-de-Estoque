@@ -161,10 +161,10 @@ namespace Back_end.Services
             {
                 item.CalculatePrice();
                 item.Name = item.Product.Name;
-                _context.Entry(item).State = EntityState.Modified;
+                _context.SaleItems.Entry(item).State = EntityState.Modified;
 
                 item.Product.Quantity -= item.Quantity;
-                _context.Entry(item.Product).State = EntityState.Modified;
+                _context.Products.Entry(item.Product).State = EntityState.Modified;
 
                 saleReport.ProductsSold.Add(item);
             }
@@ -172,7 +172,7 @@ namespace Back_end.Services
 
             saleReport.SoldMessage = $"{saleReport.ProductsSold.Count} Products successfully sold";
 
-            _context.Entry(sale).State = EntityState.Modified;
+            _context.Sales.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return saleReport;
@@ -225,11 +225,11 @@ namespace Back_end.Services
             {
                 item.CalculatePrice();
                 item.Name = item.Product.Name;
-                _context.Entry(item).State = EntityState.Modified;
+                _context.SaleItems.Entry(item).State = EntityState.Modified;
             }
             sale.CalculateTotal(saleItems);
 
-            _context.Entry(sale).State = EntityState.Modified;
+            _context.Sales.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return (sale, saleItems);
