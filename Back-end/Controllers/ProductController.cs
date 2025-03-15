@@ -131,8 +131,8 @@ namespace Back_end.Controllers
             return Ok("Product updated");
         }
 
-        [HttpPut("/ReStockProduct/{id}")]
-        public async Task<IActionResult> ReStockProduct(int id, int quantity)
+        [HttpPut("/RestockProduct/{id}")]
+        public async Task<IActionResult> RestockProduct(int id, int quantity)
         {
             var product = await _productService.GetProductById(id);
 
@@ -144,7 +144,7 @@ namespace Back_end.Controllers
             {
                 return BadRequest("Insufficient quantity");
             }
-            await _productService.Restock(product, quantity);
+            await _productService.RestockProduct(product, quantity);
 
             return Ok(product);
         }

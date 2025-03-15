@@ -112,9 +112,9 @@ namespace Back_end.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Product> Restock(Product product, int quantity)
+        public async Task<Product> RestockProduct(Product product, int quantity)
         {
-            var expense = new Expense($"{product.Name} Restock", product.Price / 2 * quantity);
+            var expense = new Expense($"Restock: {product.Name}, quantity: {quantity}", product.Price / 2 * quantity);
             product.ReStock(quantity);
 
             _context.Expenses.Add(expense);
