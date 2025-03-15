@@ -20,7 +20,7 @@ export const DeleteEntity = (props) => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline color="danger">
+            <Button onClick={toggleModal} outline color="danger btn-action">
                 <i className="bi bi-trash-fill"></i>
             </Button>
             <Modal isOpen={modal}>

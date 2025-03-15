@@ -19,6 +19,11 @@ export const getProductsByNameOrSupplier = async (data) => {
         });
 }
 
+export const getProductsWithLowStock = async () => {
+    return await api.get("/GetProductsWithLowStock")
+        .catch(e => console.log(e));
+}
+
 export const addProduct = async (entity) => {
     await api.post("/AddProduct", entity)
         .catch(e => console.log(e));
@@ -26,6 +31,11 @@ export const addProduct = async (entity) => {
 
 export const updateProduct = async (entity) => {
     await api.put("/UpdateProduct/" + entity.productId, entity)
+        .catch(e => console.log(e));
+}
+
+export const restockProduct = async (entityId, quantity) => {
+    await api.put(`/RestockProduct/${entityId}?quantity=${quantity}`)
         .catch(e => console.log(e));
 }
 

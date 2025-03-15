@@ -124,7 +124,7 @@ export const EditSupplierButton = (props) => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline color="success">
+            <Button onClick={toggleModal} outline color="success btn-action">
                 <i className="bi bi-pen-fill"></i>
             </Button>
 

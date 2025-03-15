@@ -5,6 +5,7 @@ import { Sales } from "./Components/Pages/Sales/Index"
 import { Expenses } from "./Components/Pages/Expenses/Index"
 import { TopSellingProducts } from "./Components/Pages/TopSellingProducts/Index"
 import { Dashboard } from "./Components/Pages/Dashboard/Index"
+import { ProductsWithLowStock } from "./Components/Pages/ProductsWithLowStock/Index"
 
 
 export const MainRoutes = () => {
@@ -14,9 +15,10 @@ export const MainRoutes = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/suppliers" element={<Suppliers />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/top-selling" element={<TopSellingProducts />} />
+            <Route path="/products/low-stock" element={<ProductsWithLowStock />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/expenses" element={<Expenses />} />
-            <Route path="/top-selling-products" element={<TopSellingProducts />} />
         </Routes>
     )
 }

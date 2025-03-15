@@ -101,7 +101,7 @@ export const EditExpenseButton = (props) => {
             <Button
                 onClick={toggleModal}
                 outline
-                color="success">
+                color="success btn-action">
                 <i className="bi bi-pen-fill"></i>
             </Button>
             <Modal isOpen={modal}>

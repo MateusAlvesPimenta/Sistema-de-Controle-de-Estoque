@@ -127,7 +127,7 @@ export const AddSaleButton = () => {
                                             <Button
                                                 outline
                                                 onClick={() => addItem(item)}
-                                                color="primary">
+                                                color="primary btn-action">
                                                 <i className="bi bi-plus-circle"></i>
                                             </Button>
                                         </td>
@@ -158,13 +158,13 @@ export const AddSaleButton = () => {
                                             <Button
                                                 outline
                                                 onClick={() => addItem(item)}
-                                                color="primary">
+                                                color="primary btn-action">
                                                 <i className="bi bi-plus-circle"></i>
                                             </Button>
                                             <Button
                                                 outline
                                                 onClick={() => removeOneItem(item)}
-                                                color="warning">
+                                                color="warning btn-action">
                                                 <i className="bi bi-dash-circle"></i>
                                             </Button>
                                         </td>
@@ -172,7 +172,7 @@ export const AddSaleButton = () => {
                                             <Button
                                                 outline
                                                 onClick={() => removeItem(item)}
-                                                color="danger">
+                                                color="danger btn-action">
                                                 <i className="bi bi-trash-fill"></i>
                                             </Button>
                                         </td>

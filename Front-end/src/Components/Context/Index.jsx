@@ -1,6 +1,6 @@
 import { useState, createContext, useMemo } from "react";
 import { addSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../Services/SupplierService";
-import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, updateProduct } from "../Services/ProductServices";
+import { addProduct, deleteProduct, getAllProducts, getProductsByNameOrSupplier, getProductsWithLowStock, restockProduct, updateProduct } from "../Services/ProductServices";
 import { addSale, getAllSaleItems, getAllSales, getSalesByDate } from "../Services/SalesService";
 import { addExpense, deleteExpense, getAllExpenses, getExpensesByDate, updateExpense } from "../Services/ExpenseService";
 
@@ -11,6 +11,7 @@ export const ContextProvider = (props) => {
     const [updateData, setUpdateData] = useState(true);
     const [suppliers, setSuppliers] = useState([]);
     const [products, setProducts] = useState([]);
+    const [productsWithLowStock, setProductsWithLowStock] = useState([]);
     const [sales, setSales] = useState([]);
     const [saleItems, setSaleItems] = useState([]);
     const [expenses, setExpenses] = useState([]);
@@ -37,6 +38,11 @@ export const ContextProvider = (props) => {
         else if (entityType === "saleItem") {
             let tempSaleItems = await getAllSaleItems();
             setSaleItems(tempSaleItems.data);
+            return;
+        }
+        else if (entityType === "productsWithLowStock") {
+            let tempProductsWithLowStock = await getProductsWithLowStock();
+            setProductsWithLowStock(tempProductsWithLowStock.data);
             return;
         }
         let tempSales = await getAllSales();
@@ -114,6 +120,11 @@ export const ContextProvider = (props) => {
         setUpdateData(true);
     }
 
+    const restock = async (entityId, quantity) => {
+        await restockProduct(entityId, quantity);
+        setUpdateData(true);
+    }
+
     const deleteEntity = async (entityId, entityType) => {
         if (entityType === "supplier") {
             await deleteSupplier(entityId);
@@ -135,6 +146,7 @@ export const ContextProvider = (props) => {
         getAll("sale");
         getAll("expense");
         getAll("saleItem");
+        getAll("productsWithLowStock");
         setUpdateData(false);
     }, [updateData])
 
@@ -143,6 +155,7 @@ export const ContextProvider = (props) => {
             value={{
                 suppliers,
                 products,
+                productsWithLowStock,
                 sales,
                 saleItems,
                 expenses,
@@ -151,6 +164,7 @@ export const ContextProvider = (props) => {
                 post,
                 postSale,
                 put,
+                restock,
                 deleteEntity,
                 getAll,
                 getByNameOrSupplier,

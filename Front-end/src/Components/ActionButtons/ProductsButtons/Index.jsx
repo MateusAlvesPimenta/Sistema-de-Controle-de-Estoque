@@ -162,7 +162,7 @@ export const EditProductButton = (props) => {
 
     return (
         <>
-            <Button onClick={toggleModal} outline color="success">
+            <Button onClick={toggleModal} outline color="success btn-action">
                 <i className="bi bi-pen-fill"></i>
             </Button>
 
@@ -233,7 +233,59 @@ export const EditProductButton = (props) => {
                     </ModalBody>
                     <ModalFooter>
                         <Button type="submit" color="primary">Submit</Button>
-                        <Button type="reset" color="primary">Cancel</Button>
+                        <Button type="reset" color="secondary">Cancel</Button>
+                    </ModalFooter>
+                </Form>
+            </Modal>
+        </>
+    )
+}
+
+export const RestockProductsButton = (props) => {
+
+    const { id, name } = props;
+    const { restock } = useContext(Context);
+    const [modal, setModal] = useState(false);
+    const [quantity, setQuantity] = useState(0);
+
+    const toggle = () => {
+        setModal(!modal);
+    }
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setQuantity(value);
+    }
+
+    const submit = () => {
+        restock(id, quantity);
+        toggle();
+        event.preventDefault();
+    }
+
+    return (
+        <>
+            <Button onClick={toggle} color="success">Restock</Button>
+            <Modal isOpen={modal}>
+                <ModalHeader>Restock product: {name}</ModalHeader>
+                <Form
+                    onReset={toggle}
+                    onSubmit={submit}>
+                    <ModalBody>
+                        <FormGroup floating>
+                            <Input
+                                type="number"
+                                id="quantity"
+                                placeholder="Quantity"
+                                className="col-1"
+                                onChange={handleChange}
+                                required />
+                            <Label for="quantity">Quantity</Label>
+                        </FormGroup>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button type="submit" color="primary">Restock</Button>
+                        <Button type="reset" color="secondary">Cancel</Button>
                     </ModalFooter>
                 </Form>
             </Modal>
