@@ -1,9 +1,11 @@
 using Back_end.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Back_end.Context
 {
-    public class MyAppContext : DbContext
+    public class MyAppContext : IdentityDbContext<IdentityUser>
     {
         public MyAppContext(DbContextOptions<MyAppContext> options) : base(options)
         {
