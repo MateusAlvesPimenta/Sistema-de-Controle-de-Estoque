@@ -1,13 +1,15 @@
 using Back_end.DTOs;
 using Back_end.Models;
 using Back_end.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Back_end.Controllers
 {
     [ApiController]
     [Route("Controller")]
-
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SaleController : ControllerBase
     {
         private readonly ISaleService _saleService;
