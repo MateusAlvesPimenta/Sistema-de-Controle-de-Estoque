@@ -102,7 +102,7 @@ export const DashboardContent = () => {
                 <CardHeader className="d-flex my-auto">
                     <h4>Top selling products</h4>
                     <Link
-                        to="/top-selling-products"
+                        to="/products/top-selling"
                         className="ms-auto">
                         <i className="bi bi-box-arrow-up-right"></i>
                     </Link>

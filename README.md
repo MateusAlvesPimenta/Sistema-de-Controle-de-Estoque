@@ -61,6 +61,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 7. Criar uma interface de dashboard simples que apresente o valor de vendas, despesas e lucro dos ultimos 30 dias. ✔️
 8. Adicionar uma ligação entre vendas e despesas com o dashboard para que ambos sejam acessados através ele. ✔️
 9. Adicionar uma aba no dashboard de produtos mais vendidos. ✔️
-10. Adicionar gráficos no dashboard. 🛠️
-11. Adicionar algumas funcionalidades e paginas diversas como por exemplo: pagina de produtos com baixo estoque, função de reabastecimento de estoque com cadastro automático da despesa gerada pelo reabastecimento, reorganização da sidebar, etc. ✔️
-* Final: Melhorias visuais e de código. 🛠️
+10. Adicionar algumas funcionalidades e paginas diversas como por exemplo: pagina de produtos com baixo estoque, função de reabastecimento de estoque com cadastro automático da despesa gerada pelo reabastecimento, reorganização da sidebar, etc. ✔️
+11. Implementar o sistema de autenticação jwt. ⚙️
+12. Criar paginas para Login e registro de usuário. ⚙️
+* Final: Melhorias visuais e de código. ⚙️

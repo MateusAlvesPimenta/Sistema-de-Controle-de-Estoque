@@ -24,7 +24,7 @@ td .btn-action {
 /* Used at Pages/MyNavbar.jsx */
 .side-bar {
     position: relative;
-    /* right: auto; */
+    right: auto;
     padding-top: 3vh;
     min-height: 100vh;
     width: 80px;
