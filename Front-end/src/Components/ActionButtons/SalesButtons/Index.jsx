@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, M
 
 export const AddSaleButton = () => {
 
-    const { postSale, products } = useContext(Context);
+    const { post, products } = useContext(Context);
     const [modal, setModal] = useState(false);
     const [customerName, setCustomerName] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -72,7 +72,11 @@ export const AddSaleButton = () => {
         if (saleItems.length <= 0) {
             return;
         }
-        postSale(customerName, saleItems);
+        const saleDTO = {
+            customerName: customerName,
+            saleItemDTOs: saleItems
+        };
+        post(saleDTO, "sale");
         toggleModal();
     }
 

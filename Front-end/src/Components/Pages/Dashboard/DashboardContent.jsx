@@ -43,7 +43,9 @@ export const DashboardContent = () => {
     }, [updateData]);
 
     useMemo(() => {
-        toggleDate("all time");
+        if (sessionStorage.getItem("token")) {
+            toggleDate("all time");
+        }
     }, [])
 
     return (
