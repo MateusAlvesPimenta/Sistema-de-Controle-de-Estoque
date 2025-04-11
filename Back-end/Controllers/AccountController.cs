@@ -77,8 +77,9 @@ namespace Back_end.Controllers
             );
 
             return new UserToken(
-                new JwtSecurityTokenHandler().WriteToken(token),
-                DateTime.UtcNow
+                token: new JwtSecurityTokenHandler().WriteToken(token),
+                email: email,
+                expiration: DateTime.UtcNow
             );
         }
     }
