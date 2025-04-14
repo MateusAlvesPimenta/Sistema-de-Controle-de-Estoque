@@ -224,7 +224,7 @@ export const ContextProvider = (props) => {
     }
 
     useMemo(() => {
-        if (false) {
+        if (token) {
             getAll("supplier");
             getAll("product");
             getAll("sale");

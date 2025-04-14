@@ -2,9 +2,9 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles.css';
 
-import { ContextProvider } from './Components/Context/Index';
+import { ContextProvider } from './Context/Index';
 import { MainRoutes } from './Routes';
-import { MyNavBar } from './Components/Pages/MyNavbar';
+import { MyNavBar } from './Pages/MyNavbar';
 
 function App() {
 

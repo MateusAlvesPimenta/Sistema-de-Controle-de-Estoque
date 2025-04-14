@@ -1,6 +1,9 @@
 import { useContext, useState } from "react"
-import { Context } from "../../Context/Index"
-import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
+import {
+    Button, Form, FormGroup, Input,
+    Label, Modal, ModalBody, ModalFooter, ModalHeader, Table
+} from "reactstrap";
+import { Context } from "../../../Context/Index"
 
 export const AddSaleButton = () => {
 

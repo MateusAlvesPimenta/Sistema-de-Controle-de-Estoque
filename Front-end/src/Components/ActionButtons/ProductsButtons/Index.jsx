@@ -3,7 +3,7 @@ import {
     Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
     Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader
 } from "reactstrap"
-import { Context } from "../../Context/Index";
+import { Context } from "../../../Context/Index";
 
 export const AddProductButton = () => {
 

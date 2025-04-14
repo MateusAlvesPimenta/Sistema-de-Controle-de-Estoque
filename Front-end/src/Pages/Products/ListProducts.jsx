@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import { Table } from "reactstrap"
 import { Context } from "../../Context/Index"
-import { DeleteEntity } from "../../ActionButtons/GeneralButtons";
-import { EditProductButton } from "../../ActionButtons/ProductsButtons/Index";
+import { DeleteEntity } from "../../Components/ActionButtons/GeneralButtons";
+import { EditProductButton } from "../../Components/ActionButtons/ProductsButtons/Index";
 
 export const ListProducts = () => {
 

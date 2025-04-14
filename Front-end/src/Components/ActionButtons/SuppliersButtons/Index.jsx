@@ -3,8 +3,7 @@ import {
     Button, Form, FormGroup, Input, Label,
     Modal, ModalBody, ModalFooter, ModalHeader
 } from "reactstrap";
-
-import { Context } from "../../Context/Index";
+import { Context } from "../../../Context/Index";
 
 export const AddSupplierButton = () => {
 

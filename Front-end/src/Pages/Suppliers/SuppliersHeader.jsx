@@ -1,4 +1,4 @@
-import { AddSupplierButton } from "../../ActionButtons/SuppliersButtons/Index";
+import { AddSupplierButton } from "../../Components/ActionButtons/SuppliersButtons/Index";
 
 export const SuppliersHeader = () => {
 

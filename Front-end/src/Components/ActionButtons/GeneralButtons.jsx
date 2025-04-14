@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Button, Form, Modal, ModalFooter, ModalHeader } from "reactstrap";
 
-import { Context } from "../Context/Index";
+import { Context } from "../../Context/Index";
 
 
 export const DeleteEntity = (props) => {

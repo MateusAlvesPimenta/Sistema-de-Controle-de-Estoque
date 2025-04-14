@@ -1,10 +1,9 @@
 import { useContext, useState } from "react"
 import {
-    Badge, Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu,
+    Badge, Button, ButtonGroup, DropdownItem, DropdownMenu,
     DropdownToggle, Form, FormGroup, Input,
     UncontrolledButtonDropdown
 } from "reactstrap"
-
 import { Context } from "../../Context/Index"
 
 export const ProductsFilter = () => {

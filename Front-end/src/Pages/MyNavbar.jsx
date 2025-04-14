@@ -5,7 +5,7 @@ export const MyNavBar = () => {
 
     return (
         <nav className="side-bar">
-            <Link to="/"
+            <Link to="/dashboard"
                 className="nav-link py-3">
                 <i className="bi bi-list"></i>
                 <span>

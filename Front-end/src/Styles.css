@@ -128,7 +128,7 @@ form button {
     color: white;
 }
 
-/* Used at ActionButtons/SalesButtons */
+/* Used at Components/ActionButtons/SalesButtons */
 
 .sale-modal .modal-content {
     width: max-content;
@@ -165,4 +165,10 @@ form button {
 .card {
     min-width: 20rem;
     width: fit-content;
+}
+
+/* Used at Pages/Login and Pages/Register */
+.form-container {
+    max-width: 400px;
+    width: 100% 
 }

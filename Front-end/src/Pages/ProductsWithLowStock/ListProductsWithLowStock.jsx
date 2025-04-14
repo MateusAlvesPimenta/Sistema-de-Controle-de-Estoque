@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Table } from "reactstrap"
 import { Context } from "../../Context/Index";
-import { RestockProductsButton } from "../../ActionButtons/ProductsButtons/Index";
+import { RestockProductsButton } from "../../Components/ActionButtons/ProductsButtons/Index";
 
 export const ListProductsWithLowStock = () => {
 

@@ -1,9 +1,12 @@
 import { useContext, useMemo, useState } from "react"
-import { Context } from "../../Context/Index"
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardHeader, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import {
+    Card, CardBody, CardHeader, DropdownItem,
+    DropdownMenu, DropdownToggle, UncontrolledDropdown
+} from "reactstrap";
 import { format } from "date-fns";
 import { ListTopSellingProducts } from "../TopSellingProducts/ListTopSellingProducts";
+import { Context } from "../../Context/Index"
 
 export const DashboardContent = () => {
 
