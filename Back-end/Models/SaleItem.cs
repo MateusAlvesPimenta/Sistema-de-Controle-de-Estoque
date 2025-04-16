@@ -29,6 +29,7 @@ namespace Back_end.Models
 
         public SaleItem(SaleItemDTO saleItemDTO)
         {
+            Name = saleItemDTO.Name;
             Quantity = saleItemDTO.Quantity;
             SaleId = saleItemDTO.SaleId;
             ProductId = saleItemDTO.ProductId;
