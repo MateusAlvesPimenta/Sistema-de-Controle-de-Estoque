@@ -196,8 +196,8 @@ export const ContextProvider = (props) => {
                     setToken(response.data.token);
                     sessionStorage.setItem("token", response.data.token);
                     sessionStorage.setItem("expiration", response.data.expiration.toLocaleString());
+                    setUpdateData(true);
                 }
-                setUpdateData(true);
                 return response.status;
             }
 

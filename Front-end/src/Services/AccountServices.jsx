@@ -2,7 +2,10 @@ import { api } from "./api"
 
 export const authenticateUser = async (user) => {
     return await api.post("/Controller/AuthenticateUser", user)
-        .catch(e => console.log(e));
+        .catch(e => {
+            console.log(e);
+            return e;
+        });
 }
 
 export const registerUser = async (user) => {
