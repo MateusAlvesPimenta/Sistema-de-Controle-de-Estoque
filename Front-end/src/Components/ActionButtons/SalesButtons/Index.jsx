@@ -32,15 +32,12 @@ export const AddSaleButton = () => {
     }
 
     const removeItem = (item) => {
-        console.log(item)
-        console.log(saleItems)
         setSaleItems(saleItems.filter(saleItem => saleItem.productId != item.productId));
     }
 
     const removeOneItem = (item) => {
 
         if (item.quantity == 1) {
-            console.log("passou")
             removeItem(item);
             return;
         }

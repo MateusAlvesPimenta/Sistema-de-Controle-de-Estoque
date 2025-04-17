@@ -64,7 +64,7 @@ h2.nav-link {
     background: linear-gradient(to right, hsl(226, 100%, 33%), hsl(226, 100%, 40%));
 }
 
-.accordion-body .nav-link{
+.accordion-body .nav-link {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +83,7 @@ h2.nav-link {
     transition: all .2s ease-in-out;
 }
 
-.accordion-button:not(.collapsed)::after{
+.accordion-button:not(.collapsed)::after {
     background-image: var(--custom-accordion-icon);
     transform: rotate(-180deg);
 }
@@ -144,6 +144,14 @@ form button {
     justify-content: space-between;
 }
 
+.grid-container h1 {
+    font-size: 2.6vw;
+}
+
+.grid-container h5 {
+    font-size: 1.3vw;
+}
+
 .grid-container .grid-item {
     display: flex;
     flex-direction: column;
@@ -170,5 +178,26 @@ form button {
 /* Used at Pages/Login and Pages/Register */
 .form-container {
     max-width: 400px;
-    width: 100% 
+    width: 100%
+}
+
+.form-container .hide-alert {
+    display: none;
+}
+
+.form-container .display-alert {
+    color: red;
+}
+
+/* Used at Pages/Register */
+.form-container .input-validation {
+    transition: all .3s ease-in-out;
+}
+
+.form-container .input-validation:valid {
+    box-shadow: 0 0 7px 1px green;
+}
+
+.form-container .input-validation:invalid {
+    box-shadow: 0 0 7px 1px red;
 }

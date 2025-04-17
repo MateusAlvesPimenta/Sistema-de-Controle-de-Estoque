@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles.css';
 
@@ -8,14 +8,16 @@ import { MyNavBar } from './Pages/MyNavbar';
 
 function App() {
 
+  const location = useLocation();
+  const hideNavBarRoutes = ["/", "/register"];
+  const shouldHideNavBar = hideNavBarRoutes.includes(location.pathname);
+  
   return (
     <ContextProvider >
-      <BrowserRouter>
         <div className="d-flex">
-          <MyNavBar />
+          {!shouldHideNavBar && <MyNavBar />}
           <MainRoutes />
         </div>
-      </BrowserRouter>
     </ContextProvider>
   )
 }

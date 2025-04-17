@@ -21,7 +21,6 @@ export const AddExpenseButton = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setExpense({ ...expense, [name]: value });
-        console.log(expense);
     }
 
     const submit = () => {

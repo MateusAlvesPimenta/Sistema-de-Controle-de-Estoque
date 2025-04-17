@@ -7,7 +7,7 @@ export const Login = () => {
 
     const { authenticate } = useContext(Context);
     const [user, setUser] = useState({});
-    const [invalid, setInvalid] = useState(false)
+    const [displayAlert, setDisplayAlert] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -21,16 +21,16 @@ export const Login = () => {
             case 200:
                 navigate("/dashboard");
                 break;
-            
+
             default:
                 console.warn(`Login attempt failed \nstatus: ${status} \nUser:`, user);
-                setInvalid(true);
+                setDisplayAlert(true);
                 break;
         }
     }
     return (
 
-        <Container className="d-flex align-items-center justify-content-center">
+        <Container className="d-flex align-items-center justify-content-center vh-100">
             <Card className="form-container">
                 <CardBody>
                     <CardTitle tag="h2" className="mb-4 text-center">
@@ -38,7 +38,7 @@ export const Login = () => {
                     </CardTitle>
                     <Form onSubmit={submit}>
                         <FormGroup>
-                            <Label for="email">Email adress</Label>
+                            <Label for="email">Email address</Label>
                             <Input
                                 type="email"
                                 id="email"
@@ -55,12 +55,14 @@ export const Login = () => {
                                 id="password"
                                 name="password"
                                 placeholder="••••••••"
-                                invalid={invalid}
                                 onChange={handleChange}
                                 value={user && user.password}
                                 required />
                         </FormGroup>
-                        <Button color="primary" className="w-100 mt-3 mb-1">Sign in</Button>
+                        <ul className={displayAlert ? "display-alert" : "hide-alert"}>
+                            <li>Email or password incorrect</li>
+                        </ul>
+                        <Button type="submit" color="primary" className="w-100 mt-1 mb-1">Sign in</Button>
                         <span>
                             Dont have an account?
                             <Link to="/register"> Register</Link>

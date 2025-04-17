@@ -10,7 +10,7 @@ export const authenticateUser = async (user) => {
 
 export const registerUser = async (user) => {
     return await api.post("Controller/RegisterUser", user)
-        .then(response => response.data.status)
+        .then(response => response.status)
         .catch(e => {
             console.log(e);
             return e.status;

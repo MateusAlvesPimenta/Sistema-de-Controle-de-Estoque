@@ -7,7 +7,7 @@ import { Expenses } from "./Pages/Expenses"
 import { TopSellingProducts } from "./Pages/TopSellingProducts"
 import { Dashboard } from "./Pages/Dashboard"
 import { ProductsWithLowStock } from "./Pages/ProductsWithLowStock"
-import { Login } from "./Pages/Login/Index"
+import { Login } from "./Pages/Login"
 import { Register } from "./Pages/Register"
 
 
