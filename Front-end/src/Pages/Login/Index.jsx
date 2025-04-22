@@ -45,7 +45,6 @@ export const Login = () => {
                                 name="email"
                                 placeholder="example@gmail.com"
                                 onChange={handleChange}
-                                value={user && user.email}
                                 required />
                         </FormGroup>
                         <FormGroup>
@@ -56,7 +55,6 @@ export const Login = () => {
                                 name="password"
                                 placeholder="••••••••"
                                 onChange={handleChange}
-                                value={user && user.password}
                                 required />
                         </FormGroup>
                         <ul className={displayAlert ? "display-alert" : "hide-alert"}>

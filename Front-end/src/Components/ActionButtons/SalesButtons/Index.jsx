@@ -124,9 +124,9 @@ export const AddSaleButton = () => {
                             </thead>
                             <tbody>
                                 {filteredProducts && filteredProducts.map(item => (
-                                    <tr>
+                                    <tr key={item.productId + 100}>
                                         <td>{item.name}</td>
-                                        <td>R${item.price}</td>
+                                        <td>R${item.price.toLocaleString()}</td>
                                         <td>
                                             <Button
                                                 outline
@@ -157,7 +157,7 @@ export const AddSaleButton = () => {
                                     <tr key={item.productId}>
                                         <td>{item.name}</td>
                                         <td>{item.quantity}</td>
-                                        <td>R${(item.quantity * item.price).toFixed(2)}</td>
+                                        <td>R${(item.quantity * item.price).toLocaleString()}</td>
                                         <td>
                                             <Button
                                                 outline
@@ -184,6 +184,7 @@ export const AddSaleButton = () => {
                                 ))}
                             </tbody>
                         </Table>
+                        <h4>Total: R${saleItems.reduce((accumulator, next) => accumulator + (next.price * next.quantity), 0).toLocaleString()}</h4>
                     </ModalBody>
                     <ModalFooter>
                         <Button type="submit" color="primary">Process Sale</Button>

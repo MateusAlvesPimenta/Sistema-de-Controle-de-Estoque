@@ -22,16 +22,22 @@ td .btn-action {
 }
 
 /* Used at Pages/MyNavbar.jsx */
-.side-bar {
-    position: relative;
-    right: auto;
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 0;
     padding-top: 3vh;
-    min-height: 100vh;
+    height: 100vh;
     width: 80px;
+    min-width: 80px;
+    max-width: fit-content;
     background-color: hsl(226, 100%, 50%);
     background: linear-gradient(to right, hsl(226, 100%, 40%), hsl(226, 100%, 60%));
-    overflow: hidden;
-    transition: .3s;
+    overflow: none;
+    transition: all .3s ease-in-out;
     z-index: 1000;
 }
 
@@ -39,12 +45,16 @@ td .btn-action {
 .nav-link:focus,
 .accordion-button {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     color: #f8f9fa;
     font-size: 20px;
     gap: 20px;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.sidebar i {
+    font-size: x-large;
 }
 
 h2.nav-link {
@@ -88,18 +98,20 @@ h2.nav-link {
     transform: rotate(-180deg);
 }
 
-.side-bar:hover {
+.sidebar:hover {
     width: 250px;
+    min-width: 250px;
+    max-width: fit-content;
 }
 
-.nav-link:hover {
+.nav-link:hover{
     background-color: hsl(226, 100%, 30%);
     color: hsl(210, 17%, 98%);
 }
 
-.side-bar:not(:hover) .nav-link span,
-.side-bar:not(:hover) .accordion-body,
-.side-bar:not(:hover) .accordion-button::after {
+.sidebar:not(:hover) .nav-link span,
+.sidebar:not(:hover) .accordion-body,
+.sidebar:not(:hover) .accordion-button::after {
     display: none;
 }
 
@@ -117,7 +129,7 @@ h2.nav-link {
     background-color: transparent;
     color: #dc3545;
     font-weight: bold;
-    transition: .15s all ease-in-out;
+    transition: all .15s ease-in-out;
 }
 
 form button {
@@ -158,7 +170,7 @@ form button {
     align-items: center;
     color: white;
     border-radius: 10px;
-    transition: .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 .grid-item.positive {

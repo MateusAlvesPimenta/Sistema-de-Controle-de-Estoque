@@ -60,10 +60,10 @@ export const AddExpenseButton = () => {
                                 step=".01"
                                 id="price"
                                 name="price"
-                                placeholder="price"
+                                placeholder="value"
                                 onChange={handleChange}
                                 required />
-                            <Label for="price">Price</Label>
+                            <Label for="price">Value</Label>
                         </FormGroup>
                     </ModalBody>
                     <ModalFooter>
