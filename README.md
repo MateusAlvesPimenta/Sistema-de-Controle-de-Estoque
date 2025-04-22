@@ -62,6 +62,7 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 8. Adicionar uma ligação entre vendas e despesas com o dashboard para que ambos sejam acessados através ele. ✔️
 9. Adicionar uma aba no dashboard de produtos mais vendidos. ✔️
 10. Adicionar algumas funcionalidades e paginas diversas como por exemplo: pagina de produtos com baixo estoque, função de reabastecimento de estoque com cadastro automático da despesa gerada pelo reabastecimento, reorganização da sidebar, etc. ✔️
-11. Implementar o sistema de autenticação jwt. ⚙️
-12. Criar paginas para Login e registro de usuário. ⚙️
-* Final: Melhorias visuais e de código. ⚙️
+11. Implementar o sistema de autenticação jwt. ✔️
+12. Criar paginas para Login e registro de usuário. ✔️
+13. Criar pagina de detalhes da venda. ⚙️
+* Melhorias visuais, melhorias de código, organização das pastas. ⚙️
