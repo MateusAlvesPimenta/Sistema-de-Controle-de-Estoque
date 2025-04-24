@@ -19,7 +19,7 @@ namespace Back_end.Services
         Task<SaleReport> AddSaleAndSaleItem(string customerName, List<SaleItemDTO> saleItems);
 
         // For development purposes
-        Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale);
+        Task<Sale> SaleSaleItemPriceAndQuantityFix(Sale sale);
         Task DeleteSale(Sale sale, List<SaleItem> saleItems);
         Task<List<Sale>> RemoveEmptySales();
     }

@@ -128,8 +128,11 @@ namespace Back_end.Controllers
                 return NotFound($"No sale with id: {saleId} found");
             }
             var updatedSale = await _saleService.SaleSaleItemPriceAndQuantityFix(sale);
-
-            return Ok(new { updatedSale.Sale, updatedSale.SaleItems });
+            if (updatedSale == null)
+            {
+                return NotFound($"No saleItems linked to the sale with id: {saleId} found");
+            }
+            return Ok(updatedSale);
         }
 
         [HttpDelete("/DeleteSale/{id}")]

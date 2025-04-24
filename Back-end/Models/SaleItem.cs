@@ -37,7 +37,7 @@ namespace Back_end.Models
 
         public void CalculatePrice()
         {
-            Price = Quantity * Product.Price;
+            Price = Product.Price;
         }
     }
 }

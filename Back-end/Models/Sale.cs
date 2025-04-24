@@ -14,7 +14,6 @@ namespace Back_end.Models
         [Required]
         [Range(0, double.MaxValue)]
         public decimal Total { get; set; } = 0;
-        [JsonIgnore]
         public List<SaleItem> SaleItems { get; set; }
 
         public Sale() { }
@@ -27,7 +26,7 @@ namespace Back_end.Models
         public void CalculateTotal(List<SaleItem> saleItems)
         {
             decimal accumulator = 0;
-            Total = saleItems.Aggregate(accumulator, (total, next) => total += next.Price);
+            Total = saleItems.Aggregate(accumulator, (total, next) => total += next.Price * next.Quantity);
         }
     }
 }

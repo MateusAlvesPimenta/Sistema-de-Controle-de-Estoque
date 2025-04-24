@@ -23,7 +23,9 @@ namespace Back_end.Services
         }
         public async Task<Sale> GetSaleById(int id)
         {
-            var sale = await _context.Sales.FindAsync(id);
+            var sale = await _context.Sales.Where(sale => sale.SaleId == id)
+                                            .Include(sale => sale.SaleItems)
+                                            .FirstOrDefaultAsync();
 
             return sale;
         }
@@ -190,7 +192,7 @@ namespace Back_end.Services
             }
             return sales;
         }
-        public async Task<(Sale Sale, List<SaleItem> SaleItems)> SaleSaleItemPriceAndQuantityFix(Sale sale)
+        public async Task<Sale> SaleSaleItemPriceAndQuantityFix(Sale sale)
         {
             var saleItems = await _context.SaleItems.Where(item => item.SaleId == sale.SaleId)
                                                     .Include(item => item.Product)
@@ -198,7 +200,7 @@ namespace Back_end.Services
 
             if (saleItems.Count <= 0)
             {
-                return (sale, null);
+                return null;
             }
 
             // Aggregate saleItems with the same ProductId
@@ -232,7 +234,7 @@ namespace Back_end.Services
             _context.Sales.Entry(sale).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return (sale, saleItems);
+            return sale;
         }
         public async Task DeleteSale(Sale sale, List<SaleItem> saleItems)
         {
