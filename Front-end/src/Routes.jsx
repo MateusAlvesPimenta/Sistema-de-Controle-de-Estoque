@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom"
 
-import { Suppliers } from "./Pages/Suppliers"
-import { Products } from "./Pages/Products"
-import { Sales } from "./Pages/Sales"
-import { Expenses } from "./Pages/Expenses"
-import { TopSellingProducts } from "./Pages/TopSellingProducts"
 import { Dashboard } from "./Pages/Dashboard"
+import { Products } from "./Pages/Products"
 import { ProductsWithLowStock } from "./Pages/ProductsWithLowStock"
+import { TopSellingProducts } from "./Pages/TopSellingProducts"
+import { Suppliers } from "./Pages/Suppliers"
+import { Sales } from "./Pages/Sales"
+import { SaleDetails } from "./Pages/SaleDetails/Index"
+import { Expenses } from "./Pages/Expenses"
 import { Login } from "./Pages/Login"
 import { Register } from "./Pages/Register"
 
@@ -23,6 +24,7 @@ export const MainRoutes = () => {
             <Route path="/products/top-selling" element={<TopSellingProducts />} />
             <Route path="/products/low-stock" element={<ProductsWithLowStock />} />
             <Route path="/sales" element={<Sales />} />
+            <Route path="/sale/details/:saleId" element={<SaleDetails />} />
             <Route path="/expenses" element={<Expenses />} />
         </Routes>
     )

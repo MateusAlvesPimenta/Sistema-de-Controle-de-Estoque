@@ -5,7 +5,7 @@ import {
     getProductsByNameOrSupplier, getProductsWithLowStock,
     restockProduct, updateProduct
 } from "../Services/ProductServices";
-import { addSale, getAllSaleItems, getAllSales, getSalesByDate } from "../Services/SalesServices";
+import { addSale, getAllSaleItems, getAllSales, getSaleById, getSalesByDate } from "../Services/SalesServices";
 import { addExpense, deleteExpense, getAllExpenses, getExpensesByDate, updateExpense } from "../Services/ExpenseServices";
 import { authenticateUser, registerUser } from "../Services/AccountServices";
 
@@ -19,6 +19,7 @@ export const ContextProvider = (props) => {
     const [productsWithLowStock, setProductsWithLowStock] = useState([]);
     const [sales, setSales] = useState([]);
     const [saleItems, setSaleItems] = useState([]);
+    const [saleDetails, setSaleDetails] = useState();
     const [expenses, setExpenses] = useState([]);
     const [totalSales, setTotalSales] = useState(0);
     const [totalExpenses, setTotalExpenses] = useState(0);
@@ -60,6 +61,19 @@ export const ContextProvider = (props) => {
             default: () => console.warn(`Invalid getAll request \nEntity type: ${entityType}`)
         };
         await (handlers[entityType] || handlers.default)();
+    }
+
+    const getById = async (saleId) => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const tempSale = await getSaleById(saleId, config);
+
+        if (tempSale.status === 200) {
+            setSaleDetails({ ...tempSale.data });
+        }
     }
 
     const getByNameOrSupplier = async (data) => {
@@ -195,7 +209,6 @@ export const ContextProvider = (props) => {
                 if (response.status === 200) {
                     setToken(response.data.token);
                     sessionStorage.setItem("token", response.data.token);
-                    sessionStorage.setItem("email", response.data.email);
                     sessionStorage.setItem("expiration", response.data.expiration.toLocaleString());
                     setUpdateData(true);
                 }
@@ -244,10 +257,12 @@ export const ContextProvider = (props) => {
                 productsWithLowStock,
                 sales,
                 saleItems,
+                saleDetails,
                 expenses,
                 totalExpenses,
                 totalSales,
                 getAll,
+                getById,
                 getByNameOrSupplier,
                 getByDate,
                 post,

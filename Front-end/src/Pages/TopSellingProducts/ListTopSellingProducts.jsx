@@ -32,7 +32,7 @@ export const ListTopSellingProducts = (props) => {
                     <tr>
                         <th>Product id</th>
                         <th>Name</th>
-                        <th>Amount sold</th>
+                        <th>Quantity sold</th>
                         <th>Value sold</th>
                     </tr>
                 </thead>

@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Table } from "reactstrap";
 import { format } from "date-fns";
 import { Context } from "../../Context/Index"
+import { Link } from "react-router-dom";
 
 export const ListSales = () => {
 
@@ -17,6 +18,7 @@ export const ListSales = () => {
                         <th>Customer name</th>
                         <th>Total price</th>
                         <th>Sale date</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +29,12 @@ export const ListSales = () => {
                                 <td>{sale.customerName}</td>
                                 <td>R${sale.total.toLocaleString()}</td>
                                 <td>{format(sale.saleDate, "dd/MM/yyyy - hh:mm")}</td>
+                                <td>
+                                    <Link to={`/sale/details/${sale.saleId}`}
+                                        className="btn btn-primary">
+                                        Details
+                                    </Link>
+                                </td>
                             </tr>
                         ))
                     }

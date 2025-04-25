@@ -5,6 +5,11 @@ export const getAllSales = async (config) => {
         .catch(e => console.log(e));
 }
 
+export const getSaleById = async (saleId, config) => {
+    return await api.get("/GetSale/" + saleId, config)
+        .catch(e => console.log(e));
+}
+
 export const getAllSaleItems = async (config) => {
     return await api.get("/GetAllSaleItems", config)
         .catch(e => console.log(e));
