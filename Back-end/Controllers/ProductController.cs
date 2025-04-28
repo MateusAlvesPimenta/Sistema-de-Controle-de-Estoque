@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProductController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Back_end.Controllers
             _productService = productService;
         }
 
-        [HttpGet("/GetAllProducts")]
+        [HttpGet("GetAllProducts")]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllProducts();
@@ -31,7 +31,7 @@ namespace Back_end.Controllers
             return Ok(products);
         }
 
-        [HttpGet("/GetProduct/{id}")]
+        [HttpGet("GetProduct/{id}")]
         public async Task<IActionResult> GetProductsById(int id)
         {
             var product = await _productService.GetProductById(id);
@@ -43,7 +43,7 @@ namespace Back_end.Controllers
             return Ok(product);
         }
 
-        [HttpGet("/GetProducts/NameOrSupplier")]
+        [HttpGet("GetProducts/NameOrSupplier")]
         public async Task<IActionResult> GetProductsByNameOrSupplier(
             [FromQuery] string name,
             string supplierIds)
@@ -81,7 +81,7 @@ namespace Back_end.Controllers
             return Ok(products);
         }
 
-        [HttpGet("/GetProductsWithLowStock")]
+        [HttpGet("GetProductsWithLowStock")]
         public async Task<IActionResult> GetProductsWithLowStock()
         {
             var products = await _productService.GetProductsWithLowStock();
@@ -93,7 +93,7 @@ namespace Back_end.Controllers
             return Ok(products);
         }
 
-        [HttpPost("/AddProduct")]
+        [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct(ProductDTO productDTO)
         {
             var product = await _productService.AddProduct(productDTO);
@@ -106,7 +106,7 @@ namespace Back_end.Controllers
             return CreatedAtAction(nameof(GetProductsById), new { id = product.ProductId }, product);
         }
 
-        [HttpPost("/AddProductList")]
+        [HttpPost("AddProductList")]
         public async Task<IActionResult> AddProductList(List<ProductDTO> productDTO)
         {
             if (productDTO == null || productDTO.Count <= 0)
@@ -118,7 +118,7 @@ namespace Back_end.Controllers
             return Ok(productsAdded);
         }
 
-        [HttpPut("/UpdateProduct/{id}")]
+        [HttpPut("UpdateProduct/{id}")]
         public async Task<IActionResult> UpdateProduct(int id, ProductDTO productDTO)
         {
             var product = await _productService.GetProductById(id);
@@ -134,7 +134,7 @@ namespace Back_end.Controllers
             return Ok("Product updated");
         }
 
-        [HttpPut("/RestockProduct/{id}")]
+        [HttpPut("RestockProduct/{id}")]
         public async Task<IActionResult> RestockProduct(int id, int quantity)
         {
             var product = await _productService.GetProductById(id);
@@ -151,7 +151,7 @@ namespace Back_end.Controllers
 
             return Ok(product);
         }
-        [HttpDelete("/DeleteProduct/{id}")]
+        [HttpDelete("DeleteProduct/{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             var product = await _productService.GetProductById(id);

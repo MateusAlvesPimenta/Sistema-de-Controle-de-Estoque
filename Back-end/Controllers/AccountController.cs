@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IAuthenticate _authenticate;

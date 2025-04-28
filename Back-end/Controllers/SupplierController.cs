@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SupplierController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace Back_end.Controllers
             _supplierService = supplierService;
         }
 
-        [HttpGet("/GetAllSuppliers")]
+        [HttpGet("GetAllSuppliers")]
         public async Task<IActionResult> GetAllSuppliers()
         {
             var suppliers = await _supplierService.GetAllSuppliers();
@@ -30,7 +30,7 @@ namespace Back_end.Controllers
             return Ok(suppliers);
         }
 
-        [HttpGet("/GetSupplier/{id}")]
+        [HttpGet("GetSupplier/{id}")]
         public async Task<IActionResult> GetSupplierById(int id)
         {
             var supplier = await _supplierService.GetSupplierById(id);
@@ -42,7 +42,7 @@ namespace Back_end.Controllers
             return Ok(supplier);
         }
 
-        [HttpPost("/AddSupplier")]
+        [HttpPost("AddSupplier")]
         public async Task<IActionResult> AddSupplier(Supplier supplier)
         {
             await _supplierService.AddSupplier(supplier);
@@ -50,7 +50,7 @@ namespace Back_end.Controllers
             return CreatedAtAction(nameof(GetSupplierById), new { id = supplier.SupplierId }, supplier);
         }
 
-        [HttpPut("/UpdateSupplier/{id}")]
+        [HttpPut("UpdateSupplier/{id}")]
         public async Task<IActionResult> UpdateSupplier(int id, Supplier supplier)
         {
             await _supplierService.UpdateSupplier(id, supplier);
@@ -58,7 +58,7 @@ namespace Back_end.Controllers
             return Ok("Supplier updated");
         }
 
-        [HttpDelete("/DeleteSupplier/{id}")]
+        [HttpDelete("DeleteSupplier/{id}")]
         public async Task<IActionResult> DeleteSupplier(int id)
         {
             var supplier = await _supplierService.GetSupplierById(id);

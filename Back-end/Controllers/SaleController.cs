@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SaleController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace Back_end.Controllers
         }
 
         // Sale endpoints
-        [HttpGet("/GetAllSales")]
+        [HttpGet("GetAllSales")]
         public async Task<IActionResult> GetAllSales()
         {
             var sales = await _saleService.GetAllSales();
@@ -32,7 +32,7 @@ namespace Back_end.Controllers
             return Ok(sales);
         }
 
-        [HttpGet("/GetSale/{id}")]
+        [HttpGet("GetSale/{id}")]
         public async Task<IActionResult> GetSaleById(int id)
         {
             var sale = await _saleService.GetSaleById(id);
@@ -44,7 +44,7 @@ namespace Back_end.Controllers
             return Ok(sale);
         }
 
-        [HttpGet("/GetSalesByDate")]
+        [HttpGet("GetSalesByDate")]
         public async Task<IActionResult> GetSalesByDate([FromQuery]SaleExpenseDateDTO dateDTO)
         {
             var sales = await _saleService.GetSalesByDate(dateDTO.InitialDate, dateDTO.LastDate);
@@ -57,7 +57,7 @@ namespace Back_end.Controllers
         }
 
         // SaleItem endpoints
-        [HttpGet("/GetAllSaleItems")]
+        [HttpGet("GetAllSaleItems")]
         public async Task<IActionResult> GetAllSaleItems()
         {
             var saleItems = await _saleService.GetAllSaleItems();
@@ -69,7 +69,7 @@ namespace Back_end.Controllers
             return Ok(saleItems);
         }
 
-        [HttpGet("/GetSaleItem/{id}")]
+        [HttpGet("GetSaleItem/{id}")]
         public async Task<IActionResult> GetSaleItemById(int id)
         {
             var saleItem = await _saleService.GetSaleItemById(id);
@@ -81,7 +81,7 @@ namespace Back_end.Controllers
             return Ok(saleItem);
         }
 
-        [HttpGet("/GetSaleItems/{saleId}")]
+        [HttpGet("GetSaleItems/{saleId}")]
         public async Task<IActionResult> GetSaleItemBySaleId(int saleId)
         {
             var saleItems = await _saleService.GetSaleItemsBySaleId(saleId);
@@ -98,7 +98,7 @@ namespace Back_end.Controllers
         }
 
         // Shared endpoints
-        [HttpPost("/AddSale")]
+        [HttpPost("AddSale")]
         public async Task<IActionResult> AddSale(SaleDTO saleDTO)
         {
             var saleReport = await _saleService.AddSaleAndSaleItem(saleDTO.CustomerName, saleDTO.SaleItemDTOs);
@@ -107,7 +107,7 @@ namespace Back_end.Controllers
         }
 
         // For development purposes
-        [HttpDelete("/RemoveEmptySales")]
+        [HttpDelete("RemoveEmptySales")]
         public async Task<IActionResult> RemoveEmptySales()
         {
             var emptySales = await _saleService.RemoveEmptySales();
@@ -119,7 +119,7 @@ namespace Back_end.Controllers
             return Ok(emptySales);
         }
 
-        [HttpPut("/SaleSaleItemPriceAndQuantityFix")]
+        [HttpPut("SaleSaleItemPriceAndQuantityFix")]
         public async Task<IActionResult> SaleSaleItemPriceAndQuantityFix(int saleId)
         {
             var sale = await _saleService.GetSaleById(saleId);
@@ -135,7 +135,7 @@ namespace Back_end.Controllers
             return Ok(updatedSale);
         }
 
-        [HttpDelete("/DeleteSale/{id}")]
+        [HttpDelete("DeleteSale/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
             var sale = await _saleService.GetSaleById(id);

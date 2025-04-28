@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back_end.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ExpenseController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Back_end.Controllers
             _expenseService = expenseService;
         }
 
-        [HttpGet("/GetAllExpenses")]
+        [HttpGet("GetAllExpenses")]
         public async Task<IActionResult> GetAllExpenses()
         {
             var expenses = await _expenseService.GetAllExpenses();
@@ -31,7 +31,7 @@ namespace Back_end.Controllers
             return Ok(expenses);
         }
 
-        [HttpGet("/GetExpense/{id}")]
+        [HttpGet("GetExpense/{id}")]
         public async Task<IActionResult> GetExpenseById(int id)
         {
             var expense = await _expenseService.GetExpenseById(id);
@@ -43,7 +43,7 @@ namespace Back_end.Controllers
             return Ok(expense);
         }
 
-        [HttpGet("/GetExpensesByDate")]
+        [HttpGet("GetExpensesByDate")]
         public async Task<IActionResult> GetExpensesByDate([FromQuery] SaleExpenseDateDTO dateDTO)
         {
             var expenses = await _expenseService.GetExpensesByDate(dateDTO.InitialDate, dateDTO.LastDate);
@@ -55,7 +55,7 @@ namespace Back_end.Controllers
             return Ok(expenses);
         }
 
-        [HttpPost("/AddExpense")]
+        [HttpPost("AddExpense")]
         public async Task<IActionResult> AddExpense(Expense expense)
         {
             await _expenseService.AddExpense(expense);
@@ -63,7 +63,7 @@ namespace Back_end.Controllers
             return Ok(expense);
         }
 
-        [HttpPut("/UpdateExpense/{id}")]
+        [HttpPut("UpdateExpense/{id}")]
         public async Task<IActionResult> UpdateExpense(int id, Expense newExpense)
         {
             var expense = await _expenseService.GetExpenseById(id);
@@ -78,7 +78,7 @@ namespace Back_end.Controllers
             return Ok("Expense updated");
         }
 
-        [HttpDelete("/DeleteExpense/{id}")]
+        [HttpDelete("DeleteExpense/{id}")]
         public async Task<IActionResult> DeleteExpense(int id)
         {
             var expense = await _expenseService.GetExpenseById(id);

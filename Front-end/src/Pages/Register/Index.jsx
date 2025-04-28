@@ -72,14 +72,6 @@ export const Register = () => {
                                 onChange={handleChange}
                                 className={`mb-2 ${touched.password && "input-validation"}`}
                                 required />
-                            Password must contain:
-                            <ul>
-                                <li>8+ characters</li>
-                                <li>Uppercase letters</li>
-                                <li>Lowercase letters</li>
-                                <li>Numbers</li>
-                                <li>Symbols</li>
-                            </ul>
                         </FormGroup>
                         <FormGroup>
                             <Label for="confirmPassword">Confirm password</Label>
@@ -92,6 +84,14 @@ export const Register = () => {
                                 onChange={handleChange}
                                 required />
                         </FormGroup>
+                        Password must contain:
+                        <ul>
+                            <li>8+ characters</li>
+                            <li>Uppercase letters</li>
+                            <li>Lowercase letters</li>
+                            <li>Numbers</li>
+                            <li>Symbols</li>
+                        </ul>
                         <ul className={displayAlert ? "display-alert" : "hide-alert"}>
                             <li>Must match password</li>
                         </ul>
