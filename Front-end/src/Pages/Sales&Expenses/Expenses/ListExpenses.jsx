@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { Table } from "reactstrap"
 import { format } from "date-fns";
-import { Context } from "../../Context/Index"
-import { EditExpenseButton } from "../../Components/ActionButtons/ExpensesButtons/Index";
-import { DeleteEntity } from "../../Components/ActionButtons/GeneralButtons";
+import { Context } from "../../../Context/Index"
+import { EditExpenseButton } from "../../../Components/ActionButtons/ExpensesButtons/Index";
+import { DeleteEntity } from "../../../Components/ActionButtons/GeneralButtons";
 
 export const ListExpenses = () => {
 

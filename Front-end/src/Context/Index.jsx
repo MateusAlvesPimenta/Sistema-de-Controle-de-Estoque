@@ -82,6 +82,7 @@ export const ContextProvider = (props) => {
                 Authorization: `Bearer ${token}`
             }
         };
+        console.log(config);
         const tempProducts = await getProductsByNameOrSupplier(data, config);
 
         if (tempProducts.status === 200) {

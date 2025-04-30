@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { Button, Card, CardBody, CardTitle, Container, Form, FormGroup, Input, Label } from "reactstrap"
-import { Context } from "../../Context/Index";
+import { Context } from "../../../Context/Index";
 
 export const Login = () => {
 

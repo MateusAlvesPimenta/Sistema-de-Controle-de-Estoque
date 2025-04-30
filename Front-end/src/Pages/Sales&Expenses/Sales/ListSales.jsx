@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Table } from "reactstrap";
 import { format } from "date-fns";
-import { Context } from "../../Context/Index"
+import { Context } from "../../../Context/Index"
 import { Link } from "react-router-dom";
 
 export const ListSales = () => {

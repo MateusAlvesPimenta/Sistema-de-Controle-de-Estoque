@@ -5,7 +5,7 @@ import {
     DropdownMenu, DropdownToggle, UncontrolledDropdown
 } from "reactstrap";
 import { format } from "date-fns";
-import { ListTopSellingProducts } from "../TopSellingProducts/ListTopSellingProducts";
+import { ListTopSellingProducts } from "../Products/TopSellingProducts/ListTopSellingProducts";
 import { Context } from "../../Context/Index"
 
 export const DashboardContent = () => {

@@ -1,6 +1,6 @@
 import { useContext, useMemo, useState } from "react"
 import { Table } from "reactstrap"
-import { Context } from "../../Context/Index"
+import { Context } from "../../../Context/Index"
 
 export const ListTopSellingProducts = (props) => {
 

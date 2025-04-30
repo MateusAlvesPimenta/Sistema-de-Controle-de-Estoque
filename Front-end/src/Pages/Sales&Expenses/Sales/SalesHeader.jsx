@@ -1,4 +1,4 @@
-import { AddSaleButton } from "../../Components/ActionButtons/SalesButtons/Index"
+import { AddSaleButton } from "../../../Components/ActionButtons/SalesButtons/Index"
 
 export const SalesHeader = () => {
     return (

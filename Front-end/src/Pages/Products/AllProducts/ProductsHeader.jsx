@@ -1,4 +1,4 @@
-import { AddProductButton } from "../../Components/ActionButtons/ProductsButtons/Index"
+import { AddProductButton } from "../../../Components/ActionButtons/ProductsButtons/Index"
 
 export const ProductsHeader = () => { 
     return (

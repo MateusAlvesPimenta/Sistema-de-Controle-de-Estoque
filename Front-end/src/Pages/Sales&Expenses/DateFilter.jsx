@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { Button, Form, FormGroup, Input, Label } from "reactstrap"
-import { Context } from "../Context/Index";
 import { format } from "date-fns";
+import { Context } from "../../Context/Index";
 
 export const DateFilter = (props) => {
 

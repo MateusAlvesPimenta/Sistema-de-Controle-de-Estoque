@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Table } from "reactstrap";
-import { Context } from "../../Context/Index";
+import { Context } from "../../../Context/Index"
 
 export const SaleItemsContent = () => {
 
@@ -21,7 +21,7 @@ export const SaleItemsContent = () => {
                 </thead>
                 <tbody>
                     {saleDetails && saleDetails.saleItems.map(item => (
-                        <tr>
+                        <tr key={item.saleItemId}>
                             <td>{item.productId}</td>
                             <td>{item.name}</td>
                             <td>{item.quantity}</td>

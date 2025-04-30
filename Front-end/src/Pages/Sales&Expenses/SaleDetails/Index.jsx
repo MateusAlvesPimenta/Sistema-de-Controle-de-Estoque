@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 
 import { SaleContent } from "./SaleContent"
 import { SaleItemsContent } from "./SaleItemsContent"
-import { Context } from "../../Context/Index"
+import { Context } from "../../../Context/Index"
 
 export const SaleDetails = () => {
 

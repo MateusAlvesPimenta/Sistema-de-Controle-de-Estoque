@@ -6,12 +6,7 @@ export const getAllProducts = async (config) => {
 }
 
 export const getProductsByNameOrSupplier = async (data, config) => {
-    return await api.get("Product/GetProducts/NameOrSupplier", {
-        params: {
-            name: data.name,
-            supplierIds: data.supplierIds
-        }
-    }, config)
+    return await api.get(`Product/GetProducts/NameOrSupplier?name=${data.name}&supplierIds=${data.supplierIds}`, config)
         .catch(e => {
             console.log(e)
             if (e.response.data === "No products found with this filter") {

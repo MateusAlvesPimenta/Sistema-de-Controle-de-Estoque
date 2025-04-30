@@ -4,7 +4,7 @@ import {
     DropdownToggle, Form, FormGroup, Input,
     UncontrolledButtonDropdown
 } from "reactstrap"
-import { Context } from "../../Context/Index"
+import { Context } from "../../../Context/Index";
 
 export const ProductsFilter = () => {
 

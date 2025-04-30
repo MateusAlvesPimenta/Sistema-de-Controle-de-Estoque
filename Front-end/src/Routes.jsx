@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom"
 
 import { Dashboard } from "./Pages/Dashboard"
-import { Products } from "./Pages/Products"
-import { ProductsWithLowStock } from "./Pages/ProductsWithLowStock"
-import { TopSellingProducts } from "./Pages/TopSellingProducts"
+import { Products } from "./Pages/Products/AllProducts"
+import { ProductsWithLowStock } from "./Pages/Products/ProductsWithLowStock"
+import { TopSellingProducts } from "./Pages/Products/TopSellingProducts"
 import { Suppliers } from "./Pages/Suppliers"
-import { Sales } from "./Pages/Sales"
-import { SaleDetails } from "./Pages/SaleDetails/Index"
-import { Expenses } from "./Pages/Expenses"
-import { Login } from "./Pages/Login"
-import { Register } from "./Pages/Register"
+import { Login } from "./Pages/Authentication/Login/Index"
+import { Register } from "./Pages/Authentication/Register/Index"
+import { Sales } from "./Pages/Sales&Expenses/Sales/Index"
+import { SaleDetails } from "./Pages/Sales&Expenses/SaleDetails/Index"
+import { Expenses } from "./Pages/Sales&Expenses/Expenses/Index"
 
 
 export const MainRoutes = () => {

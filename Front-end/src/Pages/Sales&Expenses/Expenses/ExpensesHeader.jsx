@@ -1,4 +1,4 @@
-import { AddExpenseButton } from "../../Components/ActionButtons/ExpensesButtons/Index"
+import { AddExpenseButton } from "../../../Components/ActionButtons/ExpensesButtons/Index"
 
 export const ExpensesHeader = () => {
 
