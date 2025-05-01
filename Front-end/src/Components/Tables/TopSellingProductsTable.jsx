@@ -1,10 +1,10 @@
 import { useContext, useMemo, useState } from "react"
 import { Table } from "reactstrap"
-import { Context } from "../../../Context/Index"
+import { Context } from "../../Context/Index"
 
-export const ListTopSellingProducts = (props) => {
+export const TopSellingProductsTable = (props) => {
 
-    const { info } = props;
+    const { fullInfo } = props;
     const { saleItems } = useContext(Context);
     const [reducedItems, setReducedItems] = useState([]);
 
@@ -25,45 +25,34 @@ export const ListTopSellingProducts = (props) => {
         setReducedItems(tempReducedItems);
     }, [saleItems]);
 
-    if (info.toLowerCase() === "full") {
-        return (
-            <Table hover>
-                <thead>
-                    <tr>
-                        <th>Product id</th>
-                        <th>Name</th>
-                        <th>Quantity sold</th>
-                        <th>Value sold</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        reducedItems.map(item => (
-                            <tr key={item.productId}>
-                                <td>{item.productId}</td>
-                                <td>{item.name}</td>
-                                <td>{item.quantity}</td>
-                                <td>R${item.price.toLocaleString()}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </Table>
-        )
-    }
     return (
-        <Table hover size="sm">
+        <Table hover>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Name</th>
+                    {fullInfo && <th>Product id</th>}
+                    <th>Quantity sold</th>
                     <th>Value sold</th>
                 </tr>
             </thead>
             <tbody>
-                {
-                    reducedItems.slice(0, 3).map(item => (
+                {fullInfo ?
+                    reducedItems.map(item => (
                         <tr key={item.productId}>
+                            <td>{reducedItems.findIndex(i => i === item) + 1}</td>
                             <td>{item.name}</td>
+                            <td>{item.productId}</td>
+                            <td>{item.quantity}</td>
+                            <td>R${item.price.toLocaleString()}</td>
+                        </tr>
+                    ))
+                    :
+                    reducedItems.slice(0, 5).map(item => (
+                        <tr key={item.productId}>
+                            <td>{reducedItems.findIndex(i => i === item) + 1}</td>
+                            <td>{item.name}</td>
+                            <td>{item.quantity}</td>
                             <td>R${item.price.toLocaleString()}</td>
                         </tr>
                     ))

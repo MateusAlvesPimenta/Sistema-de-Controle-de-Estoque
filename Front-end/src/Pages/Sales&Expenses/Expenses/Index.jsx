@@ -1,7 +1,7 @@
 import { Container } from "reactstrap"
 import { ExpensesHeader } from "./ExpensesHeader"
-import { ListExpenses } from "./ListExpenses"
 import { DateFilter } from "../DateFilter"
+import { ExpensesTable } from "./ExpensesTable"
 
 export const Expenses = () => {
 
@@ -11,7 +11,7 @@ export const Expenses = () => {
                 <ExpensesHeader />
                 <DateFilter entityType="expense" />
             </div>
-            <ListExpenses />
+            <ExpensesTable />
         </Container>
     )
 }

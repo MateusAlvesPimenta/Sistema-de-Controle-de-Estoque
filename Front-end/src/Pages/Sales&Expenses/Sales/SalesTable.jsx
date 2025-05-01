@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { Context } from "../../../Context/Index"
 import { Link } from "react-router-dom";
 
-export const ListSales = () => {
+export const SalesTable = () => {
 
     const { sales, totalSales } = useContext(Context);
 
@@ -14,9 +14,9 @@ export const ListSales = () => {
             <Table hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Customer name</th>
-                        <th>Total price</th>
+                        <th>Total</th>
                         <th>Sale date</th>
                         <th>Option</th>
                     </tr>

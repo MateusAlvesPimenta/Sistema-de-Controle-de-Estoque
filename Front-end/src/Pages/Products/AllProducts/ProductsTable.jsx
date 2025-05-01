@@ -4,7 +4,7 @@ import { Context } from "../../../Context/Index";
 import { EditProductButton } from "../../../Components/ActionButtons/ProductsButtons/Index";
 import { DeleteEntity } from "../../../Components/ActionButtons/GeneralButtons";
 
-export const ListProducts = () => {
+export const ProductsTable = () => {
 
     const { products } = useContext(Context);
 
@@ -12,10 +12,10 @@ export const ListProducts = () => {
         <Table hover>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Quatity</th>
+                    <th>Quantity</th>
                     <th>Supplier id</th>
                     <th>Actions</th>
                     <th></th>

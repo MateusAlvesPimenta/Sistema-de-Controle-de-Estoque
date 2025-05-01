@@ -1,12 +1,18 @@
 import { useContext, useMemo, useState } from "react"
 import { Link } from "react-router-dom";
 import {
-    Card, CardBody, CardHeader, DropdownItem,
-    DropdownMenu, DropdownToggle, UncontrolledDropdown
+    Card,
+    CardBody,
+    CardHeader,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    UncontrolledDropdown
 } from "reactstrap";
 import { format } from "date-fns";
-import { ListTopSellingProducts } from "../Products/TopSellingProducts/ListTopSellingProducts";
 import { Context } from "../../Context/Index"
+import { TopSellingProductsTable } from "../../Components/Tables/TopSellingProductsTable";
+import { LatestSalesTable } from "../../Components/Tables/LatestSalesTable";
 
 export const DashboardContent = () => {
 
@@ -81,41 +87,56 @@ export const DashboardContent = () => {
                     </DropdownMenu>
                 </UncontrolledDropdown>
             </header>
-            <div className="grid-container">
-                <div className={`grid-item ${profit > 0 ? "positive" : "negative"}`}>
+            <div className="flex-container">
+                <div className={`flex-item ${profit > 0 ? "positive" : "negative"}`}>
                     <h5>Profit</h5>
-                    <h1>R${profit.toLocaleString()}</h1>
+                    <p>R${profit.toLocaleString()}</p>
                 </div>
                 <Link
                     to="/expenses"
-                    className="grid-item negative">
+                    className="flex-item negative m-auto">
                     <h5>Total expenses</h5>
-                    <h1>R${totalExpenses.toLocaleString()}</h1>
+                    <p>R${totalExpenses.toLocaleString()}</p>
                 </Link>
                 <Link
                     to="/sales"
-                    className="grid-item positive">
+                    className="flex-item positive">
                     <h5>Total sales</h5>
-                    <h1>R${totalSales.toLocaleString()}</h1>
+                    <p>R${totalSales.toLocaleString()}</p>
                 </Link>
-                <div className={`grid-item ${salesCount > 0 ? "positive" : "negative"}`}>
+                <div className={`flex-item ${salesCount > 0 ? "positive" : "negative"}`}>
                     <h5>Sales count</h5>
-                    <h1>{salesCount}</h1>
+                    <p >{salesCount}</p>
                 </div>
             </div>
-            <Card className="my-5">
-                <CardHeader className="d-flex my-auto">
-                    <h4>Top selling products</h4>
-                    <Link
-                        to="/products/top-selling"
-                        className="ms-auto">
-                        <i className="bi bi-box-arrow-up-right"></i>
-                    </Link>
-                </CardHeader>
-                <CardBody>
-                    <ListTopSellingProducts info="minimum" />
-                </CardBody>
-            </Card>
+            <div className="flex-container my-5">
+                <Card className="">
+                    <CardHeader className="d-flex justify-content-between">
+                        <h4>Top selling products</h4>
+                        <Link
+                            to="/products/top-selling"
+                            className="ms-3">
+                            <i className="bi bi-box-arrow-up-right"></i>
+                        </Link>
+                    </CardHeader>
+                    <CardBody>
+                        <TopSellingProductsTable fullInfo={false} />
+                    </CardBody>
+                </Card>
+                <Card className="">
+                    <CardHeader className="d-flex justify-content-between">
+                        <h4>Latest sales</h4>
+                        <Link
+                            to="/sales"
+                            className="ms-3">
+                            <i className="bi bi-box-arrow-up-right"></i>
+                        </Link>
+                    </CardHeader>
+                    <CardBody>
+                        <LatestSalesTable />
+                    </CardBody>
+                </Card>
+            </div>
         </>
     )
 }

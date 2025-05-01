@@ -18,7 +18,7 @@ export const MyNavBar = () => {
                         Dashboard
                     </span>
                 </Link>
-                <UncontrolledAccordion defaultOpen="1">
+                <UncontrolledAccordion defaultOpen="0">
                     <AccordionHeader targetId="1" className="nav-link">
                         <i className="bi bi-bag"> </i>
                         <span>

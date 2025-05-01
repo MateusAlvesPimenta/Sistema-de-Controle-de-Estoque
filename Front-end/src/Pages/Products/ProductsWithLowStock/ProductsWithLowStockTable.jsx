@@ -3,7 +3,7 @@ import { Table } from "reactstrap"
 import { Context } from "../../../Context/Index";
 import { RestockProductsButton } from "../../../Components/ActionButtons/ProductsButtons/Index";
 
-export const ListProductsWithLowStock = () => {
+export const ProductsWithLowStockTable = () => {
 
     const { productsWithLowStock } = useContext(Context);
 
@@ -11,7 +11,7 @@ export const ListProductsWithLowStock = () => {
         <Table hover>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>

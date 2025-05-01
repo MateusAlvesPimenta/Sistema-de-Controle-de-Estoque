@@ -1,7 +1,7 @@
 import { Container } from "reactstrap"
-import { ListSales } from "./ListSales"
 import { SalesHeader } from "./SalesHeader"
 import { DateFilter } from "../DateFilter"
+import { SalesTable } from "./SalesTable"
 
 export const Sales = () => {
 
@@ -11,7 +11,7 @@ export const Sales = () => {
                 <SalesHeader />
                 <DateFilter entityType="sale"/>
             </div>
-            <ListSales />
+            <SalesTable />
         </Container>
     )
 }

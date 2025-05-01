@@ -5,7 +5,7 @@ import { Context } from "../../../Context/Index"
 import { EditExpenseButton } from "../../../Components/ActionButtons/ExpensesButtons/Index";
 import { DeleteEntity } from "../../../Components/ActionButtons/GeneralButtons";
 
-export const ListExpenses = () => {
+export const ExpensesTable = () => {
 
     const { expenses, totalExpenses } = useContext(Context);
 
@@ -15,7 +15,7 @@ export const ListExpenses = () => {
             <Table hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Expense date</th>

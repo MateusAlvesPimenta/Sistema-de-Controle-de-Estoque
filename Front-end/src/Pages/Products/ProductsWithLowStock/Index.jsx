@@ -1,13 +1,13 @@
 import { Container } from "reactstrap";
 import { ProductsWithLowStockHeader } from "./ProductsWithLowStockHeader";
-import { ListProductsWithLowStock } from "./ListProductsWithLowStock";
+import { ProductsWithLowStockTable } from "./ProductsWithLowStockTable";
 
 export const ProductsWithLowStock = () => {
 
     return (
         <Container>
             <ProductsWithLowStockHeader />
-            <ListProductsWithLowStock />
+            <ProductsWithLowStockTable />
         </Container>
     )
 }

@@ -15,7 +15,7 @@ export const SaleContent = () => {
                     <tr>
                         <th>Sale id</th>
                         <th>Customer name</th>
-                        <th>Total price</th>
+                        <th>Total</th>
                         <th>Sale date</th>
                     </tr>
                 </thead>

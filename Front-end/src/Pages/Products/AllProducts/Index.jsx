@@ -1,7 +1,7 @@
 import { Container } from "reactstrap";
 import { ProductsHeader } from "./ProductsHeader";
-import { ListProducts } from "./ListProducts";
 import { ProductsFilter } from "./ProductsFilter";
+import { ProductsTable } from "./ProductsTable";
 import "./Styles.css";
 
 export const Products = () => {
@@ -10,7 +10,7 @@ export const Products = () => {
         <Container>
             <ProductsHeader />
             <ProductsFilter />
-            <ListProducts />
+            <ProductsTable/>
         </Container>
     )
 }
