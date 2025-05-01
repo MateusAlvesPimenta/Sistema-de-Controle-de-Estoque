@@ -65,4 +65,6 @@ Este projeto está em andamento e ainda não foi concluído e portanto terá mui
 11. Implementar o sistema de autenticação jwt. ✔️
 12. Criar paginas para Login e registro de usuário. ✔️
 13. Criar pagina de detalhes da venda. ✔️
+14. Adicionar uma aba no dashboard de vendas mais recentes. ✔️
+15. Aumentar a responsividade do site. ⚙️
 * Melhorias visuais, melhorias de código, organização das pastas. ⚙️
