@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AccordionBody, AccordionHeader, UncontrolledAccordion } from "reactstrap";
-import { Context } from "../Context/Index";
+import { Context } from "../../Context/Index";
+import "./Styles.css";
 
 export const MyNavBar = () => {
 

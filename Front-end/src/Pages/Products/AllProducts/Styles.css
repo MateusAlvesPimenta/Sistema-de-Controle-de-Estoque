@@ -1,0 +1,23 @@
+.badge {
+    font-size: medium;
+    margin-right: 5px;
+}
+
+.badge .btn-x {
+    margin-left: 5px;
+    border: 0;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    color: #dc3545;
+    font-weight: bold;
+    transition: all .15s ease-in-out;
+}
+
+form button {
+    white-space: nowrap;
+}
+
+.badge .btn-x:hover {
+    color: white;
+}

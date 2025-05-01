@@ -1,0 +1,92 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding-top: 3vh;
+    height: 100vh;
+    width: 80px;
+    min-width: 80px;
+    max-width: fit-content;
+    background-color: hsl(226, 100%, 50%);
+    background: linear-gradient(to right, hsl(226, 100%, 40%), hsl(226, 100%, 60%));
+    overflow: none;
+    transition: all .3s ease-in-out;
+    z-index: 1000;
+}
+
+.nav-link,
+.nav-link:focus,
+.accordion-button {
+    display: flex;
+    align-items: center;
+    color: #f8f9fa;
+    font-size: 20px;
+    gap: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.sidebar i {
+    font-size: x-large;
+}
+
+h2.nav-link {
+    padding: auto;
+}
+
+.accordion-header {
+    padding: 3px 3px 3px 3px black;
+}
+
+.accordion-body,
+.accordion-header {
+    padding: 0;
+}
+
+.accordion-body {
+    background: linear-gradient(to right, hsl(226, 100%, 33%), hsl(226, 100%, 40%));
+}
+
+.accordion-body .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion-button,
+.accordion-button:not(.collapsed),
+.accordion-button:focus {
+    color: #f8f9fa;
+    background: transparent;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    background-image: var(--custom-accordion-icon);
+    transition: all .2s ease-in-out;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: var(--custom-accordion-icon);
+    transform: rotate(-180deg);
+}
+
+.sidebar:hover {
+    width: 250px;
+    min-width: 250px;
+    max-width: fit-content;
+}
+
+.nav-link:hover{
+    background-color: hsl(226, 100%, 30%);
+    color: hsl(210, 17%, 98%);
+}
+
+.sidebar:not(:hover) .nav-link span,
+.sidebar:not(:hover) .accordion-body,
+.sidebar:not(:hover) .accordion-button::after {
+    display: none;
+}

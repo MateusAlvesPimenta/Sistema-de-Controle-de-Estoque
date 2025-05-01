@@ -1,0 +1,24 @@
+.form-container {
+    max-width: 400px;
+    width: 100%
+}
+
+.form-container .hide-alert {
+    display: none;
+}
+
+.form-container .display-alert {
+    color: red;
+}
+
+.form-container .input-validation {
+    transition: all .3s ease-in-out;
+}
+
+.form-container .input-validation:valid {
+    box-shadow: 0 0 7px 1px green;
+}
+
+.form-container .input-validation:invalid {
+    box-shadow: 0 0 7px 1px red;
+}

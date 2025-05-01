@@ -1,0 +1,38 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 18vw);
+    row-gap: 30px;
+    grid-template-rows: auto;
+    justify-content: space-between;
+}
+
+.grid-container h1 {
+    font-size: 2.6vw;
+}
+
+.grid-container h5 {
+    font-size: 1.3vw;
+}
+
+.grid-container .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    transition: all .5s ease-in-out;
+}
+
+.grid-item.positive {
+    background: linear-gradient(to right, hsl(152, 69%, 30%), hsl(152, 69%, 40%), hsl(152, 69%, 40%), hsl(152, 69%, 30%));
+    transition: all .15s ease-in-out;
+}
+
+.grid-item.negative {
+    background: linear-gradient(to right, hsl(354, 70%, 44%), #dc3545, #dc3545, hsl(354, 70%, 44%));
+}
+
+.card {
+    min-width: 20rem;
+    width: fit-content;
+}
